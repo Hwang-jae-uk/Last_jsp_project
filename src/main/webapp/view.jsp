@@ -1,11 +1,12 @@
 <%@ page import="dto.BoardDTO" %>
 <%@ page import="dao.BoardDAO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
     String no = request.getParameter("no");
     BoardDAO dao = new BoardDAO();
-    //BoardDTO dto = dao.getBoard(Integer.parseInt(no)); // 게시글 번호를 통해 글 하나를 가져옵니다.
+    BoardDTO dto = (BoardDTO)dao.getBoard(no); // 게시글 번호를 통해 글 하나를 가져옵니다.
 %>
 <html>
 <head>

@@ -1,6 +1,10 @@
 package dto;
 
+import dao.BoardDAO;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class BoardDTO {
 
@@ -11,6 +15,7 @@ public class BoardDTO {
     private String content;
     private Date postdate;
     private int visitCount;
+
 
     // 매개변수가 없는 생성자
     public BoardDTO() {}

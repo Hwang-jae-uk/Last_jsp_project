@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
     BoardDAO dao = new BoardDAO();
-    List<BoardDTO> dtoList = dao.getBoard();
+    List<BoardDTO> dtoList = dao.getBoard("no");
 %>
 <html>
 <head>
@@ -15,7 +15,7 @@
     <form method="get">
         <table border="1" width="90%">
             <tr>
-                <td>
+                <td colspan="5" >
                     <select name="searchOption">
                         <option value="title">제목</option>
                         <option value="id">작성자</option>
