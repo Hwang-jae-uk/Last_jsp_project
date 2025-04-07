@@ -44,7 +44,7 @@ public class BoardDAO {
 
     // 조회수 1증가
     public void updateVisitCount(String no){
-        String sql = "UPDATE mvcboard SET visitcount= visitcount+1 WHERE no= ?";
+        String sql = "UPDATE board SET visitcount= visitcount+1 WHERE no= ?";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
