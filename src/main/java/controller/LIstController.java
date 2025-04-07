@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 
-@WebServlet("/list3")
+@WebServlet("/home")
 public class LIstController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class LIstController extends HttpServlet {
 
 
         request.setAttribute("boardDTOList", boardDTOList);
-        request.getRequestDispatcher("list3.jsp").forward(request, response);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     @Override
