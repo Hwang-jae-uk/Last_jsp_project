@@ -101,10 +101,10 @@
           <c:forEach var="board" items="${boardDTOList}">
             <tr align="center">
               <th width="10%">${board.no}</th>
-              <th width="10%">${board.name}</th>
-              <th width="60%">${board.title}</th>
+              <th width="10%">${board.id}</th>
+              <th width="60%" style="padding-left: 10px" align="left"><a href="/view?no=${board.no}">${board.title}</a></th>
               <th width="10%">${board.visitCount}</th>
-              <th width="10%">${board.postdate}</th>
+              <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
             </tr>
           </c:forEach>
         </table>

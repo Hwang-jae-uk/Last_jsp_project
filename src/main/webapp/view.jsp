@@ -1,101 +1,99 @@
-<%@ page import="dto.BoardDTO" %>
-<%@ page import="dao.BoardDAO" %>
+
+
+
+
+<%@ page import="news.NewsAPI" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="dto.NewsDTO" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"
+         pageEncoding="UTF-8"
+         trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%
-    String no = request.getParameter("no");
-    BoardDAO dao = new BoardDAO();
-    BoardDTO dto = (BoardDTO)dao.getBoard(no); // 게시글 번호를 통해 글 하나를 가져옵니다.
-%>
-<html>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <title>글 보기</title>
-    <style>
-        body {
-            background-image: url('/image/tropical-beach-sea.jpg');
-            background-size: cover;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: white;
-        }
-
-        .view-container {
-            width: 70%;
-            margin: 50px auto;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 30px;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-
-        .post-details {
-            margin-bottom: 20px;
-        }
-
-        .post-details label {
-            font-weight: bold;
-            color: #3498db;
-        }
-
-        .post-details span {
-            font-size: 16px;
-        }
-
-        .content {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 1.6;
-            background-color: #f8f8f8;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .back-btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="../css/index_style_view.css"> <!-- 외부 스타일시트 적용 -->
+    <script src="../js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
-
-<div class="view-container">
-    <h1>글 보기</h1>
-
-    <!-- 게시글 상세 내용 -->
-    <div class="post-details">
-        <div><label>작성자:</label> <span><%= dto.getId() %></span></div>
-        <div><label>제목:</label> <span><%= dto.getTitle() %></span></div>
-        <div><label>조회수:</label> <span><%= dto.getVisitCount() %></span></div>
-        <div><label>날짜:</label> <span><%= dto.getPostdate() %></span></div>
-    </div>
-
-    <div class="content">
-        <label>내용:</label>
-        <p><%= dto.getContent() %></p> <!-- 게시글 내용 출력 -->
-    </div>
-
-    <!-- 게시판 목록으로 돌아가기 버튼 -->
-    <a href="/list" class="back-btn">목록으로 돌아가기</a>
+<div id="wrapper">
+    <header> <!-- 헤더 영역 -->
+        <h1><a href="index.html">MY BLOG</a></h1>
+        <h3>Welcome to my blog!</h3>
+    </header>
+    <nav> <!-- 여기서는 nav 태그를 main menu bar로 설정 -->
+        <ul>
+            <li class="spacer"></li>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="introduce.html">ABOUT</a></li>
+            <li><a href="memo.html">MEMO</a></li>
+            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="list.html">LIST</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="register.html">SIGN IN</a></li>
+        </ul>
+    </nav>
+    <aside> <!-- aside 태그는 sub menu bar로 설정 -->
+        <ul class="nav-menu">
+            <li class="list"><a href="index.html"><strong>전체글</strong></a></li> <!-- <a>를 <li> 내부로 이동 -->
+            <li><hr></li>
+            <li class="introduce"><a href="introduce.html"><strong>블로그 소개글</strong></a>
+            <li><hr></li>
+            <li class="memo"><a href="memo.html"><strong>간단한 메모</strong></a>
+            <li><hr></li>
+            <li class="gallery"><a href="gallery.html"><strong>사진 목록</strong></a>
+            <li><hr></li>
+            <li class="hello_post_list"><a href="list.html"><strong>hello world 출력하기</strong></a>
+                <ul>
+                    <li><a href="hello_post_C.html">C</a></li>
+                    <li><a href="hello_post_C++.html">C++</a></li>
+                    <li><a href="hello_post_Csharp.html">C#</a></li>
+                    <li><a href="hello_post_Java.html">Java</a></li>
+                    <li><a href="hello_post_Javascript.html">Javascript</a></li>
+                    <li><a href="hello_post_Python.html">Python</a></li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <table border="1" style="width: 95%; border-collapse: collapse; margin: 0;" >
+            <tr>
+                <th width="15%" >작성자: </th>
+                <th width="25%" >${dto.id}</th>
+                <th width="15%" >조회수: </th>
+                <th width="15%">${dto.visitCount}</th>
+                <th width="15%">날짜 :</th>
+                <th >${dto.postdate}</th>
+            </tr>
+            <tr>
+                <th>제목:</th>
+                <th colspan="5" align="left" style="padding-left: 30px">${dto.title}</th>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <th colspan="5"  align="left" style="padding-left: 30px">${dto.content}</th> <!-- 게시글 내용 출력 -->
+            </tr>
+        </table>
+        <button>삭제하기</button>
+        <button>수정하기</button>
+        <button>목록보기</button>
+    </main>
+    <footer> <!-- footer 태그는 저작권 표시 및 공식 사이트로 이동하는 아이콘 목록 -->
+        <div id="copyright">Copyright ©KJK All right is reserved</div>
+        <div id="othersites">
+            <!-- 이미지 파일 첨부 -->
+            <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0" target="_blank"><img src="image/naver_blog_logo.png" alt="naver blog"></a>
+            <a href="https://x.com/" target="_blank"><img src="image/X_logo_2023.png" alt="x(twitter)"></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="image/instagram-6338392_640.png" alt="instagram"></a>
+            <a href="https://ko-kr.facebook.com/" target="_blank"><img src="image/facebook-2429746_640.png" alt="facebook"></a>
+        </div>
+    </footer>
 </div>
-
 </body>
 </html>

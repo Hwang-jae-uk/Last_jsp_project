@@ -42,6 +42,24 @@ public class BoardDAO {
         return dto;
     }
 
+    // 조회수 1증가
+    public void updateVisitCount(String no){
+        String sql = "UPDATE mvcboard SET visitcount= visitcount+1 WHERE no= ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(no));
+            pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+    }
 
 
     // 게시판 리스트 만들기

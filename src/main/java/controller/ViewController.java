@@ -15,7 +15,7 @@ public class ViewController extends HttpServlet {
         String no = request.getParameter("no");
         BoardDAO dao = new BoardDAO();
         BoardDTO dto = dao.ListBoard(Integer.parseInt(no));
-        request.setAttribute("board", dto);
+        request.setAttribute("dto", dto);
         request.getRequestDispatcher("view.jsp").forward(request, response);
     }
 
