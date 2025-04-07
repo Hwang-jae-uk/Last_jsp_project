@@ -27,12 +27,12 @@
     <ul>
       <li class="spacer"></li>
       <li><a href="home">HOME</a></li>
-      <li><a href="introduce.html">ABOUT</a></li>
-      <li><a href="memo.html">MEMO</a></li>
-      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="introduce">ABOUT</a></li>
+      <li><a href="memo">MEMO</a></li>
+      <li><a href="gallery">GALLERY</a></li>
       <li><a href="list">LIST</a></li>
-      <li><a href="login.html">LOGIN</a></li>
-      <li><a href="register.html">SIGN IN</a></li>
+      <li><a href="login">LOGIN</a></li>
+      <li><a href="register">SIGN IN</a></li>
     </ul>
   </nav>
   <aside> <!-- aside 태그는 sub menu bar로 설정 -->
