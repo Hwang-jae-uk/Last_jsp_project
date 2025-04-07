@@ -1,6 +1,6 @@
-<%@ page import="news.NewsAPI" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dto.NewsDTO" %>
+<%@ page import="news.NewsAPI" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java"
          pageEncoding="UTF-8"
          trimDirectiveWhitespaces="true" %>
@@ -72,17 +72,17 @@
           </tr>
           <%
             NewsAPI news = new NewsAPI();
-            List<NewsDTO> newsList = news.getNews(); //카테고리 선택할수 있게
+            List<NewsDTO> newsList = news.selectNews();
+            for (NewsDTO dto: newsList) {
           %>
-          <c:forEach var="news" items="${newsList}">
             <tr align="center">
-              <th width="10%">${news.no}</th>
-              <th width="10%">${news.name}</th>
-              <th width="60%">${news.title}</th>
-              <th width="10%">${news.visitCount}</th>
-              <th width="10%"><fmt:formatDate value="${news.postdate}" pattern="MM-dd" /></th>
+              <td width="10%"><%=dto.getNo()%></td>
+              <td width="10%"><%=dto.getName()%></td>
+              <td width="60%"><%=dto.getTitle()%></td>
+              <td width="10%"><%=dto.getVisitcount()%></td>
+              <td width="10%"><%=dto.getPostdate()%></td>
             </tr>
-          </c:forEach>
+        <% } %>
         </table>
       </ul>
     </section>

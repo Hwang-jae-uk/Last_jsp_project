@@ -5,8 +5,10 @@ public class NewsDTO {
     private String name;    //기자
     private String title;   //제목
     private String contents;	//내용
+    private int visitcount;
     private String img;         //이미지
-    private String registDt;    //작성일
+    private String postdate;    //작성일
+    private String link;
 
     public int getNo() {return no;}
     public void setNo(int no) {this.no = no;}
@@ -16,9 +18,13 @@ public class NewsDTO {
     public void setTitle(String title) {this.title = title;}
     public String getContents() {return contents;}
     public void setContents(String contents) {this.contents = contents;}
+    public int getVisitcount() {return visitcount;}
+    public void setVisitcount(int visitcount) {this.visitcount = visitcount;}
     public String getImg() {return img;}
     public void setImg(String img) {this.img = img;}
-    public String getRegistDt() {return registDt;}
-    public void setRegistDt(String registDt) {this.registDt = registDt;}
+    public String getPostdate() {return postdate;}
+    public void setPostdate(String postdate) {this.postdate = postdate;}
+    public String getLink() {return link;}
+    public void setLink(String link) {this.link = link;}
 
 }
