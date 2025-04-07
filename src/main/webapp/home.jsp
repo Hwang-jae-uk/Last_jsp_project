@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dto.NewsDTO" %>
 <%@ page import="news.NewsAPI" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java"
          pageEncoding="UTF-8"
          trimDirectiveWhitespaces="true" %>
@@ -71,16 +73,16 @@
             <th width="10%">작성일</th>
           </tr>
           <%
-            NewsAPI news = new NewsAPI();
-            List<NewsDTO> newsList = news.selectNews();
-            for (NewsDTO dto: newsList) {
+              NewsAPI newsAPI = new NewsAPI();
+              List<NewsDTO> newsList = newsAPI.getNews("tech");
+              for (NewsDTO news : newsList) {
           %>
             <tr align="center">
-              <td width="10%"><%=dto.getNo()%></td>
-              <td width="10%"><%=dto.getName()%></td>
-              <td width="60%"><%=dto.getTitle()%></td>
-              <td width="10%"><%=dto.getVisitcount()%></td>
-              <td width="10%"><%=dto.getPostdate()%></td>
+              <td width="10%"><%=news.getNo()%></td>
+              <td width="10%"><%=news.getName()%></td>
+              <td width="60%"><%=news.getTitle()%></td>
+              <td width="10%"><%=news.getVisitcount()%></td>
+              <td width="10%"><%=news.getPostdate()%></td>
             </tr>
         <% } %>
         </table>

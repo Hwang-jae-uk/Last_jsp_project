@@ -6,8 +6,6 @@
 </head>
 <body>
     <h1>INDEX</h1>
-    <br>
-    <h2>Hello World!</h2>
-
+    <h2><a href="home">Hello World!</a></h2>
 </body>
 </html>
