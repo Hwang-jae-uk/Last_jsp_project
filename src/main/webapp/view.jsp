@@ -1,7 +1,3 @@
-
-<%@ page import="news.NewsAPI" %>
-<%@ page import="java.util.List" %>
-<%@ page import="dto.NewsDTO" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java"
         pageEncoding="UTF-8"
         trimDirectiveWhitespaces="true" %>
