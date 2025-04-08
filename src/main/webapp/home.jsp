@@ -20,16 +20,16 @@
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
       <ul>
-        <li><h2><a href="view.jsp">이주의 뉴스</a></h2></li>
+        <li><h2><a href="news.jsp">오늘의 뉴스</a></h2></li>
         <li><hr></li>
-        <table border="0" style="width: 100%; border-collapse: collapse; margin: 0;" >
+        <table border="0" style="width: 80%; border-collapse: collapse; margin-left: auto; margin-right: auto;" >
           <% request.setAttribute("section",""); %>
           <c:forEach var="news" items="${newsList}">
             <tr align="center">
-              <td width="10%"><img src="${news.img}" alt="picture" height="80px"></td>
-              <td width="60%"><a href="${news.o_link}">${news.title}</a></td>
+              <td width="5%"><img src="${news.img}" alt="picture" height="80px"></td>
+              <td width="40%"><a href="${news.o_link}">${news.title}</a></td>
               <td width="10%">${news.press}</td>
-              <td width="20%">${news.date}</td>
+              <td width="10%">${news.date}</td>
             </tr>
           </c:forEach>
         </table>
@@ -49,7 +49,7 @@
           </tr>
           <c:forEach var="board" items="${boardDTOList}">
             <tr align="center">
-              <th width="10%">${board.no}</th>
+              <th width="10%">${board.row_num}</th>
               <th width="10%">${board.id}</th>
               <th width="60%" style="padding-left: 10px" align="left"><a href="/view?no=${board.no}">${board.title}</a></th>
               <th width="10%">${board.visitCount}</th>

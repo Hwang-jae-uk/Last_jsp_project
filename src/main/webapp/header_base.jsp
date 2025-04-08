@@ -15,7 +15,7 @@
             <li class="spacer"></li>
             <li><a href="home">HOME</a></li>
             <li><a href="introduce">ABOUT</a></li>
-            <li><a href="view">NEWS</a></li>
+            <li><a href="news">NEWS</a></li>
             <li><a href="list">LIST</a></li>
             <li><a href="login.jsp">LOGIN</a></li>
             <li><a href="register.jsp">SIGN IN</a></li>

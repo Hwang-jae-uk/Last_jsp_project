@@ -15,9 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
+
 <div id="wrapper">
     <jsp:include page="header_base.jsp"/>
     <main>
+        ${pageNum}
         <table border="1" style="width: 95%; border-collapse: collapse; margin: 30px;" >
             <tr align="center" >
                 <th width="10%">번호</th>
@@ -28,7 +30,7 @@
             </tr>
             <c:forEach var="board" items="${boardDTOList}">
                 <tr align="center">
-                    <th width="10%">${board.no}</th>
+                    <th width="10%">${board.row_num}</th>
                     <th width="10%">${board.id}</th>
                     <th width="60%" style="padding-left: 10px" align="left"><a href="/view?no=${board.no}">${board.title}</a></th>
                     <th width="10%">${board.visitCount}</th>

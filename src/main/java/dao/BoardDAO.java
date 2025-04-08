@@ -91,7 +91,7 @@ public class BoardDAO {
 
     // 게시판 리스트 만들기
     public List<BoardDTO> getBoard() {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,title, content, id, pw, visitcount, postdate FROM board";
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, pw, visitcount, postdate FROM board";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -106,7 +106,8 @@ public class BoardDAO {
 
             while (rs.next()) {
                 BoardDTO dto = new BoardDTO();
-                dto.setNo(rs.getInt("row_num"));
+                dto.setRow_num(rs.getInt("row_num"));
+                dto.setNo(rs.getInt("no"));
                 dto.setId(rs.getString("id"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
@@ -123,8 +124,8 @@ public class BoardDAO {
         return boardList;
     }
     public List<BoardDTO> getHomeBoard() {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,title, content, id, pw, visitcount, postdate FROM board" +
-                    " order by visitcount desc limit 10";
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, pw, visitcount, postdate FROM board" +
+                " order by visitcount desc limit 10";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -139,7 +140,8 @@ public class BoardDAO {
 
             while (rs.next()) {
                 BoardDTO dto = new BoardDTO();
-                dto.setNo(rs.getInt("row_num"));
+                dto.setRow_num(rs.getInt("row_num"));
+                dto.setNo(rs.getInt("no"));
                 dto.setId(rs.getString("id"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));

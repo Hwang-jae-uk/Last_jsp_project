@@ -2,7 +2,7 @@ package util;
 
 public class PageHandler {
     private int totalCnt;  // 총 게시물 갯수
-    private int pageSize = 15;  // 한 페이지의 게시글 수
+    private int pageSize = 10;  // 한 페이지의 게시글 수
     private int naviSize = 10;  // 페이지 내비게이션의 크기(표시될 페이징 크기)
     private int totalPage; // 전체 페이지 갯수
     private int currPage;  // 현재 페이지

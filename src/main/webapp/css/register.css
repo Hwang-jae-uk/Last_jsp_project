@@ -1,0 +1,290 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto; /* 수평 스크롤 가능 */
+}
+
+#wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 375px 1125px;
+    grid-template-rows: 200px 50px 1200px 50px;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "aside main"
+        "footer footer";
+    text-align: center;
+    width: 100%; /* wrapper가 전체 너비를 차지하게 설정 */
+    min-width: 1500px; /* 필요에 따라 min-width 값 조정 */
+}
+
+/* header 태그 css 코드입니다. */
+header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: center;
+    align-items: center;
+    background-color: #a8dadc; /* 배경색 */
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+    color: #2c3e50; /* 기본 글자색: 어두운 회색 */
+    transition: color 0.3s ease; /* 색상 변경에 대한 트랜지션 추가 */
+    padding: 20px; /* 여백 추가 (필요시 조정) */
+}
+header h1, header h3 {
+    margin: 5px 0; /* 각 헤더 항목의 여백을 설정 */
+}
+header a {
+    color: inherit; /* 기본 글자색을 상속받음 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+}
+/* 링크와 방문한 링크의 색상 설정 */
+header a:link,
+header a:visited {
+    color: #2c3e50; /* 어두운 컬러 */
+}
+/* 클릭했을 때의 색상 설정 */
+header a:active {
+    color: #e74c3c; /* 빨간색 */
+}
+header a:hover {
+    animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
+}
+/* 무지개 애니메이션 */
+@keyframes rainbow {
+    0% { color: #FF5733; }      /* 빨강 */
+    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
+    12.5% { color: #FFB733; }   /* 연한 주황 */
+    18.75% { color: #FFDB33; }  /* 연한 노랑 */
+    25% { color: #F2FF33; }     /* 밝은 노랑 */
+    31.25% { color: #A3FF33; }  /* 연두색 */
+    37.5% { color: #78FF33; }   /* 초록 */
+    43.75% { color: #33FF57; }  /* 민트색 */
+    50% { color: #33FFDB; }     /* 연한 파랑 */
+    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
+    62.5% { color: #3399FF; }   /* 중간 파란색 */
+    68.75% { color: #3373FF; }  /* 파랑 */
+    75% { color: #4C33FF; }     /* 보라색 시작 */
+    81.25% { color: #8E33FF; }  /* 보라색 */
+    87.5% { color: #D833FF; }   /* 핑크색 */
+    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
+    100% { color: #FF5733; }    /* 빨강으로 복귀 */
+}
+
+/* nav 태그 css 코드입니다. */
+nav{
+    grid-area: nav;
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    background-color: orange;
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+}
+nav li {
+    flex: 1; /* 기본적으로 모든 항목을 동일한 1 배율로 설정 */
+}
+nav li.spacer {
+    flex: 8; /* 이 항목에 대해 9배의 flex 비율 할당 */
+}
+/* nav 태그의 a 링크에 대한 스타일 추가 */
+nav a {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease; /* 색상 변경 트랜지션 효과 추가 */
+}
+nav a:link,
+nav a:visited {
+    color: black; /* 기본 글자색 (방문한 링크) */
+}
+nav a:hover {
+    animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
+}
+/* 무지개 애니메이션 */
+@keyframes rainbow {
+    0% { color: #FF5733; }      /* 빨강 */
+    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
+    12.5% { color: #FFB733; }   /* 연한 주황 */
+    18.75% { color: #FFDB33; }  /* 연한 노랑 */
+    25% { color: #F2FF33; }     /* 밝은 노랑 */
+    31.25% { color: #A3FF33; }  /* 연두색 */
+    37.5% { color: #78FF33; }   /* 초록 */
+    43.75% { color: #33FF57; }  /* 민트색 */
+    50% { color: #33FFDB; }     /* 연한 파랑 */
+    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
+    62.5% { color: #3399FF; }   /* 중간 파란색 */
+    68.75% { color: #3373FF; }  /* 파랑 */
+    75% { color: #4C33FF; }     /* 보라색 시작 */
+    81.25% { color: #8E33FF; }  /* 보라색 */
+    87.5% { color: #D833FF; }   /* 핑크색 */
+    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
+    100% { color: #FF5733; }    /* 빨강으로 복귀 */
+}
+
+/* aside 태그 css 코드입니다. */
+aside{
+    grid-area: aside;
+    display: flex;
+    background-color: #FFF9C4; /* 더 연한 노란색 */
+    color: #333; /* 눈에 잘 띄는 어두운 회색 글자색 */
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+}
+aside ul {
+    list-style: none; /* 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+aside li {
+    text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+    padding-left: 2em; /* 기본적으로 2칸의 패딩 추가 */
+}
+/* 서브 리스트에 대한 스타일 추가 */
+aside li ul {
+    padding-left: 20px; /* 하위 리스트의 들여쓰기 추가 */
+}
+aside li ul li {
+    position: relative; /* 상대적 위치 설정 */
+    padding-left: 1em; /* 하위 항목의 패딩 왼쪽 */
+}
+aside li ul li::before {
+    content: "- "; /* 리모델링된 리스트 항목 스타일에 대한 접두사 추가 */
+    position: absolute; /* 절대적 위치 설정 */
+    left: 0; /* 왼쪽 정렬 */
+}
+/* aside 태그 내의 모든 링크에 대한 스타일 설정 */
+aside a {
+    color: #666; /* 링크 글자색도 연한 회색으로 설정 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+}
+/* 링크와 방문한 링크의 색상 설정 */
+aside a:link,
+aside a:visited {
+    color: #666; /* 링크 글자색도 연한 회색으로 설정 */
+}
+/* 호버 상태에서 색상 설정 */
+aside a:hover {
+    color: #007BFF; /* 호버 시 색상 변화 (연한 파랑으로 설정) */
+}
+/* 클릭했을 때의 색상 설정 */
+aside a:active {
+    color: #333; /* 클릭했을 때 색상 (조금 더 어두운 회색) */
+}
+
+/* main 태그 css 코드입니다. */
+main {
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+.register-container {
+    background-color: #e0f7fa; /* 회원가입 창 배경색 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 20px; /* 내부 여백 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    max-width: 400px; /* 최대 너비 설정 */
+    width: 100%; /* 반응형을 위해 100% 너비 */
+}
+
+.form-group {
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    margin-bottom: 15px; /* 입력 필드 사이의 여백 */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+    width: 100%; /* 전체 너비 차지 */
+    padding: 10px; /* 여백 추가 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 둥글게 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 설정 */
+}
+
+button {
+    background-color: #98fb98; /* 엷은 초록색 (연두색) */
+    color: #333; /* 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 테두리 */
+    padding: 10px 15px; /* 여백 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 배경색과 크기 변화에 트랜지션 효과 */
+}
+
+button:hover {
+    background-color: #7fff7f; /* 조금 더 밝은 초록색 */
+    transform: scale(1.05); /* hover 시 1.05배 확대 */
+}
+
+/* main 태그 내의 이미지 그리드 */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 나눔 */
+    gap: 30px; /* 이미지 간격 설정 */
+    justify-items: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-top: 20px; /* 타이틀과 이미지 사이의 여백 */
+}
+/* 이미지 스타일 */
+.image-grid img {
+    width: 200px;  /* 가로 크기 */
+    height: 200px; /* 세로 크기 */
+    object-fit: contain; /* 비율 유지 및 잘림 방지 */
+    transition: transform 0.3s ease; /* 변환 효과 추가 */
+}
+/* 이미지 hover 시 크기 증가 */
+.image-grid img:hover {
+    transform: scale(1.05); /* 1.05배로 증가 */
+}
+
+/* footer 태그 css 코드입니다. */
+footer {
+    grid-area: footer;
+    display: grid; /* flex에서 grid로 변경 */
+    grid-template-columns: 2fr 3fr; /* 2fr과 3fr로 나누기 */
+    background-color: gainsboro;
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+    padding: 10px; /* 패딩 추가 (필요시) */
+}
+#copyright {
+    display: flex; /* 옵션: 가로로 정렬하기 위해 flex 적용 가능 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: center; /* 세로 정렬 */
+}
+#othersites {
+    display: flex; /* 링크를 가로로 정렬하기 위해 flex 적용 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center; /* 세로 정렬 */
+}
+#othersites a {
+    margin: 0 5px; /* 좌우 이격을 위해 여백 설정 (상과 하: 0, 좌와 우: 5px) */
+}
+#othersites img {
+    width: 30px; /* 이미지 너비를 30px로 설정 */
+    height: 30px; /* 이미지 높이를 30px로 설정 */
+    object-fit: cover; /* 비율을 유지하면서 이미지 영역을 채우기 */
+}
+/* 첫 번째 링크에 대한 왼쪽 여백을 없앱니다 */
+#othersites a:first-child {
+    margin-left: 0; /* 첫 번째 링크의 왼쪽 여백 제거 */
+}
+/* 마지막 링크에 대한 오른쪽 여백을 없앱니다 */
+#othersites a:last-child {
+    margin-right: 0; /* 마지막 링크의 오른쪽 여백 제거 */
+}

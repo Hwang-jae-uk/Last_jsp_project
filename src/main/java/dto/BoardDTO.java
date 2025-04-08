@@ -15,6 +15,7 @@ public class BoardDTO {
     private String content;
     private Date postdate;
     private int visitCount;
+    private int row_num;
 
 
     // 매개변수가 없는 생성자
@@ -49,4 +50,6 @@ public class BoardDTO {
 
     public Date getPostdate() {return postdate;}
     public void setPostdate(Date postdate) {this.postdate = postdate;}
+    public int getRow_num() {return row_num;}
+    public void setRow_num(int row_num) {this.row_num = row_num;}
 }

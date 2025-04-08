@@ -23,31 +23,32 @@ public class NewsAPI {
     public List<HashMap<String,String>> newsList() throws IOException {
         String url = "https://news.naver.com/"
                 + (section == null ? "" : "breakingnews/" )
-                + "section/105" + (section == null ? "" : section);
+                + "section/105/" + (section == null ? "" : section);
         Document doc;
-        doc = Jsoup.connect(url).get();
+        List<HashMap<String, String>> newsList = new ArrayList<>();
+            doc = Jsoup.connect(url).get();
 
-        Elements articles = doc.select(".sa_list").getFirst().select("li");
+            Elements articles = doc.select(".sa_list").getFirst().select("li");
 
-        List<HashMap<String,String>> newsList = new ArrayList<>();
-        Element thumb, content;
+            Element thumb, content;
 
-        for (Element article : articles) {
-            HashMap<String,String> map = new HashMap<>();
+            for (Element article : articles) {
+                HashMap<String, String> map = new HashMap<>();
 
-            thumb = article.select(".sa_thumb_inner").getFirst();
-            map.put("link",thumb.getElementsByTag("a").attr("href"));
-            map.put("img",thumb.select("img").attr("data-src"));
+                thumb = article.select(".sa_thumb_inner").getFirst();
+                map.put("link", thumb.getElementsByTag("a").attr("href"));
+                map.put("img", thumb.select("img").attr("data-src"));
 
-            content = article.getElementsByClass("sa_text").getFirst();
-            map.put("title",content.select("a").getFirst().text());
-            map.put("press",content.getElementsByClass("sa_text_press").text());
+                content = article.getElementsByClass("sa_text").getFirst();
+                map.put("title", content.select("a").getFirst().text());
+                map.put("press", content.getElementsByClass("sa_text_press").text());
 
-            Document doc2 = Jsoup.connect(map.get("link")).get();
-            map.put("o_link",doc2.getElementsByAttributeValue("data-clk","are.ori").attr("href"));
-            map.put("date",doc2.getElementsByAttribute("data-date-time").attr("data-date-time").substring(5,16));
-            newsList.add(map);
-        }
+                Document doc2 = Jsoup.connect(map.get("link")).get();
+                map.put("o_link", doc2.getElementsByAttributeValue("data-clk", "are.ori").attr("href"));
+                map.put("date", doc2.getElementsByAttribute("data-date-time").attr("data-date-time").substring(5, 16));
+                newsList.add(map);
+            }
+
         return newsList;
     }
 }
