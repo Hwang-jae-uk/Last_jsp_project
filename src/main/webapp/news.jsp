@@ -26,9 +26,11 @@
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
       <ul>
-          <% request.setAttribute("section",""); %>
+          <% if (request.getParameter("section") == null)
+              request.setAttribute("section","");
+           %>
           <li><h2><a href="/news">오늘의 뉴스</a></h2></li>
-          <form method="post" action="/news" style="margin-bottom: 50px; font-size: 20px;">
+          <form method="get" action="news" style="margin-bottom: 50px; font-size: 20px;">
               <button type="submit" name="section" value="731">모바일</button>
               <button type="submit" name="section" value="226">인터넷/SNS</button>
               <button type="submit" name="section" value="227">통신/뉴미디어</button>

@@ -22,19 +22,19 @@ public class NewsAPI {
     }
 
     public List<HashMap<String,String>> newsList() throws IOException, HttpStatusException {
-
         String url = "https://news.naver.com/"
                 + (section == null ? "" : "breakingnews/" )
                 + "section/105/" + (section == null ? "" : section);
         Document doc;
         List<HashMap<String, String>> newsList = new ArrayList<>();
-            doc = Jsoup.connect(url).get();
+        doc = Jsoup.connect(url).get();
 
-            Elements articles = doc.select(".sa_list").getFirst().select("li");
-
-            Element thumb, content;
-
-            for (Element article : articles) {
+        Elements articles = doc.select(".sa_list").select("li");
+        Element thumb, content;
+        int counter = 0;
+        for (Element article : articles) {
+            if (counter > 5) break;
+            try {
                 HashMap<String, String> map = new HashMap<>();
 
                 thumb = article.select(".sa_thumb_inner").getFirst();
@@ -49,8 +49,11 @@ public class NewsAPI {
                 map.put("o_link", doc2.getElementsByAttributeValue("data-clk", "are.ori").attr("href"));
                 map.put("date", doc2.getElementsByAttribute("data-date-time").attr("data-date-time").substring(5, 16));
                 newsList.add(map);
+                counter++;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
+        }
         return newsList;
     }
 }
