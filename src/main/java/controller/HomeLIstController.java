@@ -16,11 +16,11 @@ public class HomeLIstController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BoardDAO dao = new BoardDAO();
-        List<BoardDTO> boardDTOList = dao.getBoard();
+        List<BoardDTO> boardDTOList = dao.getHomeBoard();
 
         String section = (String) request.getAttribute("section");
         NewsAPI newsAPI;
-        if (section == null) newsAPI = new NewsAPI();
+        if (section == "") newsAPI = new NewsAPI();
         else newsAPI = new NewsAPI(section);
 
         request.setAttribute("newsList", newsAPI.newsList());

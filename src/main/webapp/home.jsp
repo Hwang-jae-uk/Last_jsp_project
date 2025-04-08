@@ -20,24 +20,15 @@
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
       <ul>
-        <li><h2><a href="memo.html">이주의 뉴스</a></h2></li>
+        <li><h2><a href="view.jsp">이주의 뉴스</a></h2></li>
         <li><hr></li>
-        <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
-          <tr align="center" >
-            <th width="10%">번호</th>
-            <th width="10%">언론사</th>
-            <th width="60%">제목</th>
-            <th width="20%">작성일</th>
-          </tr>
-          <%
-            request.setAttribute("section","");   //뒤에 숫자 주제 고르면 바뀌게
-            int i = 1;
-          %>
+        <table border="0" style="width: 100%; border-collapse: collapse; margin: 0;" >
+          <% request.setAttribute("section",""); %>
           <c:forEach var="news" items="${newsList}">
             <tr align="center">
-              <td width="10%"><%=i++%></td>
-              <td width="10%">${news.press}</td>
+              <td width="10%"><img src="${news.img}" alt="picture" height="80px"></td>
               <td width="60%"><a href="${news.o_link}">${news.title}</a></td>
+              <td width="10%">${news.press}</td>
               <td width="20%">${news.date}</td>
             </tr>
           </c:forEach>
@@ -46,7 +37,7 @@
     </section>
     <section>
       <ul>
-        <li><h2><a href="gallery.html">커뮤니티 글</a></h2></li>
+        <li><h2><a href="list.jsp">커뮤니티 글</a></h2></li>
         <li><hr></li>
         <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
           <tr align="center" >

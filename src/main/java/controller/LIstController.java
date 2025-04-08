@@ -27,16 +27,10 @@ public class LIstController extends HttpServlet {
             pageNum = Integer.parseInt(pageNumStr);
         }
 
-        handler = new PageHandler(boardDTOList.size(), pageNum);
+        int totalCnt = dao.selectAllCount();
 
-        String section = (String) request.getAttribute("section");
-        NewsAPI newsAPI;
-        if (section == null)
-            newsAPI = new NewsAPI();
-        else
-            newsAPI = new NewsAPI(section);
+        handler = new PageHandler(totalCnt, pageNum);
 
-        request.setAttribute("newsList", newsAPI.newsList());
         request.setAttribute("handler",handler);
         request.setAttribute("pageNum", pageNum);
         request.setAttribute("boardDTOList", boardDTOList);

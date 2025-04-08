@@ -14,21 +14,20 @@ public class NewsAPI {
     private String section;
 
     public NewsAPI() {
-        this.section = "105";
     }
 
     public NewsAPI(String section) {
-        if (section == null) this.section = "105";
-        else this.section = section;
+        this.section = section;
     }
 
     public List<HashMap<String,String>> newsList() throws IOException {
-        String url = "https://news.naver.com/section/" + section;
+        String url = "https://news.naver.com/"
+                + (section == null ? "" : "breakingnews/" )
+                + "section/105" + (section == null ? "" : section);
         Document doc;
-
         doc = Jsoup.connect(url).get();
 
-        Elements articles = doc.getElementsByClass("sa_list").first().getElementsByTag("li");
+        Elements articles = doc.select(".sa_list").getFirst().select("li");
 
         List<HashMap<String,String>> newsList = new ArrayList<>();
         Element thumb, content;
@@ -36,12 +35,12 @@ public class NewsAPI {
         for (Element article : articles) {
             HashMap<String,String> map = new HashMap<>();
 
-            thumb = article.getElementsByClass("sa_thumb_inner").first();
+            thumb = article.select(".sa_thumb_inner").getFirst();
             map.put("link",thumb.getElementsByTag("a").attr("href"));
-            map.put("img",thumb.getElementsByTag("img").attr("src"));
+            map.put("img",thumb.select("img").attr("data-src"));
 
-            content = article.getElementsByClass("sa_text").first();
-            map.put("title",content.getElementsByTag("a").first().text());
+            content = article.getElementsByClass("sa_text").getFirst();
+            map.put("title",content.select("a").getFirst().text());
             map.put("press",content.getElementsByClass("sa_text_press").text());
 
             Document doc2 = Jsoup.connect(map.get("link")).get();

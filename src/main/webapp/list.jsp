@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="../css/base2.css"> <!-- 외부 스타일시트 적용 -->
-    <script src="../js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
+    <link rel="stylesheet" href="css/base2.css"> <!-- 외부 스타일시트 적용 -->
+    <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
@@ -36,7 +36,9 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="/list?pageNum=1">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
+        <c:if test="${pageNum!=1}">
+            <a href="/list?pageNum=1">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
+        </c:if>
         <c:if test="${handler.getPageSize() == 0}">
             1
         </c:if>

@@ -12,6 +12,33 @@ import java.util.List;
 
 public class BoardDAO {
 
+
+    // 게시물 전체 갯수 조회
+    public int selectAllCount() {
+        String sql = " SELECT count(*) FROM board ";
+
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                result = rs.getInt(1);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+
+        return result;
+
+    }
+
     // 게시물 선택
     public BoardDTO ListBoard(int no) {
         String sql = "select * from board where no = ?";
@@ -64,7 +91,7 @@ public class BoardDAO {
 
     // 게시판 리스트 만들기
     public List<BoardDTO> getBoard() {
-        String sql = "select * from board";
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,title, content, id, pw, visitcount, postdate FROM board";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -79,7 +106,7 @@ public class BoardDAO {
 
             while (rs.next()) {
                 BoardDTO dto = new BoardDTO();
-                dto.setNo(rs.getInt("no"));
+                dto.setNo(rs.getInt("row_num"));
                 dto.setId(rs.getString("id"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
@@ -95,7 +122,39 @@ public class BoardDAO {
         }
         return boardList;
     }
+    public List<BoardDTO> getHomeBoard() {
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,title, content, id, pw, visitcount, postdate FROM board" +
+                    " order by visitcount desc limit 10";
 
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        List<BoardDTO> boardList = new ArrayList<>();
+
+        try{
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                BoardDTO dto = new BoardDTO();
+                dto.setNo(rs.getInt("row_num"));
+                dto.setId(rs.getString("id"));
+                dto.setTitle(rs.getString("title"));
+                dto.setContent(rs.getString("content"));
+                dto.setPostdate(rs.getDate("postdate"));
+                dto.setVisitCount(rs.getInt("visitCount"));
+                boardList.add(dto);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+        return boardList;
+    }
 
 
     // 게시물 수정
