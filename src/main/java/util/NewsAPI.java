@@ -1,5 +1,6 @@
 package util;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,7 +21,8 @@ public class NewsAPI {
         this.section = section;
     }
 
-    public List<HashMap<String,String>> newsList() throws IOException {
+    public List<HashMap<String,String>> newsList() throws IOException, HttpStatusException {
+
         String url = "https://news.naver.com/"
                 + (section == null ? "" : "breakingnews/" )
                 + "section/105/" + (section == null ? "" : section);
