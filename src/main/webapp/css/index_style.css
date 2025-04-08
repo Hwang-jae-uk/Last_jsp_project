@@ -188,8 +188,8 @@ main{
     grid-template-columns: 1fr 1fr; /* 두 개의 열로 나누기 */
     grid-template-rows: 1fr 1fr; /* 두 개의 행으로 나누기 */
     grid-template-areas: 
-        "section1 section2" /* 1번째와 2번째 섹션 */
-        "section3 section3"; /* 3번째 섹션이 두 개의 열을 차지함 */
+        "section1 section1" /* 1번째와 2번째 섹션 */
+        "section2 section3"; /* 3번째 섹션이 두 개의 열을 차지함 */
     background-color: white;
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }

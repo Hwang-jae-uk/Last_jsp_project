@@ -25,10 +25,9 @@
         <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
           <tr align="center" >
             <th width="10%">번호</th>
-            <th width="10%">작성자</th>
+            <th width="10%">언론사</th>
             <th width="60%">제목</th>
-            <th width="10%">조회수</th>
-            <th width="10%">작성일</th>
+            <th width="20%">작성일</th>
           </tr>
           <%
             request.setAttribute("section","");   //뒤에 숫자 주제 고르면 바뀌게
@@ -38,9 +37,8 @@
             <tr align="center">
               <td width="10%"><%=i++%></td>
               <td width="10%">${news.press}</td>
-              <td width="60%">${news.title}</td>
-              <td width="10%">${news.visitcount}</td>
-              <td width="10%">${news.date}</td>
+              <td width="60%"><a href="${news.o_link}">${news.title}</a></td>
+              <td width="20%">${news.date}</td>
             </tr>
           </c:forEach>
         </table>
