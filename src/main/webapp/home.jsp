@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="../css/index_style.css"> <!-- 외부 스타일시트 적용 -->
-    <script src="../js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
+    <link rel="stylesheet" href="css/index_style.css"> <!-- 외부 스타일시트 적용 -->
+    <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
@@ -30,13 +30,19 @@
             <th width="10%">조회수</th>
             <th width="10%">작성일</th>
           </tr>
+          <%
+            request.setAttribute("section","");   //뒤에 숫자 주제 고르면 바뀌게
+            int i = 1;
+          %>
+          <c:forEach var="news" items="${newsList}">
             <tr align="center">
-              <td width="10%"></td>
-              <td width="10%"></td>
-              <td width="60%"></td>
-              <td width="10%"></td>
-              <td width="10%"></td>
+              <td width="10%"><%=i++%></td>
+              <td width="10%">${news.press}</td>
+              <td width="60%">${news.title}</td>
+              <td width="10%">${news.visitcount}</td>
+              <td width="10%">${news.date}</td>
             </tr>
+          </c:forEach>
         </table>
       </ul>
     </section>

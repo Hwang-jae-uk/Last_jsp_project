@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="../css/index_style.css"> <!-- 외부 스타일시트 적용 -->
+    <link rel="stylesheet" href="../css/base2.css"> <!-- 외부 스타일시트 적용 -->
     <script src="../js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
@@ -36,6 +36,23 @@
                 </tr>
             </c:forEach>
         </table>
+        <a href="/list?pageNum=1">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
+        <c:if test="${handler.getPageSize() == 0}">
+            1
+        </c:if>
+        <c:forEach var="i" begin="${handler.beginPage}" end="${handler.endPage}" step="1">
+            <c:choose>
+                <c:when test="${pageNum == i}"> <!-- 현재페이지 번호와 같으면 링크 걸지 않음 -->
+                    ${i}&nbsp;&nbsp;
+                </c:when>
+                <c:otherwise><!-- 현재페이지가 아니면 a링크 걸기 -->
+                    <a href="/list?pageNum=${i}">${i}</a>&nbsp;&nbsp;
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <a href="/list?pageNum=${handler.getEndPage()}">[ 마지막페이지 ]</a>
+        <br>
+        <br>
         <button>삭제하기</button>
         <button>수정하기</button>
         <button>목록보기</button>

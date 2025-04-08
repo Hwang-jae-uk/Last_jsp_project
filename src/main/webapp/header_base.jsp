@@ -8,8 +8,7 @@
 </head>
 <body>
     <header> <!-- 헤더 영역 -->
-        <h1><a href="home">MY BLOG</a></h1>
-        <h3>Welcome to my blog!</h3>
+        <h1><a href="home">IT/과학 뉴스</a></h1>
     </header>
     <nav> <!-- 여기서는 nav 태그를 main menu bar로 설정 -->
         <ul>

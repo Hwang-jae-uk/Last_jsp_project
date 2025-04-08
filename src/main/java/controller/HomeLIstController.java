@@ -5,6 +5,7 @@ import dto.BoardDTO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import util.NewsAPI;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +18,12 @@ public class HomeLIstController extends HttpServlet {
         BoardDAO dao = new BoardDAO();
         List<BoardDTO> boardDTOList = dao.getBoard();
 
+        String section = (String) request.getAttribute("section");
+        NewsAPI newsAPI;
+        if (section == null) newsAPI = new NewsAPI();
+        else newsAPI = new NewsAPI(section);
 
+        request.setAttribute("newsList", newsAPI.newsList());
         request.setAttribute("boardDTOList", boardDTOList);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
