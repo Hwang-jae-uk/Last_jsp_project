@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>home</title>
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link rel="stylesheet" href="css/base2.css"> <!-- 외부 스타일시트 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
@@ -30,12 +30,11 @@
                 <tr>
                     <td align="center">
                         <select name="searchField">
-                            <option value="title">제목</option>
-                            <option value="id">작성자</option>
-                            <option value="all">제목+작성자</option>
+                            <option value="title" ${paramMap.searchField == 'title'?"selected":""} > 제목</option>
+                            <option value="id" ${paramMap.searchField == 'id'?"selected":""} >작성자</option>
+                            <option value="all" ${paramMap.searchField == 'all'?"selected":""} >제목+작성자</option>
                         </select>
-                        <input type="text" name="searchWord" value="${searchWord}">
-                        ${searchWord}
+                        <input type="text" name="searchWord" value="${paramMap.searchWord}">
                         <input type="submit" value="검색하기">
                     </td>
                 </tr>
@@ -53,7 +52,7 @@
                 <tr align="center">
                     <td width="10%">${board.row_num}</td>
                     <td width="10%">${board.id}</td>
-                    <td width="60%" style="padding-left: 10px" align="left"><a href="/view?no=${board.no}">${board.title}</a></td>
+                    <td width="60%" style="padding-left: 10px" align="left"><a href="view?no=${board.no}">${board.title}</a></td>
                     <td width="10%">${board.visitCount}</td>
                     <td><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></td>
                 </tr>

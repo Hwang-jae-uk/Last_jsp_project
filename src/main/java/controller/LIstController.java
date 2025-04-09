@@ -53,6 +53,7 @@ public class LIstController extends HttpServlet {
 
         List<BoardDTO> boardList = dao.selectPagingList(paramMap);
 
+
         request.setAttribute("handler",handler);
         request.setAttribute("pageNum", pageNum);
         request.setAttribute("boardDTOList", boardList);

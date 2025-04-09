@@ -103,7 +103,7 @@ public class BoardDAO {
 
         }
 
-        sql += " LIMIT ?,?";
+        sql += " LIMIT ?,15";
 
         List<BoardDTO> boardList = new ArrayList<>();
         Connection conn = null;
@@ -120,17 +120,17 @@ public class BoardDAO {
                 if(!map.get("searchField").equals("all")){
                     pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
                     pstmt.setInt(2, Integer.parseInt(map.get("offset").toString()));
-                    pstmt.setInt(3, Integer.parseInt(map.get("pageSize").toString()));
+
                 }else{
                     pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
                     pstmt.setString(2, "%"+ map.get("searchWord").toString() + "%");
                     pstmt.setInt(3, Integer.parseInt(map.get("offset").toString()));
-                    pstmt.setInt(4, Integer.parseInt(map.get("pageSize").toString()));
+
                 }
 
             }else{
                 pstmt.setInt(1, Integer.parseInt(map.get("offset").toString()));
-                pstmt.setInt(2, Integer.parseInt(map.get("pageSize").toString()));
+
             }
 
             rs = pstmt.executeQuery();

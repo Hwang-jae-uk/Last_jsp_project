@@ -57,7 +57,8 @@
                 <div class="form-group">
                     <label for="email">이메일</label>
                     <span class="inline-form">
-                        <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>@
+                        <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>
+                        @
                         <input type="text" id="domain" >
                         <select name="domain" onchange="selectDomain()" required>
                             <option value="none" selected>직접 입력</option>
@@ -68,7 +69,7 @@
                     </span>
                 </div>
 
-                <span class="inline-form" style="display: inline">
+                <div class="inline-form" style="display: inline">
                     <div class="form-group" style="display: inline">
                         <label for="carrier">통신사</label>
                         <label for="phone">휴대전화 번호</label> <br>
@@ -82,7 +83,7 @@
                     <div class="form-group" style="display: inline">
                         <input type="tel" id="phone" name="phone" placeholder="-없이 숫자만 입력" required style="width: 150px">
                     </div>
-                </span>
+                </div>
                 <br><br>
                 <button type="submit">회원가입</button> <!-- 회원가입 버튼 -->
 
@@ -95,7 +96,7 @@
     function checkDuplicate() {
         // 여기에 중복 검사 로직을 추가하세요.
         alert("중복 검사 기능이 필요합니다."); // 기본적인 알림창
-        // AJAX를 사용하여 서버에 중복 아이디를 확인하는 요청을 보낼 수 있습니다.
+        // AJAX 를 사용하여 서버에 중복 아이디를 확인하는 요청을 보낼 수 있습니다.
     }
 
     function validatePasswords() {
