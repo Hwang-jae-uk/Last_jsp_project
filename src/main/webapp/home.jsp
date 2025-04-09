@@ -62,12 +62,12 @@
     <section>
       <h2>게시글 목록</h2>
       <div class="image-grid"> <!-- 이미지 그리드 추가 -->
-        <a href="hello_post_C.html"><img src="image/C-Logo.png" alt="C Logo"></a>
-        <a href="hello_post_C++.html"><img src="image/C++-Logo.png" alt="C++ Logo"></a>
-        <a href="hello_post_Csharp.html"><img src="image/Csharp-Logo.png" alt="C# Logo"></a>
-        <a href="hello_post_Java.html"><img src="image/Java-Logo.png" alt="Java Logo"></a>
-        <a href="hello_post_Javascript.html"><img src="image/Javascript-Logo.png" alt="Javascript Logo"></a>
-        <a href="hello_post_Python.html"><img src="image/python-logo-only.png" alt="Python Logo"></a>
+        <a href="hello_post_C.html"><img src="image/logo/C-Logo.png" alt="C Logo"></a>
+        <a href="hello_post_C++.html"><img src="image/logo/C++-Logo.png" alt="C++ Logo"></a>
+        <a href="hello_post_Csharp.html"><img src="image/logo/Csharp-Logo.png" alt="C# Logo"></a>
+        <a href="hello_post_Java.html"><img src="image/logo/Java-Logo.png" alt="Java Logo"></a>
+        <a href="hello_post_Javascript.html"><img src="image/logo/Javascript-Logo.png" alt="Javascript Logo"></a>
+        <a href="hello_post_Python.html"><img src="image/logo/python-logo-only.png" alt="Python Logo"></a>
       </div>
     </section>
   </main>
