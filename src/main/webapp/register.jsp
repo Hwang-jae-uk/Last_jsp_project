@@ -56,10 +56,10 @@
 
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <span class="email-input-form">
+                    <span class="inline-form">
                         <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>@
                         <input type="text" id="domain" >
-                        <select name="domain" onchange="selectDomain()" style="height: 30px" required>
+                        <select name="domain" onchange="selectDomain()" required>
                             <option value="none" selected>직접 입력</option>
                             <option value="gmail.com">gmail.com</option>
                             <option value="naver.com">naver.com</option>
@@ -68,19 +68,22 @@
                     </span>
                 </div>
 
-                <div class="form-group">
-                    <label for="carrier">통신사</label>
-                    <select id="carrier" name="carrier" required>
-                        <option value="SKT">SKT</option>
-                        <option value="KT">KT</option>
-                        <option value="LG">LG</option>
-                    </select>
-                </div>
+                <span class="inline-form" style="display: inline">
+                    <div class="form-group" style="display: inline">
+                        <label for="carrier">통신사</label>
+                        <label for="phone">휴대전화 번호</label> <br>
+                        <select id="carrier" name="carrier" required>
+                            <option value="SKT">SKT</option>
+                            <option value="KT">KT</option>
+                            <option value="LG">LG</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="phone">휴대전화 번호</label>
-                    <input type="tel" id="phone" name="phone" placeholder="전화번호를 입력해주세요.(예 : 01012345678)" required>
-                </div>
+                    <div class="form-group" style="display: inline">
+                        <input type="tel" id="phone" name="phone" placeholder="-없이 숫자만 입력" required style="width: 150px">
+                    </div>
+                </span>
+                <br><br>
                 <button type="submit">회원가입</button> <!-- 회원가입 버튼 -->
 
             </form>

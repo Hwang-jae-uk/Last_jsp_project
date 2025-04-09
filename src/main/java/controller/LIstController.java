@@ -11,18 +11,31 @@ import util.NewsAPI;
 import util.PageHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 @WebServlet("/list")
 public class LIstController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchField = request.getParameter("searchField");
+        String searchWord = request.getParameter("searchWord");
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+
+        if(searchWord != null && !searchWord.equals("")) {
+            paramMap.put("searchField", searchField);
+            paramMap.put("searchWord", searchWord);
+        } else {
+            paramMap.put("searchField", "title");
+            paramMap.put("searchWord", searchWord);
+        }
         BoardDAO dao = new BoardDAO();
-        List<BoardDTO> boardList = dao.getBoard();
+
+
         PageHandler handler = null;
+
+
+
         int pageNum = 1;
         String pageNumStr = request.getParameter("pageNum");
         if (pageNumStr != null) {
@@ -30,23 +43,21 @@ public class LIstController extends HttpServlet {
         }
 
         int totalCnt = dao.selectAllCount();
-        List<BoardDTO> boardDTOList = new ArrayList<>();
-        if ((int)Math.ceil((double) totalCnt / 15) == pageNum)
-            for(int i = (pageNum-1)*15 ;i <= totalCnt-1; i++) {
-                BoardDTO dto = boardList.get(i);
-                boardDTOList.add(dto);
-            }else {
-            for(int i = (pageNum-1)*15 ;i <= pageNum*15-1; i++) {
-                BoardDTO dto = boardList.get(i);
-                boardDTOList.add(dto);
-            }
-        }
+
+
 
         handler = new PageHandler(totalCnt, pageNum);
+        int offset = (pageNum - 1) * handler.getPageSize();
+
+        paramMap.put("offset", offset);
+        paramMap.put("pageSize", handler.getPageSize());
+
+        List<BoardDTO> boardList = dao.selectPagingList(paramMap);
 
         request.setAttribute("handler",handler);
         request.setAttribute("pageNum", pageNum);
-        request.setAttribute("boardDTOList", boardDTOList);
+        request.setAttribute("boardDTOList", boardList);
+        request.setAttribute("paramMap", paramMap);
         request.getRequestDispatcher("list.jsp").forward(request, response);
 
     }

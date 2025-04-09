@@ -48,6 +48,7 @@ public class NewsAPI {
                 Document doc2 = Jsoup.connect(map.get("link")).get();
                 map.put("o_link", doc2.getElementsByAttributeValue("data-clk", "are.ori").attr("href"));
                 map.put("date", doc2.getElementsByAttribute("data-date-time").attr("data-date-time").substring(5, 16));
+                map.put("p_link", doc2.getElementById("ct").select("a").getFirst().attr("href"));
                 newsList.add(map);
                 counter++;
             } catch (Exception ignored) {

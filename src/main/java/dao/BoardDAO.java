@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BoardDAO {
 
@@ -90,38 +91,70 @@ public class BoardDAO {
 
 
     // 게시판 리스트 만들기
-    public List<BoardDTO> getBoard() {
+    // 리스트 게시물 목록 가져오기
+    public List<BoardDTO> selectPagingList(Map<String , Object> map) {
         String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, pw, visitcount, postdate FROM board";
+        if(map.get("searchWord") != null){
+            if(!map.get("searchField").equals("all")){
+                sql += " WHERE " + map.get("searchField")+" like ? ";
+            }else{
+                sql += " WHERE title Like ? OR id Like ? ";
+            }
 
+        }
+
+        sql += " LIMIT ?,?";
+
+        List<BoardDTO> boardList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        List<BoardDTO> boardList = new ArrayList<>();
+        try {
 
-        try{
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
+
+
+            if(map.get("searchWord") != null){
+                if(!map.get("searchField").equals("all")){
+                    pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
+                    pstmt.setInt(2, Integer.parseInt(map.get("offset").toString()));
+                    pstmt.setInt(3, Integer.parseInt(map.get("pageSize").toString()));
+                }else{
+                    pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
+                    pstmt.setString(2, "%"+ map.get("searchWord").toString() + "%");
+                    pstmt.setInt(3, Integer.parseInt(map.get("offset").toString()));
+                    pstmt.setInt(4, Integer.parseInt(map.get("pageSize").toString()));
+                }
+
+            }else{
+                pstmt.setInt(1, Integer.parseInt(map.get("offset").toString()));
+                pstmt.setInt(2, Integer.parseInt(map.get("pageSize").toString()));
+            }
+
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
+            while ( rs.next() ) {
                 BoardDTO dto = new BoardDTO();
-                dto.setRow_num(rs.getInt("row_num"));
                 dto.setNo(rs.getInt("no"));
-                dto.setId(rs.getString("id"));
+                dto.setRow_num(rs.getInt("row_num"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
                 dto.setPostdate(rs.getDate("postdate"));
                 dto.setVisitCount(rs.getInt("visitCount"));
+                dto.setPw(rs.getString("pw"));
+                dto.setId(rs.getString("id"));
                 boardList.add(dto);
             }
-
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             DBManager.close(conn, pstmt, rs);
         }
+
         return boardList;
+
     }
     public List<BoardDTO> getHomeBoard() {
         String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, pw, visitcount, postdate FROM board" +

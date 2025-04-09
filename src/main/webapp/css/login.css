@@ -6,6 +6,13 @@ html, body {
     overflow-x: auto; /* 수평 스크롤 가능 */
 }
 
+body{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
+}
+
 #wrapper {
     display: grid;
     justify-content: center;

@@ -14,7 +14,7 @@
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
-<body>
+<body onload='resizeWindow(this)'>
 <div id="wrapper">
     <jsp:include page="header_base.jsp"/>
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
@@ -26,9 +26,11 @@
           <%request.setAttribute("section","");%>
           <c:forEach var="news" items="${newsList}">
             <tr align="center">
-              <td width="5%"><img src="${news.img}" alt="picture" height="100px" style="margin-bottom: 20px"></td>
+              <td width="10%" ><a href="${news.o_link}">
+                <img src="${news.img}" alt="picture" height="100px" align="center" style="margin-bottom: 20px">
+              </a></td>
               <td width="60%"><a href="${news.o_link}" style="font-size: 120%">${news.title}</a></td>
-              <td width="10%">${news.press}</td>
+              <td width="10%"><a href="${news.p_link}">${news.press}</a></td>
               <td width="10%">${news.date}</td>
             </tr>
           </c:forEach>

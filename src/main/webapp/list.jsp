@@ -30,8 +30,8 @@
                 <td align="center">
                     <select name="searchField">
                         <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="all">제목+내용</option>
+                        <option value="content">작성자</option>
+                        <option value="all">제목+작성자</option>
                     </select>
                     <input type="text" name="searchWord" value="${searchWord != null ? searchWord : "" }">
                     <input type="submit" value="검색하기">
