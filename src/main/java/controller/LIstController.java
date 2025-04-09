@@ -50,7 +50,6 @@ public class LIstController extends HttpServlet {
         int offset = (pageNum - 1) * handler.getPageSize();
 
         paramMap.put("offset", offset);
-        paramMap.put("pageSize", handler.getPageSize());
 
         List<BoardDTO> boardList = dao.selectPagingList(paramMap);
 

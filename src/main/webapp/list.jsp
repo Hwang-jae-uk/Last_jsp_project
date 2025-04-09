@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="css/base2.css"> <!-- 외부 스타일시트 적용 -->
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
+    <link rel="stylesheet" href="css/base2.css"> <!-- 외부 스타일시트 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
     <style>
         .boardTable{
@@ -25,19 +25,22 @@
 <div id="wrapper">
     <jsp:include page="header_base.jsp"/>
     <main>
-        <table style="width: 95%; margin: 20px; padding: 0px " >
-            <tr>
-                <td align="center">
-                    <select name="searchField">
-                        <option value="title">제목</option>
-                        <option value="content">작성자</option>
-                        <option value="all">제목+작성자</option>
-                    </select>
-                    <input type="text" name="searchWord" value="${searchWord != null ? searchWord : "" }">
-                    <input type="submit" value="검색하기">
-                </td>
-            </tr>
-        </table>
+        <form method="get">
+            <table style="width: 90%; margin: 20px; padding: 0px " >
+                <tr>
+                    <td align="center">
+                        <select name="searchField">
+                            <option value="title">제목</option>
+                            <option value="id">작성자</option>
+                            <option value="all">제목+작성자</option>
+                        </select>
+                        <input type="text" name="searchWord" value="${searchWord}">
+                        ${searchWord}
+                        <input type="submit" value="검색하기">
+                    </td>
+                </tr>
+            </table>
+        </form>
         <table class="boardTable" border="1" style="width: 95%; border-collapse: collapse; margin: 20px;" >
             <tr align="center" >
                 <th width="10%">번호</th>
@@ -56,7 +59,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="/list?pageNum=1">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
+        <a href="list?pageNum=1&searchField=${paramMap.searchField}&searchWord=${paramMap.searchWord}">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
         <c:if test="${handler.getPageSize() == 0}">
             1
         </c:if>
@@ -66,11 +69,11 @@
                     ${i}&nbsp;&nbsp;
                 </c:when>
                 <c:otherwise><!-- 현재페이지가 아니면 a링크 걸기 -->
-                    <a href="/list?pageNum=${i}">${i}</a>&nbsp;&nbsp;
+                    <a href="list?pageNum=${i}&searchField=${paramMap.searchField}&searchWord=${paramMap.searchWord}">${i}</a>&nbsp;&nbsp;
                 </c:otherwise>
             </c:choose>
         </c:forEach>
-        <a href="/list?pageNum=${handler.totalPage}">[ 마지막페이지 ]</a>
+        <a href="list?pageNum=${handler.totalPage}&searchField=${paramMap.searchField}&searchWord=${paramMap.searchWord}">[ 마지막페이지 ]</a>
         <br>
         <br>
     </main>
