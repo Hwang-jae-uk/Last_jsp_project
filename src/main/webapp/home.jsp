@@ -20,7 +20,7 @@
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
       <ul>
-        <li><h2><a href="/news">오늘의 뉴스</a></h2></li>
+        <li><h2><a href="news">오늘의 뉴스</a></h2></li>
         <li><hr></li>
         <table border="0" style="width: 90%; border-collapse: collapse; margin-left: auto; margin-right: auto;" >
           <%request.setAttribute("section","");%>

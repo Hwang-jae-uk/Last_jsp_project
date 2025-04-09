@@ -253,6 +253,10 @@ button:hover {
     transform: scale(1.05); /* 1.05배로 증가 */
 }
 
+.email-input-form input {
+    width: 100px
+}
+
 /* footer 태그 css 코드입니다. */
 footer {
     grid-area: footer;

@@ -26,7 +26,6 @@
                     <input type="text" id="id" name="id" minlength="5" maxlength="20" placeholder="아이디(최소 5자 최대 20자)를 입력해주세요." required>
                     <button type="button" onclick="checkDuplicate()">중복 검사</button> <!-- 중복 검사 버튼 -->
                 </div>
-
                 <div class="form-group">
                     <label for="password">비밀번호</label>
                     <input type="password" id="password" name="password" minlength="8" maxlength="20" placeholder="비밀번호(최소 8자 최대 20자)를 입력해주세요." required>
@@ -57,13 +56,16 @@
 
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <input type="text" id="email" name="email" minlength="5" placeholder="이메일의 아이디를 입력해주세요." required>@
-                    <select name="domain" required>
-                        <option value="none">도메인 선택</option>
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="daum.net">daum.net</option>
-                    </select>
+                    <span class="email-input-form">
+                        <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>@
+                        <input type="text" id="domain" >
+                        <select name="domain" onchange="selectDomain()" style="height: 30px" required>
+                            <option value="none" selected>직접 입력</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="daum.net">daum.net</option>
+                        </select>
+                    </span>
                 </div>
 
                 <div class="form-group">
@@ -79,8 +81,8 @@
                     <label for="phone">휴대전화 번호</label>
                     <input type="tel" id="phone" name="phone" placeholder="전화번호를 입력해주세요.(예 : 01012345678)" required>
                 </div>
-
                 <button type="submit">회원가입</button> <!-- 회원가입 버튼 -->
+
             </form>
         </div>
     </main>
@@ -98,8 +100,8 @@
         var confirmPassword = document.getElementById("confirmPassword").value;
         var emailDomain = document.querySelector("select[name='domain']").value;
 
-        if (emailDomain === "none") {
-            alert("도메인을 선택해주세요.");
+        if (emailDomain === null) {
+            alert("도메인을 입력해주세요.");
             return false; // 도메인이 선택되지 않았을 경우 false 반환
         }
 
@@ -116,6 +118,17 @@
             event.preventDefault(); // 비밀번호 또는 도메인이 일치하지 않을 경우 폼 제출 방지
         }
     });
+    function selectDomain() {
+        var dom = document.querySelector("select[name='domain']").value;
+        var text = document.getElementById("domain");
+        if (dom === 'none') {
+            text.disabled = false;
+            text.value = "";
+        } else {
+            text.disabled = true;
+            text.value = dom
+        }
+    }
 </script>
 </body>
 </html>
