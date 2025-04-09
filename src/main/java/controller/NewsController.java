@@ -21,7 +21,7 @@ public class NewsController extends HttpServlet {
         if (section == "") newsAPI = new NewsAPI();
         else newsAPI = new NewsAPI(section);
 
-        request.setAttribute("newsList", newsAPI.newsList());
+        request.setAttribute("newsList", newsAPI.newsList(6));
         request.getRequestDispatcher("news.jsp").forward(request, response);
     }
 }

@@ -23,7 +23,7 @@ public class HomeLIstController extends HttpServlet {
         if (section == "") newsAPI = new NewsAPI();
         else newsAPI = new NewsAPI(section);
 
-        request.setAttribute("newsList", newsAPI.newsList());
+        request.setAttribute("newsList", newsAPI.newsList(5));
         request.setAttribute("boardDTOList", boardDTOList);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }

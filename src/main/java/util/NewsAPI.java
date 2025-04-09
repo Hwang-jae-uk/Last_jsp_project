@@ -21,7 +21,7 @@ public class NewsAPI {
         this.section = section;
     }
 
-    public List<HashMap<String,String>> newsList() throws IOException, HttpStatusException {
+    public List<HashMap<String,String>> newsList(int i) throws IOException, HttpStatusException {
         String url = "https://news.naver.com/"
                 + (section == null ? "" : "breakingnews/" )
                 + "section/105/" + (section == null ? "" : section);
@@ -33,7 +33,7 @@ public class NewsAPI {
         Element thumb, content;
         int counter = 0;
         for (Element article : articles) {
-            if (counter > 5) break;
+            if (counter > i) break;
             try {
                 HashMap<String, String> map = new HashMap<>();
 
