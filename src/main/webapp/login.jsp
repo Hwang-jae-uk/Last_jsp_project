@@ -20,7 +20,7 @@
     <main>
         <div class="login-container">
             <h2>로그인</h2>
-            <form action="process_login.jsp" method="post">
+            <form action="loginProcess" method="post">
                 <div class="form-group">
                     <label for="username">아이디:</label>
                     <input type="text" id="username" name="username" required>

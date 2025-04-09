@@ -33,75 +33,30 @@ public class PageHandler {
         showNext = endPage != totalPage;
     }
 
-    public int getTotalCnt() {
-        return totalCnt;
-    }
+    public int getTotalCnt() { return totalCnt; }
+    public void setTotalCnt(int totalCnt) { this.totalCnt = totalCnt; }
 
-    public void setTotalCnt(int totalCnt) {
-        this.totalCnt = totalCnt;
-    }
+    public int getPageSize() { return pageSize; }
+    public void setPageSize(int pageSize) { this.pageSize = pageSize; }
 
-    public int getPageSize() {
-        return pageSize;
-    }
+    public int getNaviSize() { return naviSize; }
+    public void setNaviSize(int naviSize) { this.naviSize = naviSize; }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
+    public int getTotalPage() { return totalPage; }
+    public void setTotalPage(int totalPage) { this.totalPage = totalPage; }
 
-    public int getNaviSize() {
-        return naviSize;
-    }
+    public int getCurrPage() { return currPage; }
+    public void setCurrPage(int currPage) { this.currPage = currPage; }
 
-    public void setNaviSize(int naviSize) {
-        this.naviSize = naviSize;
-    }
+    public int getBeginPage() { return beginPage; }
+    public void setBeginPage(int beginPage) { this.beginPage = beginPage; }
 
-    public int getTotalPage() {
-        return totalPage;
-    }
+    public int getEndPage() { return endPage; }
+    public void setEndPage(int endPage) { this.endPage = endPage; }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
+    public boolean isShowPrev() { return showPrev; }
+    public void setShowPrev(boolean showPrev) { this.showPrev = showPrev; }
 
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
-
-    public int getBeginPage() {
-        return beginPage;
-    }
-
-    public void setBeginPage(int beginPage) {
-        this.beginPage = beginPage;
-    }
-
-    public int getEndPage() {
-        return endPage;
-    }
-
-    public void setEndPage(int endPage) {
-        this.endPage = endPage;
-    }
-
-    public boolean isShowPrev() {
-        return showPrev;
-    }
-
-    public void setShowPrev(boolean showPrev) {
-        this.showPrev = showPrev;
-    }
-
-    public boolean isShowNext() {
-        return showNext;
-    }
-
-    public void setShowNext(boolean showNext) {
-        this.showNext = showNext;
-    }
+    public boolean isShowNext() { return showNext; }
+    public void setShowNext(boolean showNext) { this.showNext = showNext; }
 }

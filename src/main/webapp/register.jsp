@@ -10,9 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="css/register.css"> <!-- 외부 스타일시트 적용 -->
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
+    <link rel="stylesheet" href="css/register.css"> <!-- 외부 스타일시트 적용 -->
 </head>
 <body>
 <div id="wrapper">
@@ -20,12 +20,13 @@
     <main>
         <div class="register-container">
             <h2>회원가입</h2>
-            <form action="process_register.jsp" method="post">
+            <form action="registerProcess" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this)">
                 <div class="form-group">
                     <label for="id">아이디</label>
                     <input type="text" id="id" name="id" minlength="5" maxlength="20" placeholder="아이디(최소 5자 최대 20자)를 입력해주세요." required>
                     <button type="button" onclick="checkDuplicate()">중복 검사</button> <!-- 중복 검사 버튼 -->
                 </div>
+
                 <div class="form-group">
                     <label for="password">비밀번호</label>
                     <input type="password" id="password" name="password" minlength="8" maxlength="20" placeholder="비밀번호(최소 8자 최대 20자)를 입력해주세요." required>
@@ -56,17 +57,17 @@
 
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <span class="inline-form">
+                    <label class="inline-form" name="address">
                         <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>
                         @
-                        <input type="text" id="domain" >
-                        <select name="domain" onchange="selectDomain()" required>
+                        <input id="domain" type="text" name="domain" required>
+                        <select id="dom" name="dom" onchange="selectDomain()" required>
                             <option value="none" selected>직접 입력</option>
                             <option value="gmail.com">gmail.com</option>
                             <option value="naver.com">naver.com</option>
                             <option value="daum.net">daum.net</option>
                         </select>
-                    </span>
+                    </label>
                 </div>
 
                 <div class="inline-form" style="display: inline">
@@ -86,35 +87,40 @@
                 </div>
                 <br><br>
                 <button type="submit">회원가입</button> <!-- 회원가입 버튼 -->
-
             </form>
         </div>
     </main>
     <jsp:include page="footer.jsp"/>
 </div>
 <script>
+    function validateForm(form) {
+        const fields = [
+            {name: 'id', message: '이름을'},
+            {name: 'password', message: '비밀번호를'},
+            {name: 'confirmPassword', message: '비밀번호 확인을'},
+            {name: 'name', message: '이름을'},
+            {name: 'gender', message: '성별을'},
+            {name: 'birthday', message: '생년월일을'},
+            {name: 'email', message: '이메일을'},
+            {name: 'carrier', message: '통신사를'},
+            {name: 'phone', message: '전화번호'}
+        ];
+
+        for (let i = 0; i < fields.length; i++) {
+            const field = fields[i];
+            switch (true) {
+                case !form[field.name].value.trim():
+                    alert(field.message + " 입력하세요.");
+                    form[field.name].focus();
+                    return false;
+            }
+        }
+        return true;
+    }
     function checkDuplicate() {
         // 여기에 중복 검사 로직을 추가하세요.
         alert("중복 검사 기능이 필요합니다."); // 기본적인 알림창
         // AJAX 를 사용하여 서버에 중복 아이디를 확인하는 요청을 보낼 수 있습니다.
-    }
-
-    function validatePasswords() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("confirmPassword").value;
-        var emailDomain = document.querySelector("select[name='domain']").value;
-
-        if (emailDomain === null) {
-            alert("도메인을 입력해주세요.");
-            return false; // 도메인이 선택되지 않았을 경우 false 반환
-        }
-
-        if (password !== confirmPassword) {
-            alert("비밀번호가 일치하지 않습니다. 확인해주세요.");
-            return false; // 비밀번호가 일치하지 않을 경우 false 반환
-        }
-
-        return true; // 두 조건 모두 만족하면 true 반환
     }
 
     document.querySelector("form").addEventListener("submit", function(event) {
@@ -122,8 +128,9 @@
             event.preventDefault(); // 비밀번호 또는 도메인이 일치하지 않을 경우 폼 제출 방지
         }
     });
+
     function selectDomain() {
-        var dom = document.querySelector("select[name='domain']").value;
+        var dom = document.querySelector("select[name='dom']").value;
         var text = document.getElementById("domain");
         if (dom === 'none') {
             text.disabled = false;
