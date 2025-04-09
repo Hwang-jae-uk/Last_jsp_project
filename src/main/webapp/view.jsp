@@ -36,7 +36,7 @@
                     <th colspan="5"  align="left" style="padding-left: 30px">${dto.content}</th> <!-- 게시글 내용 출력 -->
                 </tr>
             </table>
-            <button type="button" onclick="location.href=''">삭제하기</button>
+            <button type="button" onclick="location.href='list'">삭제하기</button>
             <button>수정하기</button>
             <button>목록보기</button>
         </main>
