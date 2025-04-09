@@ -12,7 +12,7 @@
     <title>HOME</title>
     <link rel="stylesheet" href="css/index_style.css"> <!-- 외부 스타일시트 적용 -->
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font 링크 추가 -->
+    <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
 <div id="wrapper">
@@ -37,7 +37,7 @@
     </section>
     <section>
       <ul>
-        <li><h2><a href="/list">커뮤니티 글</a></h2></li>
+        <li><h2><a href="list">커뮤니티 글</a></h2></li>
         <li><hr></li>
         <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
           <tr align="center" >

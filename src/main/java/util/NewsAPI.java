@@ -33,7 +33,7 @@ public class NewsAPI {
         Element thumb, content;
         int counter = 0;
         for (Element article : articles) {
-            if (counter > i) break;
+            if (counter >= i) break;
             try {
                 HashMap<String, String> map = new HashMap<>();
 
@@ -50,8 +50,7 @@ public class NewsAPI {
                 map.put("date", doc2.getElementsByAttribute("data-date-time").attr("data-date-time").substring(5, 16));
                 newsList.add(map);
                 counter++;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception ignored) {
             }
         }
         return newsList;

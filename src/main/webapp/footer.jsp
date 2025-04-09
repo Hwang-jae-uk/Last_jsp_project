@@ -8,10 +8,10 @@
     <div id="copyright">Copyright ©KJK All right is reserved</div>
     <div id="othersites">
         <!-- 이미지 파일 첨부 -->
-        <a href="https://section.blog.naver.com/" target="_blank"><img src="image/blog.ico" alt="naver blog"></a>
-        <a href="https://x.com/" target="_blank"><img src="image/X.ico" alt="X(twitter)"></a>
-        <a href="https://www.instagram.com/" target="_blank"><img src="image/instagram.ico" alt="instagram"></a>
-        <a href="https://ko-kr.facebook.com/" target="_blank"><img src="image/facebook.ico" alt="facebook"></a>
+        <a href="https://section.blog.naver.com/" target="_blank"><img src="image/icon/blog.ico" alt="naver blog"></a>
+        <a href="https://x.com/" target="_blank"><img src="image/icon/X.ico" alt="X(twitter)"></a>
+        <a href="https://www.instagram.com/" target="_blank"><img src="image/icon/instagram.ico" alt="instagram"></a>
+        <a href="https://ko-kr.facebook.com/" target="_blank"><img src="image/icon/facebook.ico" alt="facebook"></a>
     </div>
 </footer>
 </body>

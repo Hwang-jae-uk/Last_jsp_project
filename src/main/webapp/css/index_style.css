@@ -237,8 +237,8 @@ main a:hover {
     color: #2c3e50; /* 어두운 컬러 */
 }
 main section:nth-of-type(2) img {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
 }
 /* main 태그 내의 이미지 그리드 */
 .image-grid {
@@ -251,8 +251,8 @@ main section:nth-of-type(2) img {
 }
 /* 이미지 스타일 */
 .image-grid img {
-    width: 200px;  /* 가로 크기 */
-    height: 200px; /* 세로 크기 */
+    width: 100px;  /* 가로 크기 */
+    height: 100px; /* 세로 크기 */
     object-fit: contain; /* 비율 유지 및 잘림 방지 */
     transition: transform 0.3s ease; /* 변환 효과 추가 */
 }
