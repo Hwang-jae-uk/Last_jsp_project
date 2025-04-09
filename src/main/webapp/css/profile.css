@@ -18,7 +18,7 @@ body{
     justify-content: center;
     grid-template-columns: 375px 1125px;
     grid-template-rows: 200px 50px 1200px 50px;
-    grid-template-areas: 
+    grid-template-areas:
         "header header"
         "nav nav"
         "aside main"
@@ -189,64 +189,83 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
-main{
-    grid-area: main;
-    display: grid; /* 그리드 레이아웃을 사용 */
-    grid-template-columns: 1fr 1fr; /* 두 개의 열로 나누기 */
-    grid-template-rows: 1fr 1fr; /* 두 개의 행으로 나누기 */
-    grid-template-areas: 
-        "section1 section1" /* 1번째와 2번째 섹션 */
-        "section2 section3"; /* 3번째 섹션이 두 개의 열을 차지함 */
-    background-color: white;
+main {
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
-}
-main section:nth-of-type(1) {
-    grid-area: section1; /* 1번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
     display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+.profile-container {
+    background-color: #e0f7fa; /* 프로필 창 배경색 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 20px; /* 내부 여백 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    max-width: 400px; /* 최대 너비 설정 */
+    width: 100%; /* 반응형을 위해 100% 너비 */
+}
+
+.form-group {
+    display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 세로 방향으로 정렬 */
+    margin-bottom: 15px; /* 입력 필드 사이의 여백 */
 }
-main section:nth-of-type(2) {
-    grid-area: section2; /* 2번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
+
+/*기본스타일을 없애고, 버튼모양을 구현한다.*/
+input[type='radio'] {
+    -webkit-appearance: none;  /*웹킷 브라우저에서 기본 스타일 제거*/
+    -moz-appearance: none;  /*모질라 브라우저에서 기본 스타일 제거*/
+    appearance: none;  /*기본 브라우저에서 기본 스타일 제거*/
+    width: 18px;
+    height: 18px;
+    border: 2px solid #393939; /* 체크되지 않았을 때의 테두리 색상 */
+    border-radius: 50%;
+    outline: none; /*focus 시에 나타나는 기본 스타일 제거 */
+    cursor: pointer;
 }
-main section:nth-of-type(3) {
-    grid-area: section3; /* 3번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
+/* 체크될 시에, 변화되는 스타일 설정 */
+input[type='radio']:checked {
+    background-color: #22d3ee;     /*체크 시 내부 원으로 표시될 색상*/
+    border: 3px solid white;    /*테두리가 아닌, 테두리와 원 사이의 색상*/
+    box-shadow: 0 0 0 1.6px #22d3ee; /* 테두리*/
+    /*그림자로 테두리를 직접 만들어야 함 (퍼지는 정도를 0으로 주면 테두리처럼 보임)
+    그림자가 없으면 그냥 설정한 색상이 꽉 찬 원으로 나옴.*/
 }
-main section ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: block; /* 전체 폭을 사용하는 블록 레벨로 설정 */
-    width: 100%;
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+    width: 100%; /* 전체 너비 차지 */
+    padding: 10px; /* 여백 추가 */
+    border: 1px solid #ade6f4; /* 테두리 색상 */
+    border-radius: 5px; /* 둥글게 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 설정 */
+    background-color: #f3fbff;
 }
-main section li {
-    padding: 5px 0; /* 각 리스트 항목에 위아래 여백 추가 */
+
+select {
+    border: 1px solid #ade6f4; /* 테두리 색상 */
+    background-color: #f3fbff;
 }
-main a {
-    color: inherit; /* 기본 글자색을 상속받음 */
-    text-decoration: none; /* 링크의 밑줄 제거 */
+
+button {
+    background-color: #98fb98; /* 엷은 초록색 (연두색) */
+    color: #333; /* 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 테두리 */
+    padding: 10px 15px; /* 여백 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 배경색과 크기 변화에 트랜지션 효과 */
 }
-/* 기본 색상 설정 */
-main a:link,
-main a:visited,
-main a:active,
-main a:hover {
-    color: #2c3e50; /* 어두운 컬러 */
+
+button:hover {
+    background-color: #7fff7f; /* 조금 더 밝은 초록색 */
+    transform: scale(1.05); /* hover 시 1.05배 확대 */
 }
-main section:nth-of-type(2) img {
-    width: 100px;
-    height: 100px;
-}
+
 /* main 태그 내의 이미지 그리드 */
 .image-grid {
     display: grid;
@@ -258,8 +277,8 @@ main section:nth-of-type(2) img {
 }
 /* 이미지 스타일 */
 .image-grid img {
-    width: 100px;  /* 가로 크기 */
-    height: 100px; /* 세로 크기 */
+    width: 200px;  /* 가로 크기 */
+    height: 200px; /* 세로 크기 */
     object-fit: contain; /* 비율 유지 및 잘림 방지 */
     transition: transform 0.3s ease; /* 변환 효과 추가 */
 }
@@ -267,6 +286,15 @@ main section:nth-of-type(2) img {
 .image-grid img:hover {
     transform: scale(1.05); /* 1.05배로 증가 */
 }
+
+.inline-form input {
+    width: 100px
+}
+.inline-form select{
+    height: 30px;
+    width: 100px
+}
+
 
 /* footer 태그 css 코드입니다. */
 footer {

@@ -56,7 +56,7 @@
           <c:forEach var="news" items="${newsList}">
             <tr align="center">
               <td width="5%"><img src="${news.img}" alt="picture" height="120px"></td>
-              <td width="40%" align="left"><a href="${news.o_link}">${news.title}</a></td>
+              <td width="40%" align="left"><a href="${news.o_link}" target="_blank">${news.title}</a></td>
               <td width="10%">${news.press}</td>
               <td width="10%">${news.date}</td>
             </tr>

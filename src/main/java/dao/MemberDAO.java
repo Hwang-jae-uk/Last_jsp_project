@@ -5,32 +5,34 @@ import util.DBManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class MemberDAO {
 
-    public MemberDTO addMember(){
+    public int addMember(MemberDTO dto){
         String sql = "insert into member values(?,?,?,?,?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        MemberDTO member = new MemberDTO();
+        int result = 0;
 
         try{
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, member.getId());
-            pstmt.setString(2, member.getPassword());
-            pstmt.setString(3, member.getName());
-            pstmt.setString(4, member.getGender());
-            pstmt.setString(5, String.valueOf(member.getBirthday()));
-            pstmt.setString(6, member.getEmail());
-            pstmt.setString(7, member.getCarrier());
-            pstmt.setString(8, member.getPhone());
+            pstmt.setString(1, dto.getId());
+            pstmt.setString(2, dto.getPassword());
+            pstmt.setString(3, dto.getName());
+            pstmt.setString(4, dto.getGender());
+            pstmt.setString(5, dto.getBirthday());
+            pstmt.setString(6, dto.getEmail());
+            pstmt.setString(7, dto.getCarrier());
+            pstmt.setString(8, dto.getPhone());
+            result = pstmt.executeUpdate();
 
-        }catch(Exception e){
+        }catch(SQLException | ClassNotFoundException e){
             e.printStackTrace();
         }finally {
             DBManager.close(conn, pstmt);
         }
-        return member;
+        return result;
     }
 }

@@ -32,7 +32,6 @@
                         <select name="searchField">
                             <option value="title" ${paramMap.searchField == 'title'?"selected":""} > 제목</option>
                             <option value="id" ${paramMap.searchField == 'id'?"selected":""} >작성자</option>
-                            <option value="all" ${paramMap.searchField == 'all'?"selected":""} >제목+작성자</option>
                         </select>
                         <input type="text" name="searchWord" value="${paramMap.searchWord}">
                         <input type="submit" value="검색하기">
@@ -58,6 +57,7 @@
                 </tr>
             </c:forEach>
         </table>
+        <button onclick="location.href='write.jsp'" style="margin-left: 1000px">글쓰기</button><br>
         <a href="list?pageNum=1&searchField=${paramMap.searchField}&searchWord=${paramMap.searchWord}">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
         <c:if test="${handler.getPageSize() == 0}">
             1

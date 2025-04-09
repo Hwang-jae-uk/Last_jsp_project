@@ -20,16 +20,18 @@
     <main>
         <div class="register-container">
             <h2>회원가입</h2>
-            <form action="registerProcess" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this)">
+            <form action="registerProcess" method="post" onsubmit="return validateForm(this)">
                 <div class="form-group">
                     <label for="id">아이디</label>
-                    <input type="text" id="id" name="id" minlength="5" maxlength="20" placeholder="아이디(최소 5자 최대 20자)를 입력해주세요." required>
+                    <input type="text" id="id" name="id" minlength="5" maxlength="20" required>
+                    <span>아이디를 5 ~ 20자 내로 입력해주세요.</span>
                     <button type="button" onclick="checkDuplicate()">중복 검사</button> <!-- 중복 검사 버튼 -->
                 </div>
 
                 <div class="form-group">
                     <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" minlength="8" maxlength="20" placeholder="비밀번호(최소 8자 최대 20자)를 입력해주세요." required>
+                    <input type="password" id="password" name="password" minlength="8" maxlength="20"  required>
+                    <span>비밀번호를 8~20자 내로 입력해주세요.</span>
                 </div>
 
                 <div class="form-group">
@@ -54,13 +56,12 @@
                     <label for="birthday">생년월일</label>
                     <input type="date" id="birthday" name="birthday" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <label class="inline-form" name="address">
+                <div class="form-group">이메일
+                    <label class="inline-form">
                         <input type="text" id="email" name="email" minlength="5" style="width: 150px" required>
                         @
-                        <input id="domain" type="text" name="domain" required>
+                        <input id="domain" type="text" onchange="textDomain()" required>
+                        <input type="hidden" name="domain">
                         <select id="dom" name="dom" onchange="selectDomain()" required>
                             <option value="none" selected>직접 입력</option>
                             <option value="gmail.com">gmail.com</option>
@@ -72,9 +73,12 @@
 
                 <div class="inline-form" style="display: inline">
                     <div class="form-group" style="display: inline">
-                        <label for="carrier">통신사</label>
+                        <label for="carrier">통신사</label> &nbsp;&nbsp;&nbsp;
                         <label for="phone">휴대전화 번호</label> <br>
-                        <select id="carrier" name="carrier" required>
+                        <select id="carrier" name="carrier" style="width: 70px" required >
+                            <option value="SKT">SKT</option>
+                            <option value="KT">KT</option>
+                            <option value="LG">LG</option>
                             <option value="SKT">SKT</option>
                             <option value="KT">KT</option>
                             <option value="LG">LG</option>
@@ -93,17 +97,19 @@
     <jsp:include page="footer.jsp"/>
 </div>
 <script>
+    //공백 검사
     function validateForm(form) {
         const fields = [
-            {name: 'id', message: '이름을'},
+            {name: 'id', message: '아이디를'},
             {name: 'password', message: '비밀번호를'},
             {name: 'confirmPassword', message: '비밀번호 확인을'},
             {name: 'name', message: '이름을'},
             {name: 'gender', message: '성별을'},
             {name: 'birthday', message: '생년월일을'},
             {name: 'email', message: '이메일을'},
+            {name: 'domain', message: '도메인을'},
             {name: 'carrier', message: '통신사를'},
-            {name: 'phone', message: '전화번호'}
+            {name: 'phone', message: '전화번호를'}
         ];
 
         for (let i = 0; i < fields.length; i++) {
@@ -117,28 +123,39 @@
         }
         return true;
     }
+
     function checkDuplicate() {
         // 여기에 중복 검사 로직을 추가하세요.
         alert("중복 검사 기능이 필요합니다."); // 기본적인 알림창
         // AJAX 를 사용하여 서버에 중복 아이디를 확인하는 요청을 보낼 수 있습니다.
     }
 
+
     document.querySelector("form").addEventListener("submit", function(event) {
-        if (!validatePasswords()) {
+        if (!validateForm(this)) {
             event.preventDefault(); // 비밀번호 또는 도메인이 일치하지 않을 경우 폼 제출 방지
         }
     });
 
     function selectDomain() {
         var dom = document.querySelector("select[name='dom']").value;
-        var text = document.getElementById("domain");
+        var text = document.querySelector("#domain");
+        var domain = document.querySelector("[name='domain']");
         if (dom === 'none') {
             text.disabled = false;
             text.value = "";
+            domain.value = "";
         } else {
             text.disabled = true;
-            text.value = dom
+            text.value = dom;
+            domain.value = dom;
         }
+    }
+
+    function textDomain() {
+        var text = document.querySelector("#domain");
+        var domain = document.querySelector("[name='domain']");
+        domain.value = text.value;
     }
 </script>
 </body>

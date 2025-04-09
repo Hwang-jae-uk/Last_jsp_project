@@ -14,9 +14,10 @@ public class ViewController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String no = request.getParameter("no");
         BoardDAO dao = new BoardDAO();
-        BoardDTO dto = dao.ListBoard(Integer.parseInt(no));
+        BoardDTO dto = dao.viewBoard(Integer.parseInt(no));
         request.setAttribute("dto", dto);
         request.getRequestDispatcher("view.jsp").forward(request, response);
+        dao.updateVisitCount(no);
     }
 
     @Override

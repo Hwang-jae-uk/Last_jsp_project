@@ -41,7 +41,7 @@ public class LIstController extends HttpServlet {
             pageNum = Integer.parseInt(pageNumStr);
         }
 
-        int totalCnt = dao.selectAllCount();
+        int totalCnt = dao.selectAllCount(paramMap);
 
 
 

@@ -15,16 +15,27 @@ public class BoardDAO {
 
 
     // 게시물 전체 갯수 조회
-    public int selectAllCount() {
-        String sql = " SELECT count(*) FROM board ";
+    public int selectAllCount(Map<String , Object> map) {
+        String sql = "SELECT COUNT(*) FROM board";
+        if(map.get("searchWord") != null){
+            sql += " WHERE " + map.get("searchField")+" like ? ";
+        }
 
         int result = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
+
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
+
+
+            if(map.get("searchWord") != null){
+                pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
+            }
+
             rs = pstmt.executeQuery();
             if(rs.next()){
                 result = rs.getInt(1);
@@ -33,7 +44,7 @@ public class BoardDAO {
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
-            DBManager.close(conn, pstmt, rs);
+            DBManager.close(conn, pstmt);
         }
 
         return result;
@@ -41,7 +52,7 @@ public class BoardDAO {
     }
 
     // 게시물 선택
-    public BoardDTO ListBoard(int no) {
+    public BoardDTO viewBoard(int no) {
         String sql = "select * from board where no = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -195,7 +206,26 @@ public class BoardDAO {
 
     // 게시물 수정
 
-    // 게시물 삭제
 
+    // 게시물 삭제
+    public int deleteBoard(String idx){
+        String sql = "DELETE FROM board WHERE no = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try{
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, idx);
+
+            result = pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+        return result;
+    }
 
 }
