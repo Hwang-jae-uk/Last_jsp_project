@@ -3,10 +3,13 @@ package controller;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import util.JSFunction;
+
+import java.io.IOException;
 
 @WebServlet("/registerProcess")
 public class RegisterProcess extends HttpServlet {
@@ -29,7 +32,7 @@ public class RegisterProcess extends HttpServlet {
         if (result == 1) {
             JSFunction.alertLocation(response, "회원가입에 성공했습니다.", "login.jsp");
         } else {
-            JSFunction.alertBack(response,"회원가입에 실패했습니다.");
+            JSFunction.alertBack(response, "회원가입에 실패했습니다.");
         }
     }
 }

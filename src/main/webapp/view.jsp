@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"
-        pageEncoding="UTF-8"
-        trimDirectiveWhitespaces="true" %>
+         pageEncoding="UTF-8"
+         trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
@@ -15,32 +15,32 @@
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
-    <div id="wrapper">
-        <jsp:include page="header_base.jsp"/>
-        <main>
-            <table border="1" style="width: 95%; border-collapse: collapse; margin: 0;" >
-                <tr>
-                    <th width="15%" >작성자: </th>
-                    <th width="25%" >${dto.id}</th>
-                    <th width="15%" >조회수: </th>
-                    <th width="15%">${dto.visitCount}</th>
-                    <th width="15%">날짜 :</th>
-                    <th >${dto.postdate}</th>
-                </tr>
-                <tr>
-                    <th>제목:</th>
-                    <th colspan="5" align="left" style="padding-left: 30px">${dto.title}</th>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                    <th colspan="5"  align="left" style="padding-left: 30px">${dto.content}</th> <!-- 게시글 내용 출력 -->
-                </tr>
-            </table>
-            <button type="button" onclick="location.href='list'">삭제하기</button>
-            <button>수정하기</button>
-            <button>목록보기</button>
-        </main>
-        <jsp:include page="footer.jsp"/>
-    </div>
+<div id="wrapper">
+    <jsp:include page="header_base.jsp"/>
+    <main>
+        <table border="1" style="width: 95%; border-collapse: collapse; margin: 0;" >
+            <tr>
+                <th width="15%" >작성자: </th>
+                <th width="25%" >${dto.id}</th>
+                <th width="15%" >조회수: </th>
+                <th width="15%">${dto.visitCount}</th>
+                <th width="15%">날짜 :</th>
+                <th >${dto.postdate}</th>
+            </tr>
+            <tr>
+                <th>제목:</th>
+                <th colspan="5" align="left" style="padding-left: 30px">${dto.title}</th>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <th colspan="5"  align="left" style="padding-left: 30px">${dto.content}</th> <!-- 게시글 내용 출력 -->
+            </tr>
+        </table>
+        <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
+        <button>수정하기</button>
+        <button type="button" onclick="location.href='/list'">목록보기</button>
+    </main>
+    <jsp:include page="footer.jsp"/>
+</div>
 </body>
 </html>

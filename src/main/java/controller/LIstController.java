@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import util.PageHandler;
 
 import java.io.IOException;
@@ -30,10 +31,7 @@ public class LIstController extends HttpServlet {
         }
         BoardDAO dao = new BoardDAO();
 
-
         PageHandler handler = null;
-
-
 
         int pageNum = 1;
         String pageNumStr = request.getParameter("pageNum");
