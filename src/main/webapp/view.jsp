@@ -37,7 +37,7 @@
             </tr>
         </table>
         <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
-        <button>수정하기</button>
+        <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
         <button type="button" onclick="location.href='/list'">목록보기</button>
     </main>
     <jsp:include page="footer.jsp"/>

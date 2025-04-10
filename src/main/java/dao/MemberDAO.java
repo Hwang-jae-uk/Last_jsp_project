@@ -38,7 +38,7 @@ public class MemberDAO {
     }
 
     public int duplicateMember(String id){
-        String sql = "select count(id) from member where id = ?";
+        String sql = "select id from member where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -49,11 +49,33 @@ public class MemberDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-            result = rs.getInt(1);
+
+            if(rs.next()) result = 1;
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt, rs);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();  // ResultSet 닫기 실패 시 처리
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();  // PreparedStatement 닫기 실패 시 처리
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();  // Connection 닫기 실패 시 처리
+                }
+            }
         }
         return result;
     }

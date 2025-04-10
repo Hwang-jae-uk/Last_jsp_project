@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>footer</title>
+    <script src="js/currentTime.js"></script>
 </head>
 <body>
 <footer> <!-- footer 태그는 저작권 표시 및 공식 사이트로 이동하는 아이콘 목록 -->

@@ -3,7 +3,7 @@ function updateDateTime() {
     const now = new Date();
     const date = now.toISOString().split('T')[0]; // 날짜 (yyyy-mm-dd 포맷)
     const time = now.toTimeString().split(' ')[0].substring(0, 5); // 시각 (hh:mm 포맷)
-    document.getElementById('copyright').textContent = `Copyright ©KJK All right is reserved | 현재 날짜: ${date}, 현재 시각: ${time}`;
+    document.getElementById('copyright').textContent = `This is team project, No Copyright | 현재 날짜: ${date}, 현재 시각: ${time}`;
 
     // 다음 호출까지의 딜레이 시간 계산
     const seconds = now.getSeconds(); // 현재 초

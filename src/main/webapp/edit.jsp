@@ -9,7 +9,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>home</title>
+  <title>게시글 편집</title>
   <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
   <link rel="stylesheet" href="css/base2.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
@@ -26,7 +26,8 @@
 <div id="wrapper">
   <jsp:include page="header_base.jsp"/>
   <main>
-    <form action="/write" method="POST" onsubmit="return validateForm(this);">
+    <form action="/edit" method="post" onsubmit="return validateForm(this);">
+      <input type="hidden" name="no" value="${dto.no}">
       <table border="1" width="90%">
         <tr>
           <td>작성자</td>
@@ -48,7 +49,8 @@
         </tr>
         <tr>
           <td colspan="2" align="center">
-            <button type="submit">작성 완료</button>
+
+            <button type="submit"onclick="location.href='/view'">수정 완료</button>
             <button type="reset">다시 입력</button>
             <button type="button" onclick="location.href='/list';">목록 바로가기</button>
           </td>

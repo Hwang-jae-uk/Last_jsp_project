@@ -16,7 +16,12 @@ public class ViewController extends HttpServlet {
         String no = request.getParameter("no");
         BoardDAO dao = new BoardDAO();
         BoardDTO dto = dao.viewBoard(Integer.parseInt(no));
+
+        // 조회수 1증가
         dao.updateVisitCount(no);
+
+        // content 줄바꿈
+        dto.setContent(dto.getContent().replaceAll("\r\n","<br>"));
 
         request.setAttribute("dto", dto);
         request.getRequestDispatcher("view.jsp").forward(request, response);

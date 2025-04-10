@@ -22,10 +22,8 @@ public class DeleteController extends HttpServlet {
 
 
         //게시물 삭제
-        if(mode.equals("delete")) {
-            dao.deleteBoard(no);
-            JSFunction.alertLocation(response,"게시물이 삭제되었습니다.","/list");
-        }
+        dao.deleteBoard(no);
+        JSFunction.alertLocation(response,"게시물이 삭제되었습니다.","/list");
         request.setAttribute("dto", dto);
         request.getRequestDispatcher("delete.jsp").forward(request, response);
 

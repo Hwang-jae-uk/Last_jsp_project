@@ -27,14 +27,16 @@ public class BoardDAO {
         ResultSet rs = null;
 
         try {
+
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
+
 
             if(map.get("searchWord") != null){
                 pstmt.setString(1, "%"+ map.get("searchWord").toString() + "%");
             }
-            rs = pstmt.executeQuery();
 
+            rs = pstmt.executeQuery();
             if(rs.next()){
                 result = rs.getInt(1);
             }
@@ -44,10 +46,12 @@ public class BoardDAO {
         }finally {
             DBManager.close(conn, pstmt);
         }
+
         return result;
+
     }
 
-    // 게시물 선택
+    // 선택한 게시물 보기
     public BoardDTO viewBoard(int no) {
         String sql = "select * from board where no = ?";
         Connection conn = null;
@@ -96,7 +100,7 @@ public class BoardDAO {
         }
     }
 
-    // 리스트 게시물 목록 가져오기
+    // 리스트 게시물 목록
     public List<BoardDTO> selectPagingList(Map<String , Object> map) {
         String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate FROM board";
         if(map.get("searchWord") != null){
@@ -107,7 +111,7 @@ public class BoardDAO {
             }
 
         }
-
+        sql += " ORDER BY postdate DESC";
         sql += " LIMIT ?,15";
 
         List<BoardDTO> boardList = new ArrayList<>();
@@ -158,6 +162,7 @@ public class BoardDAO {
         }
 
         return boardList;
+
     }
 
     // Home 화면 조회수 top10 리스트
@@ -195,11 +200,48 @@ public class BoardDAO {
         }
         return boardList;
     }
+    // 게시물 생성
+    public void insertBoard(BoardDTO dto) {
+        String sql = "INSERT INTO board(id , title , content) values(?,?,?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dto.getId());
+            pstmt.setString(2, dto.getTitle());
+            pstmt.setString(3, dto.getContent());
+            pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
 
+    }
 
 
     // 게시물 수정
+    public void updateBoard(BoardDTO dto) {
+        String sql = "UPDATE board SET id=? , title=? , content=? WHERE no=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dto.getId());
+            pstmt.setString(2, dto.getTitle());
+            pstmt.setString(3, dto.getContent());
+            pstmt.setInt(4, dto.getNo());
+            pstmt.executeUpdate();
 
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+
+    }
 
     // 게시물 삭제
     public int deleteBoard(String no){
@@ -221,23 +263,5 @@ public class BoardDAO {
         }
         return result;
     }
-    // 게시물 생성
-    public void insertBoard(BoardDTO dto) {
-        String sql = "INSERT INTO board(id , title , content) values(?,?,?)";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        try {
-            conn = DBManager.getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, dto.getId());
-            pstmt.setString(2, dto.getTitle());
-            pstmt.setString(3, dto.getContent());
-            pstmt.executeUpdate();
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            DBManager.close(conn, pstmt);
-        }
 
-    }
 }
