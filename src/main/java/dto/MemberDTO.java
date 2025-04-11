@@ -9,6 +9,7 @@ public class MemberDTO {
     private String email;
     private String carrier;
     private String phone;
+    private String nickname;
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -33,4 +34,7 @@ public class MemberDTO {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getnickname() { return nickname; }
+    public void setnickname(String phone) { this.nickname = nickname; }
 }

@@ -25,7 +25,12 @@
         <c:if test="${sessionScope.get('id')!=null}">
             <li><a href="logout.jsp">LOGOUT</a></li>
         </c:if>
-        <li><a href="register">SIGN IN</a></li>
+        <c:if test="${sessionScope.get('id')==null}">
+            <li><a href="register">SIGN IN</a></li>
+        </c:if>
+        <c:if test="${sessionScope.get('id')!=null}">
+            <li><a href="profile">PROFILE</a></li>
+        </c:if>
     </ul>
 </nav>
 <aside>

@@ -7,7 +7,7 @@ html, body {
 }
 
 body{
-    background-image: url("/image/background/back3.jpg");
+    background-image: url("/image/background/back3.png");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -163,64 +163,18 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
+main > table {
+    padding: 30px;
+}
 main{
-    grid-area: main;
-    display: grid; /* 그리드 레이아웃을 사용 */
-    grid-template-columns: 1fr 1fr; /* 두 개의 열로 나누기 */
-    grid-template-rows: 1fr 1fr; /* 두 개의 행으로 나누기 */
-    grid-template-areas:
-        "section1 section1" /* 1번째와 2번째 섹션 */
-        "section2 section3"; /* 3번째 섹션이 두 개의 열을 차지함 */
+
     background-color: hsla(0, 33%, 96%,90%);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
-main section:nth-of-type(1) {
-    grid-area: section1; /* 1번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
+main > a{
+    text-decoration: none;
 }
-main section:nth-of-type(2) {
-    grid-area: section2; /* 2번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-}
-main section:nth-of-type(3) {
-    grid-area: section3; /* 3번째 섹션 */
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
-}
-main section ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: block; /* 전체 폭을 사용하는 블록 레벨로 설정 */
-    width: 100%;
-}
-main section li {
-    padding: 5px 0; /* 각 리스트 항목에 위아래 여백 추가 */
-}
-main a {
-    color: inherit; /* 기본 글자색을 상속받음 */
-    text-decoration: none; /* 링크의 밑줄 제거 */
-}
-/* 기본 색상 설정 */
-main a:link,
-main a:visited,
-main a:active,
-main a:hover {
-    color: #2c3e50; /* 어두운 컬러 */
-}
-main section:nth-of-type(2) img {
-    width: 100px;
-    height: 100px;
-}
+
 /* main 태그 내의 이미지 그리드 */
 .image-grid {
     display: grid;
@@ -232,8 +186,8 @@ main section:nth-of-type(2) img {
 }
 /* 이미지 스타일 */
 .image-grid img {
-    width: 100px;  /* 가로 크기 */
-    height: 100px; /* 세로 크기 */
+    width: 200px;  /* 가로 크기 */
+    height: 200px; /* 세로 크기 */
     object-fit: contain; /* 비율 유지 및 잘림 방지 */
     transition: transform 0.3s ease; /* 변환 효과 추가 */
 }
