@@ -13,22 +13,22 @@ public class MemberDAO {
 
     //회원가입
     public int addMember(MemberDTO dto) {
-        String sql = "insert into member values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into member values(?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         int result = 0;
-
         try {
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dto.getId());
             pstmt.setString(2, dto.getPassword());
-            pstmt.setString(3, dto.getName());
-            pstmt.setString(4, dto.getGender());
-            pstmt.setString(5, dto.getBirthday());
+            pstmt.setString(3, dto.getNickname());
+            pstmt.setString(4, dto.getName());
+            pstmt.setString(5, dto.getGender());
             pstmt.setString(6, dto.getEmail());
             pstmt.setString(7, dto.getCarrier());
             pstmt.setString(8, dto.getPhone());
+            pstmt.setString(9, dto.getBirthday());
             result = pstmt.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException e) {

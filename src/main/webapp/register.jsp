@@ -23,15 +23,9 @@
       <form action="register" method="post" onsubmit="return validateForm(this)">
         <div class="form-group">
           <label for="id">아이디</label>
-          <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요.">
+          <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요." onchange="changeCheck()">
           <label style="text-align: left; color: gray" id="check_result" >5~20자 이내로 입력해주세요.</label>
-          <button type="button" id="check">중복체크</button>
-
-        </div>
-
-        <div class="form-group">
-          <label for="nickname">닉네임</label>
-          <input type="text" id="nickname" name="nickname" placeholder="&nbsp;&nbsp;8자리이하로 입력하세요.">
+          <button type="button" id="check" style="font-size: large">중복체크</button>
         </div>
 
         <div class="form-group">
@@ -42,6 +36,11 @@
         <div class="form-group">
           <label for="confirmPassword">비밀번호 확인</label>
           <input type="password" id="confirmPassword" name="confirmPassword" class="warnings" minlength="8" maxlength="20" placeholder="동일한 비밀번호를 다시 입력해주세요.">
+        </div>
+
+        <div class="form-group">
+          <label for="nickname">닉네임</label>
+          <input type="text" id="nickname" name="nickname" placeholder="&nbsp;&nbsp;8자리이하로 입력하세요.">
         </div>
 
         <div class="form-group">
@@ -66,7 +65,7 @@
             <input type="text" id="email" name="email" minlength="5" style="width: 150px" placeholder="Input your email's ID">
             @
             <input id="domain" type="text" onchange="textDomain()" placeholder="domain.com">
-            <input type="hidden" name="domain">
+            <input type="hidden" name="domain" id="hid_domain">
             <select id="dom" name="dom" onchange="selectDomain()">
               <option value="none" selected>직접 입력</option>
               <option value="gmail.com">gmail.com</option>
@@ -98,6 +97,14 @@
   </main>
 </div>
 <script>
+
+    function changeCheck() {
+        var check = document.getElementById("check_result")
+        if (check.textContent == '사용할 수 있는 ID 입니다.' && check.style.color == 'green') {
+            check.textContent = '다시 ID 중복 확인을 해주세요';
+            check.style.color = 'red';
+        }
+    }
 
     $("#check").click(function(){
         const id = $("#id").val();
@@ -140,7 +147,6 @@
             { name: 'gender', message: '성별을 고르세요.' },
             { name: 'birthday', message: '생일을 입력하세요.' },
             { name: 'email', message: '이메일을 입력하세요.' },
-            { name: 'dom', message: '도메인을 입력하세요.' },
             { name: 'carrier', message: '통신사를 고르세요.' },
             { name: 'phone', message: '전화번호를 입력하세요. ' }
         ];
@@ -153,16 +159,22 @@
                 return false;
             }
         }
-        $("")
+        if($("#hid_domain").val().length == 0 || !($("#hid_domain").val().includes("."))) {
+            alert("도메인이 정확하지 않습니다.")
+            $("#domain").focus();
+            return false;
+        }
 
         if (document.getElementById("password").value != document.getElementById("confirmPassword").value){
             alert("비밀번호가 일치하지 않습니다.")
+            $("#confirmPassword").focus();
             return false;
         }
         if(document.getElementById("check_result").style.color != 'green'){
             alert("아이디가 중복되는지 확인해 주세요.")
             return false;
         }
+        return true;
     }
 
     function textDomain() {

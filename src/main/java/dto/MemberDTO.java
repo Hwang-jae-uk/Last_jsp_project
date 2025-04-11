@@ -17,6 +17,9 @@ public class MemberDTO {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
+    public String getNickname() { return nickname; }
+    public void setNickname(String phone) { this.nickname = nickname; }
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -35,6 +38,4 @@ public class MemberDTO {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    public String getnickname() { return nickname; }
-    public void setnickname(String phone) { this.nickname = nickname; }
 }

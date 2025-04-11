@@ -16,36 +16,35 @@
 </head>
 <body>
 <div id="wrapper">
-  <jsp:include page="header_base.jsp"/>
   <main>
     <div class="profile-container">
       <h2>개인 정보 관리</h2>
-      <form action="updateProfile" method="post">
+      <form action="profile" method="post">
         <div class="form-group">
-          <label for="id">아이디</label>
-          <input type="text" id="id" name="id" value="${user.id}" minlength="5" maxlength="20" placeholder="아이디는 여기에 표시됩니다." required readonly>
+          <label for="nickname">닉네임</label>
+          <input type="text" id="nickname" name="nickname" placeholder="&nbsp;&nbsp;8자리이하로 입력하세요.">
         </div>
 
         <div class="form-group">
-          <a href="password_check.jsp"><button type="button">비밀번호 변경</button></a>
+          <label for="password">현재 비밀번호</label>
+          <input type="password" id="password" name="password" minlength="8" maxlength="20">
         </div>
 
+        <div class="form-group">
+          <label for="editPassword">새 비밀번호</label>
+          <input type="password" id="editPassword" name="editPassword" minlength="8" maxlength="20" placeholder="&nbsp;&nbsp;비밀번호를 8~20자 내로 입력해주세요.">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmEditPassword">새 비밀번호 확인</label>
+          <input type="password" id="confirmEditPassword" name="confirmEditPassword" minlength="8" maxlength="20">
+          <c:if test="${editPassword != confirmEditPassword}">
+            <span>비밀번호를 다시 입력해주세요.</span>
+          </c:if>
+        </div>
         <div class="form-group">
           <label for="name">이름</label>
           <input type="text" id="name" name="name" value="${user.name}" minlength="3" placeholder="이름을 입력해주세요." required>
-        </div>
-
-        <div class="form-group">
-          <label>성별</label>
-          <div>
-            <label><input type="radio" name="gender" value="man" ${user.gender == 'man' ? 'checked' : ''}> 남자</label>
-            <label><input type="radio" name="gender" value="woman" ${user.gender == 'woman' ? 'checked' : ''}> 여자</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="birthday">생년월일</label>
-          <input type="date" id="birthday" name="birthday" value="${user.birthday}" required>
         </div>
 
         <div class="form-group">
@@ -62,10 +61,9 @@
                         </select>
                     </span>
         </div>
-
         <div class="inline-form" style="display: inline">
           <div class="form-group" style="display: inline">
-            <label for="carrier">통신사</label>
+            <label for="carrier" style="margin-right: 60px;">통신사</label>
             <label for="phone">휴대전화 번호</label> <br>
             <select id="carrier" name="carrier" required>
               <option value="SKT" ${user.carrier == 'SKT' ? 'selected' : ''}>SKT</option>
@@ -79,13 +77,13 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <button type="submit">수정</button> <!-- 수정 버튼 -->
+        <div class="form-group" style="display: inline">
+          <button type="submit" style="margin: 10px 0 10px;">수정</button> <!-- 수정 버튼 -->
         </div>
+
       </form>
     </div>
   </main>
-  <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

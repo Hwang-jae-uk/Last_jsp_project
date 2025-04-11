@@ -29,9 +29,12 @@
                     <label for="password">비밀번호</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <c:if test="${not empty loginfail}">${loginfail}</c:if>
+                <br>
+                <br>
                 <button type="submit" class="login-button">로그인</button>
+                <button type="submit" class="login-button">회원가입</button>
             </form>
-            <c:if test="${not empty loginfail}">${loginfail}</c:if>
         </div>
     </main>
     <jsp:include page="footer.jsp"/>
