@@ -14,16 +14,6 @@
   <link rel="stylesheet" href="css/font.css"> <!-- Google Font 링크 추가 -->
   <link rel="stylesheet" href="css/register.css"> <!-- 외부 스타일시트 적용 -->
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <style>
-      .warning {
-          border: 2px solid #f39389;
-          border-radius: 2px;
-          padding: 10px;
-          position: absolute;
-          background-color: #fbd8d4;
-          color: #3b3c40;
-      }
-  </style>
 </head>
 <body>
 <div id="wrapper">
