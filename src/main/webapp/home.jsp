@@ -35,12 +35,12 @@
             </tr>
           </c:forEach>
         </table>
+        <ll><hr></ll>
       </ul>
     </section>
     <section>
       <ul>
         <li><h2><a href="list">커뮤니티 글</a></h2></li>
-        <li><hr></li>
         <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
           <tr align="center" >
             <th width="10%">번호</th>
@@ -62,7 +62,7 @@
       </ul>
     </section>
     <section>
-      <h2>게시글 목록</h2>
+      <h2><a href="https://news.naver.com/" target="_blank">네이버 뉴스</a></h2>
       <div class="image-grid"> <!-- 이미지 그리드 추가 -->
         <a href="hello_post_C.html"><img src="image/logo/C-Logo.png" alt="C Logo"></a>
         <a href="hello_post_C++.html"><img src="image/logo/C++-Logo.png" alt="C++ Logo"></a>

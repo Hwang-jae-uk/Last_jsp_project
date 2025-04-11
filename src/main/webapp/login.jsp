@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 화면</title>
+    <title>HOME</title>
     <link rel="stylesheet" href="css/login.css"> <!-- 외부 스타일시트 적용 -->
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
@@ -20,17 +20,18 @@
     <main>
         <div class="login-container">
             <h2>로그인</h2>
-            <form action="loginProcess" method="post">
+            <form action="login" method="post">
                 <div class="form-group">
-                    <label for="username">아이디:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="id">아이디</label>
+                    <input type="text" id="id" name="id" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">비밀번호:</label>
+                    <label for="password">비밀번호</label>
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="login-button">로그인</button>
             </form>
+            <c:if test="${not empty loginfail}">${loginfail}</c:if>
         </div>
     </main>
     <jsp:include page="footer.jsp"/>

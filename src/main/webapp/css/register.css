@@ -7,6 +7,7 @@ html, body {
 }
 
 body{
+    background-image: url("/image/background/back3.jpg");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -35,7 +36,7 @@ header {
     flex-direction: column; /* 세로 방향으로 정렬 */
     justify-content: center;
     align-items: center;
-    background-color: #ffd294; /* 배경색 */
+    background-color: hsla(15, 39%, 60%, 0.4); /* 배경색 */
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
     color: #2c3e50; /* 기본 글자색: 어두운 회색 */
     transition: color 0.3s ease; /* 색상 변경에 대한 트랜지션 추가 */
@@ -53,40 +54,6 @@ header a:link,
 header a:visited {
     color: #2c3e50; /* 어두운 컬러 */
 }
-/* 클릭했을 때의 색상 설정 */
-header a:active {
-    color: #e74c3c; /* 빨간색 */
-}
-
-span{
-    color: gray;
-    font-size: 15px;
-    text-align: left;
-}
-
-header a:hover {
-    animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
-}
-/* 무지개 애니메이션 */
-@keyframes rainbow {
-    0% { color: #FF5733; }      /* 빨강 */
-    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
-    12.5% { color: #FFB733; }   /* 연한 주황 */
-    18.75% { color: #FFDB33; }  /* 연한 노랑 */
-    25% { color: #F2FF33; }     /* 밝은 노랑 */
-    31.25% { color: #A3FF33; }  /* 연두색 */
-    37.5% { color: #78FF33; }   /* 초록 */
-    43.75% { color: #33FF57; }  /* 민트색 */
-    50% { color: #33FFDB; }     /* 연한 파랑 */
-    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
-    62.5% { color: #3399FF; }   /* 중간 파란색 */
-    68.75% { color: #3373FF; }  /* 파랑 */
-    75% { color: #4C33FF; }     /* 보라색 시작 */
-    81.25% { color: #8E33FF; }  /* 보라색 */
-    87.5% { color: #D833FF; }   /* 핑크색 */
-    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
-    100% { color: #FF5733; }    /* 빨강으로 복귀 */
-}
 
 /* nav 태그 css 코드입니다. */
 nav{
@@ -94,7 +61,7 @@ nav{
     display: flex;
     justify-content:right;
     align-items: center;
-    background-color: orange;
+    background-color: hsla(14, 40%, 44%, 0.4);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
 nav ul {
@@ -119,39 +86,12 @@ nav a {
     color: black;
     transition: color 0.3s ease; /* 색상 변경 트랜지션 효과 추가 */
 }
-nav a:link,
-nav a:visited {
-    color: black; /* 기본 글자색 (방문한 링크) */
-}
-nav a:hover {
-    animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
-}
-/* 무지개 애니메이션 */
-@keyframes rainbow {
-    0% { color: #FF5733; }      /* 빨강 */
-    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
-    12.5% { color: #FFB733; }   /* 연한 주황 */
-    18.75% { color: #FFDB33; }  /* 연한 노랑 */
-    25% { color: #F2FF33; }     /* 밝은 노랑 */
-    31.25% { color: #A3FF33; }  /* 연두색 */
-    37.5% { color: #78FF33; }   /* 초록 */
-    43.75% { color: #33FF57; }  /* 민트색 */
-    50% { color: #33FFDB; }     /* 연한 파랑 */
-    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
-    62.5% { color: #3399FF; }   /* 중간 파란색 */
-    68.75% { color: #3373FF; }  /* 파랑 */
-    75% { color: #4C33FF; }     /* 보라색 시작 */
-    81.25% { color: #8E33FF; }  /* 보라색 */
-    87.5% { color: #D833FF; }   /* 핑크색 */
-    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
-    100% { color: #FF5733; }    /* 빨강으로 복귀 */
-}
 
 /* aside 태그 css 코드입니다. */
 aside{
     grid-area: aside;
     display: flex;
-    background-color: #FFF9C4; /* 더 연한 노란색 */
+    background-color: hsla(19, 62%, 27%, 0.4); /* 배경색 */
     color: #333; /* 눈에 잘 띄는 어두운 회색 글자색 */
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
@@ -201,7 +141,7 @@ main {
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 100vh; /* 전체 화면 높이 */
+    background-color: hsla(0, 33%, 96%,90%);
 }
 
 .register-container {

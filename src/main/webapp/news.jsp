@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>뉴스 목록</title>
   <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
-  <link rel="stylesheet" href="css/index_style.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/news.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
   <style>
     ul{

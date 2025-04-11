@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +10,7 @@
 </head>
 <body>
 <header> <!-- 헤더 영역 -->
-    <h1><a href="home">IT/과학 뉴스</a></h1>
+    <h1><a href="home">Science&nbsp; Of &nbsp;Today</a></h1>
 </header>
 <nav> <!-- 여기서는 nav 태그를 main menu bar 로 설정 -->
     <ul>
@@ -17,8 +19,13 @@
         <li><a href="introduce">ABOUT</a></li>
         <li><a href="news">NEWS</a></li>
         <li><a href="list">LIST</a></li>
-        <li><a href="login.jsp">LOGIN</a></li>
-        <li><a href="register.jsp">SIGN IN</a></li>
+        <c:if test="${sessionScope.get('id')==null}">
+            <li><a href="login">LOGIN</a></li>
+        </c:if>
+        <c:if test="${sessionScope.get('id')!=null}">
+            <li><a href="logout.jsp">LOGOUT</a></li>
+        </c:if>
+        <li><a href="register">SIGN IN</a></li>
     </ul>
 </nav>
 <aside>

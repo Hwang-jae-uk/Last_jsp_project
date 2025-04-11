@@ -10,13 +10,15 @@ import java.sql.SQLException;
 
 public class MemberDAO {
 
-    public int addMember(MemberDTO dto){
+
+    //회원가입
+    public int addMember(MemberDTO dto) {
         String sql = "insert into member values(?,?,?,?,?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         int result = 0;
 
-        try{
+        try {
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dto.getId());
@@ -29,16 +31,46 @@ public class MemberDAO {
             pstmt.setString(8, dto.getPhone());
             result = pstmt.executeUpdate();
 
-        }catch(SQLException | ClassNotFoundException e){
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DBManager.close(conn, pstmt);
         }
         return result;
     }
 
-    public int duplicateMember(String id){
-        String sql = "select id from member where id = ?";
+    //회원가입 null체크
+    public MemberDTO getMember(String id, String password) {
+        String sql = "select * from member where id=? and password=?";
+        MemberDTO dto = new MemberDTO();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, password);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dto.setId(rs.getString("id"));
+                dto.setPassword(rs.getString("password"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+        return dto;
+
+    }
+
+    public int IDCheck(String id) throws ClassNotFoundException {
+        String sql = "SELECT 1 FROM member WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -49,33 +81,13 @@ public class MemberDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-
-            if(rs.next()) result = 1;
-
-        } catch (Exception e) {
+            if (rs.next()) {
+                result = 1;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();  // ResultSet 닫기 실패 시 처리
-                }
-            }
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();  // PreparedStatement 닫기 실패 시 처리
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();  // Connection 닫기 실패 시 처리
-                }
-            }
+            DBManager.close(conn, pstmt, rs);
         }
         return result;
     }

@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-          <a href="change_pass1.jsp"><button type="button">비밀번호 변경</button></a>
+          <a href="password_check.jsp"><button type="button">비밀번호 변경</button></a>
         </div>
 
         <div class="form-group">
@@ -81,10 +81,6 @@
 
         <div class="form-group">
           <button type="submit">수정</button> <!-- 수정 버튼 -->
-        </div>
-
-        <div class="form-group">
-          <a href="password_check.jsp"><button type="button">비밀번호 변경</button></a>
         </div>
       </form>
     </div>

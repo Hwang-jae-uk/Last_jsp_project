@@ -231,3 +231,8 @@ footer {
 #othersites a:last-child {
     margin-right: 0; /* 마지막 링크의 오른쪽 여백 제거 */
 }
+
+hr {
+    width: 90%; margin-left: auto; margin-right: auto;
+    margin: 30px;
+}
