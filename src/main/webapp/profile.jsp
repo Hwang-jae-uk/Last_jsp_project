@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"
          trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +22,8 @@
       <form action="profile" method="post">
         <div class="form-group">
           <label for="nickname">닉네임</label>
-          <input type="text" id="nickname" name="nickname" placeholder="&nbsp;&nbsp;8자리이하로 입력하세요.">
+          <input type="text" id="nickname" name="nickname" value="${member.nickname}" minlength="8" maxlength="8">
+          &nbsp;&nbsp;8자리이하로 입력하세요.
         </div>
 
         <div class="form-group">
@@ -44,42 +45,43 @@
         </div>
         <div class="form-group">
           <label for="name">이름</label>
-          <input type="text" id="name" name="name" value="${user.name}" minlength="3" placeholder="이름을 입력해주세요." required>
+          <input type="text" id="name" name="name" value="${member.name}" minlength="3" placeholder="이름을 입력해주세요." required>
         </div>
 
         <div class="form-group">
-          <label for="email">이메일</label>
-          <span class="inline-form">
-                        <input type="text" id="email" name="email" value="${user.email}" minlength="5" style="width: 150px" required>
-                        @
-                        <input type="text" id="domain" name="domain" value="${user.domain}">
-                        <select name="domainSelect" onchange="selectDomain()" required>
-                            <option value="none" selected>직접 입력</option>
-                            <option value="gmail.com" ${user.domain == 'gmail.com' ? 'selected' : ''}>gmail.com</option>
-                            <option value="naver.com" ${user.domain == 'naver.com' ? 'selected' : ''}>naver.com</option>
-                            <option value="daum.net" ${user.domain == 'daum.net' ? 'selected' : ''}>daum.net</option>
-                        </select>
-                    </span>
-        </div>
-        <div class="inline-form" style="display: inline">
-          <div class="form-group" style="display: inline">
-            <label for="carrier" style="margin-right: 60px;">통신사</label>
-            <label for="phone">휴대전화 번호</label> <br>
-            <select id="carrier" name="carrier" required>
-              <option value="SKT" ${user.carrier == 'SKT' ? 'selected' : ''}>SKT</option>
-              <option value="KT" ${user.carrier == 'KT' ? 'selected' : ''}>KT</option>
-              <option value="LG" ${user.carrier == 'LG' ? 'selected' : ''}>LG</option>
-            </select>
+          <div class="form-group">이메일
+            <label class="inline-form">
+              <input type="text" id="email" name="email" minlength="5" style="width: 150px" placeholder="${fn:split(member.email,"@")[0]}">
+              @
+              <input id="domain" type="text" onchange="textDomain()" placeholder="${fn:split(member.email,"@")[1]}">
+              <input type="hidden" name="domain" id="hid_domain">
+              <select id="dom" name="dom" onchange="selectDomain()">
+                <option value="none" selected>직접 입력</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="naver.com">naver.com</option>
+                <option value="daum.net">daum.net</option>
+              </select>
+            </label>
+          </div>
+          <div class="inline-form" style="display: inline">
+            <div class="form-group" style="display: inline">
+              <label for="carrier" style="margin-right: 60px;">통신사</label>
+              <label for="phone">휴대전화 번호</label> <br>
+              <select id="carrier" name="carrier" required>
+                <option value="SKT" ${member.carrier == 'SKT' ? 'selected' : ''}>SKT</option>
+                <option value="KT" ${member.carrier == 'KT' ? 'selected' : ''}>KT</option>
+                <option value="LG" ${member.carrier == 'LG' ? 'selected' : ''}>LG</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="display: inline">
+              <input type="tel" id="phone" name="phone" value="${member.phone}" placeholder="-없이 숫자만 입력" required style="width: 150px">
+            </div>
           </div>
 
           <div class="form-group" style="display: inline">
-            <input type="tel" id="phone" name="phone" value="${user.phone}" placeholder="-없이 숫자만 입력" required style="width: 150px">
+            <button type="submit" style="margin: 10px 0 10px;">수정</button> <!-- 수정 버튼 -->
           </div>
-        </div>
-
-        <div class="form-group" style="display: inline">
-          <button type="submit" style="margin: 10px 0 10px;">수정</button> <!-- 수정 버튼 -->
-        </div>
 
       </form>
     </div>

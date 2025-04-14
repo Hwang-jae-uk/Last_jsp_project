@@ -102,7 +102,7 @@ public class BoardDAO {
 
     // 리스트 게시물 목록
     public List<BoardDTO> selectPagingList(Map<String , Object> map) {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate,nickname FROM board";
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate,nickname FROM jspgit.list";
         if(map.get("searchWord") != null){
             if(!map.get("searchField").equals("all")){
                 sql += " WHERE " + map.get("searchField")+" like ? ";
@@ -168,7 +168,7 @@ public class BoardDAO {
 
     // Home 화면 조회수 top10 리스트
     public List<BoardDTO> getHomeBoard() {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate FROM board" +
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, nickname FROM jspgit.list" +
                 " order by visitcount desc limit 10";
 
         Connection conn = null;
@@ -187,6 +187,7 @@ public class BoardDAO {
                 dto.setRow_num(rs.getInt("row_num"));
                 dto.setNo(rs.getInt("no"));
                 dto.setId(rs.getString("id"));
+                dto.setNickname(rs.getString("nickname"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
                 dto.setPostdate(rs.getDate("postdate"));
@@ -224,16 +225,15 @@ public class BoardDAO {
 
     // 게시물 수정
     public void updateBoard(BoardDTO dto) {
-        String sql = "UPDATE board SET id=? , title=? , content=? WHERE no=?";
+        String sql = "UPDATE board SET title=? , content=? WHERE no=?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, dto.getId());
-            pstmt.setString(2, dto.getTitle());
-            pstmt.setString(3, dto.getContent());
-            pstmt.setInt(4, dto.getNo());
+            pstmt.setString(1, dto.getTitle());
+            pstmt.setString(2, dto.getContent());
+            pstmt.setInt(3, dto.getNo());
             pstmt.executeUpdate();
 
         }catch (Exception e) {

@@ -26,11 +26,11 @@ public class ViewController extends HttpServlet {
         MemberDTO mdto = null;
 
         HttpSession session = request.getSession(false);
+        String userId = null;
         if (session != null) {
-            String id = (String) session.getAttribute("userId");
-            mdto = mdao.getMemberByID(id);
-            System.out.println(mdto.getId());
-            System.out.println(mdto.getNickname());
+            userId = (String) session.getAttribute("userId");
+            mdto = mdao.getMemberByID(userId);
+
 
         } else {
             System.out.println("세션이 존재하지 않습니다.");
@@ -48,7 +48,7 @@ public class ViewController extends HttpServlet {
         CommentDAO commentDAO = new CommentDAO();
         List<CommentDTO> commentList = commentDAO.getComment(Integer.parseInt(no));
 
-
+        request.setAttribute("userId" , userId);
         request.setAttribute("mdto", mdto);
         request.setAttribute("commentList" , commentList);
         request.setAttribute("dto", dto);
@@ -57,24 +57,42 @@ public class ViewController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String content = request.getParameter("content");
-        HttpSession session = request.getSession(false);
-        String no = request.getParameter("no");
-        String id = null;
-        if (session != null) {
-            id = (String) session.getAttribute("userId");
-        } else{
 
+        String mod = request.getParameter("commentMod");
+        if ("commentDelete".equals(mod)) {
+            // 댓글 삭제 처리
+            int comment_no = Integer.parseInt(request.getParameter("comment_no"));
+            int board_no = Integer.parseInt(request.getParameter("board_no"));
+
+            CommentDAO commentDAO = new CommentDAO();
+            commentDAO.commentDelete(comment_no);
+
+            JSFunction.alertLocation(response, "댓글이 삭제되었습니다.", "/view?no=" + board_no);
+            return;
+        }else {
+
+            String content = request.getParameter("content");
+            HttpSession session = request.getSession(false);
+            String no = request.getParameter("no");
+            String id = null;
+            if (session != null) {
+                id = (String) session.getAttribute("userId");
+            } else {
+
+            }
+            MemberDAO mdao = new MemberDAO();
+            MemberDTO mdto = mdao.getMemberByID(id);
+
+            CommentDAO dao = new CommentDAO();
+            CommentDTO cdto = new CommentDTO();
+
+            cdto.setNickname(mdto.getNickname());
+            cdto.setContent(content);
+            cdto.setBoard_no(Integer.parseInt(no));
+            cdto.setId(id);
+
+            dao.insertComment(cdto);
+            JSFunction.alertLocation(response, "게시물이 작성되었습니다.", "/view?no=" + no);
         }
-
-        CommentDAO dao = new CommentDAO();
-        CommentDTO dto = new CommentDTO();
-
-        dto.setContent(content);
-        dto.setBoard_no(Integer.parseInt(no));
-        dto.setId(id);
-        dao.insertComment(dto);
-        JSFunction.alertLocation(response,"게시물이 작성되었습니다." , "/view?no="+no);
-
     }
 }

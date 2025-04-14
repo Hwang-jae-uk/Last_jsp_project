@@ -19,12 +19,12 @@
   <jsp:include page="header_base.jsp"/>
   <main>
     <form action="/edit" method="post" onsubmit="return validateForm(this);">
-      <input type="hidden" name="no" value="${dto.no}">
+      <input type="hidden" name="no" value="${no}">
       <table border="1" width="90%" style="margin: 30px">
         <tr>
           <td>작성자</td>
           <td style="width: 90%" align="left">
-            <input type="text" name="id" style="width:100%; box-sizing: border-box;">
+            ${mdto.nickname}
           </td>
         </tr>
         <tr>

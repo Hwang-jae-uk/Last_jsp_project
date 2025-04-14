@@ -50,7 +50,7 @@
             <c:forEach var="board" items="${boardDTOList}">
                 <tr align="center">
                     <td width="10%">${board.row_num}</td>
-                    <td width="10%">${board.id}</td>
+                    <td width="10%">${board.nickname}</td>
                     <td width="60%" style="padding-left: 10px" align="left"><a href="view?no=${board.no}">${board.title}</a></td>
                     <td width="10%">${board.visitCount}</td>
                     <td><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></td>

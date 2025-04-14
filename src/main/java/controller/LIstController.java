@@ -1,7 +1,9 @@
 package controller;
 
 import dao.BoardDAO;
+import dao.MemberDAO;
 import dto.BoardDTO;
+import dto.MemberDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -50,13 +52,6 @@ public class LIstController extends HttpServlet {
 
         List<BoardDTO> boardList = dao.selectPagingList(paramMap);
 
-        String userId = "";
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            userId = (String) session.getAttribute("userId");
-        }
-
-        request.setAttribute("userId", userId);
         request.setAttribute("handler",handler);
         request.setAttribute("pageNum", pageNum);
         request.setAttribute("boardDTOList", boardList);

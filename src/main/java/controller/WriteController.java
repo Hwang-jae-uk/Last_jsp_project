@@ -16,12 +16,13 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        String id = null;
-        if (session != null) {
-            id = (String) session.getAttribute("userId");
+        String userId = null;
+        if(session != null) {
+            userId = (String) session.getAttribute("userId");
         }
-        MemberDAO mdao = new MemberDAO();
-        MemberDTO mdto = mdao.getMemberByID(id);
+        System.out.println(userId);        MemberDAO dao = new MemberDAO();
+        MemberDTO mdto = dao.getMemberByID(userId);
+
 
         request.setAttribute("mdto", mdto);
         request.getRequestDispatcher("write.jsp").forward(request, response);
@@ -31,7 +32,13 @@ public class WriteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BoardDAO dao = new BoardDAO();
         BoardDTO dto = new BoardDTO();
-        dto.setId(request.getParameter("id"));
+        HttpSession session = request.getSession(false);
+        String userId = null;
+        if(session != null) {
+            userId = (String) session.getAttribute("userId");
+        }
+
+        dto.setId(userId);
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         dao.insertBoard(dto);

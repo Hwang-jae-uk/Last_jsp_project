@@ -22,18 +22,18 @@ public class RegisterProcess extends HttpServlet {
         int result = 0;
         MemberDAO dao = new MemberDAO();
         String check_id = request.getParameter("input");
-        PrintWriter out = response.getWriter();
-
         if (check_id != null) {
+            PrintWriter out = response.getWriter();
             try {
                 result = dao.IDCheck(check_id);
                 String s = result == 0 ? "사용할 수 있는 ID 입니다." : "사용할 수 없는 ID 입니다." ;
                 out.print(s);
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                out.close();
             }
         }else {
-
             String id = request.getParameter("id");
             String password = request.getParameter("password");
             String nickname = request.getParameter("nickname");
@@ -43,6 +43,10 @@ public class RegisterProcess extends HttpServlet {
             String carrier = request.getParameter("carrier");
             String phone = request.getParameter("phone");
             String birthday = request.getParameter("birthday");
+
+            if(id.isBlank() || password.isBlank() || nickname.isBlank() || name.isBlank() || gender.isBlank()
+                    || email.isBlank() || carrier.isBlank() || phone.isBlank() || birthday.isBlank())
+                return;
 
             try {
 
@@ -61,14 +65,8 @@ public class RegisterProcess extends HttpServlet {
 
                 if (result == 1)
                     JSFunction.alertLocation(response, "회원가입이 완료되었습니다.", "login?id="+ id);
-                else {
-                    out.print("회원가입이 실패했습니다.");
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                out.close();
             }
         }
     }

@@ -20,11 +20,11 @@
   <main>
     <div class="register-container">
       <h2>회원가입</h2>
-      <form id="form" action="register" method="post" onsubmit="return validateForm(this)">
+      <form id="form" action="register" method="post">
         <div class="form-group">
           <label for="id">아이디</label>
-          <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요." onchange="changeCheck()">
-          <label style="text-align: left; color: gray" id="check_result" >5~20자 이내로 입력해주세요.</label>
+          <input type="text" id="id" name="id" placeholder="아이디를 5~20자 이내로 입력해주세요." onchange="changeCheck()">
+          <label style="text-align: left; color: gray" id="check_result"><br></label>
           <button type="button" id="check" style="font-size: large">중복체크</button>
         </div>
 
@@ -53,50 +53,67 @@
         <div class="form-group">
           <label>성별</label>
           <div>
-            <input type="radio" checked name="gender" value="none" style="display: none">
+            <input type="radio" checked name="gender" value="none" style="display: none"/>
             <label><input type="radio" name="gender" value="man"> 남자</label>
             <label><input type="radio" name="gender" value="woman"> 여자</label>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" onchange="birthday()">
           <label for="birthday">생년월일</label>
           <input type="hidden" id="birthday" name="birthday">
-          <label class="inline-form" style="border: 1px solid gray; border-radius: 2px; width: fit-content;
+          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content;
           background-color: #f3fbff; align-self: center;">
-            <input type="text" id="year" style="border: none">년
-            <input type="text" id="month" style="border: none">월
-            <input type="text" id="date" style="border: none">일
+            <input type="text" onkeypress="return checkNumber(event)" id="year" style="border: none; text-align: center"
+                   minlength="4" maxlength="4" min="1900">
+            <label for="year">년</label>
+
+            <select name="month" id="month" style="border:none; text-align: center; width: 70px" onchange="updateDays()">
+              <option disabled hidden selected></option>
+              <%for (int i = 1; i <= 12; i++) {%>
+              <option value="<%=i%>"><%=i%></option>
+              <%}%>
+            </select>
+            <label for="month">월</label>
+
+            <select name="date" id="date" style="border: none; text-align: center; width: 70px">
+              <option disabled hidden selected></option>
+            </select>
+            <label for="date">일</label>&nbsp;&nbsp;
           </label>
         </div>
         <div class="form-group">이메일
-          <label class="inline-form">
-            <input type="text" id="email" name="email" minlength="5" style="width: 150px" placeholder="Input your email's ID">
+          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content;
+          background-color: #f3fbff">
+            <input type="text" id="email" name="email" minlength="5" placeholder="Input your email's ID"
+                   style="width: 150px; border-color: transparent">
             @
-            <input id="domain" type="text" onchange="textDomain()" placeholder="domain.com">
+            <input id="domain" type="text" onchange="textDomain()" placeholder="domain.com" style="border-color: transparent">
             <input type="hidden" name="domain" id="hid_domain">
-            <select id="dom_select" onchange="selectDomain()">
+            <select id="dom_select" onchange="selectDomain()" style="border-radius: 5px">
               <option value="none" selected>직접 입력</option>
               <option value="gmail.com">gmail.com</option>
               <option value="naver.com">naver.com</option>
               <option value="daum.net">daum.net</option>
-            </select>
+            </select> &nbsp;
           </label>
         </div>
 
         <div class="inline-form" style="display: inline">
           <div class="form-group" style="display: inline">
-            <label for="carrier" style="margin-right: 60px;">통신사</label>
-            <label for="phone">휴대전화 번호</label> <br>
-            <select id="carrier" name="carrier">
+            <label for="carrier" style="margin-right: 80px">통신사</label>
+            <label for="phone" style="right: 30px">휴대전화 번호</label> <c:forEach begin="1" end="8">&nbsp;</c:forEach>
+            <br>
+            <select id="carrier" name="carrier" style="border-radius: 5px; text-align: center;">
               <option value="SKT">SKT</option>
               <option value="KT">KT</option>
               <option value="LG">LG</option>
               <option value="SKT 알뜰폰">SKT 알뜰폰</option>
               <option value="KT 알뜰폰">KT 알뜰폰</option>
               <option value="LG 알뜰폰">LG 알뜰폰</option>
-            </select>
-            <input type="tel" id="phone" name="phone" placeholder="- 없이 숫자만 입력" style="width: 150px">
+            </select>&nbsp;
+            <input type="text" id="phone" name="phone" placeholder="- 없이 숫자만 입력" style="width: 200px; text-align: center"
+                   onkeypress="return checkNumber(event)" maxlength="11">
           </div>
         </div>
         <br><br>
@@ -104,6 +121,9 @@
       </form>
     </div>
     <script>
+
+        document.getElementById("form").addEventListener("submit", validateForm);
+
         $("#check").click(function () {
             const id = $("#id").val();
             if (id.includes(" ")) {

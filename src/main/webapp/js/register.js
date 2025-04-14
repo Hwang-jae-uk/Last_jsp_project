@@ -6,13 +6,11 @@ function changeCheck() {
     }
 }
 
-function onLoginSubmit(event) {
-    event.preventDefault();
-}
+function validateForm(event) {
 
-document.querySelector("#form").addEventListener("submit", onLoginSubmit);
+    event.preventDefault(); // 기본 제출 막기
 
-function validateForm(form) {
+    const form = event.target;
 
     const fields = [
         {name: 'id', message: '아이디를 입력하세요.'},
@@ -29,32 +27,88 @@ function validateForm(form) {
     // 각 필드를 순회하면서 유효성 검사
 
     for (let field of fields) {
-        const name = field.name;
-        if (!name || name.value.trim() === "") {
+        const input = form[field.name];
+
+        if (!input || input.value.trim() === "") {
             alert(field.message);
-            name.focus();
+            input.focus();
             return false;
-        } else if (name.value.trim() == "none") {
+        }
+
+        if (input.value.trim() === "none") {
             alert(field.message);
             return false;
-        } else if ( name == 'id' && document.getElementById("check_result").style.color != 'green') {
-            alert("아이디가 중복되는지 확인해 주세요.")
-            name.focus();
-            return false;
-        } else if ( name == 'confirmPassword' && document.getElementById("password").value != document.getElementById("confirmPassword").value) {
-            alert("비밀번호가 일치하지 않습니다.")
-            name.focus();
-            return false;
-        } else if ( name == 'email') {
-            const hid_domain = $("#hid_domain").val();
-            if (hid_domain.val().length == 0 || !(hid_domain.val().includes("."))) {
-                alert("도메인이 정확하지 않습니다.")
-                $("#domain").focus();
+        }
+
+        if (field.name === 'id') {
+            const checkResult = document.getElementById("check_result");
+            if (checkResult && checkResult.style.color !== 'green') {
+                alert("아이디가 중복되는지 확인해 주세요.");
+                input.focus();
+                return false;
+            }
+        }
+
+        if (field.name === 'confirmPassword') {
+            if (form["password"].value !== input.value) {
+                alert("비밀번호가 일치하지 않습니다.");
+                input.focus();
+                return false;
+            }
+        }
+        if (field.name === 'email') {
+            const hid_domain = document.getElementById("hid_domain");
+            if (!hid_domain || hid_domain.value.trim().length === 0 || !hid_domain.value.includes(".")) {
+                alert("도메인이 정확하지 않습니다.");
+                document.getElementById("domain").focus();
                 return false;
             }
         }
     }
+    form.submit();
 }
+
+function checkNumber(event) {
+    return event.key === '.'
+        || event.key === '-'
+        || event.key >= 0 && event.key <= 9;
+}
+
+function getLastDate(year, month) {
+    return new Date(year, month, 0).getDate();
+}
+
+function birthday() {
+    const year = parseInt(document.getElementById("year").value);
+    const month = parseInt(document.getElementById("month").value);
+    const date = parseInt(document.getElementById("date").value);
+    document.getElementById("birthday").value = year + "-" + month + "-" + date;
+}
+
+function updateDays() {
+    const year = parseInt(document.getElementById("year").value);
+    const month = parseInt(document.getElementById("month").value);
+    const lastDay = getLastDate(year, month);
+    const dateSelect = document.getElementById("date");
+
+    // 기본 안내 option 유지하면서 날짜 옵션 새로 채우기
+    dateSelect.innerHTML = "<option disabled hidden selected></option>";
+
+    for (let i = 1; i <= lastDay; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        dateSelect.appendChild(option);
+    }
+}
+
+window.onload = function () {
+    updateDays();
+
+    // 년 또는 월이 변경되면 날짜 업데이트
+    document.getElementById("year").addEventListener("change", updateDays);
+    document.getElementById("month").addEventListener("change", updateDays);
+};
 
 function textDomain() {
     var text = document.querySelector("#domain");
@@ -75,4 +129,22 @@ function selectDomain() {
         text.value = dom;
         hiddenDomain.value = dom;
     }
+}
+
+function moveNextInput(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // 폼 제출 방지
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const index = Array.from(inputs).indexOf(event.target);
+        if (index >= 0 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    }
+}
+
+window.onload = function() {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+        input.addEventListener('keydown', moveNextInput);
+    });
 }

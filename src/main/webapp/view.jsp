@@ -49,13 +49,26 @@
         <br>
         <c:forEach var="comment" items="${commentList}">
             <hr>
-            ${comment.getNickname()} :
-            ${comment.getContent()}
+            <div style="text-align: left; margin-left: 50px">
+                <span style="display:inline-block; width: 150px; text-align: center">${comment.nickname} </span>:
+                <span>${comment.content}</span>
+            </div>
             <br>
+            <br>
+            <br>
+            <form method="post" action="/view">
+                <input type="hidden" name="commentMod" value="commentDelete">
+                <input type="hidden" name="comment_no" value="${comment.comment_no}">
+                <input type="hidden" name="board_no" value="${comment.board_no}">
+                <c:if test="${comment.id==userId}">
+                    <button type="submit">삭제하기</button>
+                </c:if>
+            </form>
             <br>
         </c:forEach>
         <hr>
         <form method="post" action="/view" onsubmit="return validateForm(this);">
+            <input type="hidden" name="commentMod" value="commentWrite">
             <input type="hidden" name="no" value="${dto.no}">
             <input type="hidden" name="id" value="${dto.id}">
             <table width="100%">
@@ -65,18 +78,21 @@
                     <td width="10%" style="text-align: center; width: 15% ">
                         <span>${mdto.nickname}</span>
                     </td>
-                    <td>
-                        <textarea name="content" style="width: 700px; height: 100px;resize: none; box-sizing: border-box; "></textarea>
-                    </td>
+                    <c:if test="${userId!=null}">
+                        <td>
+                            <textarea name="content" style="width: 700px; height: 100px;resize: none; box-sizing: border-box; "></textarea>
+                        </td>
+                    </c:if>
                     <td style="width: 30%">
 
                     </td>
                 </tr>
             </table>
-            <button type="submit">댓글쓰기</button>
-            <button type="reset" >다시쓰기</button>
+            <c:if test="${userId!=null}">
+                <button type="submit">댓글쓰기</button>
+                <button type="reset" >수정하기</button>
+            </c:if>
         </form>
-
     </main>
     <jsp:include page="footer.jsp"/>
     <script>

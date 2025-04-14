@@ -1,5 +1,7 @@
 package controller;
 
+import dao.MemberDAO;
+import dto.MemberDTO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -9,6 +11,13 @@ import java.io.IOException;
 public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        String userId = (String) session.getAttribute("userId");
+        MemberDAO dao = new MemberDAO();
+        MemberDTO dto = dao.getMemberByID(userId);
+
+        request.setAttribute("member", dto);
+
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
@@ -23,7 +32,6 @@ public class ProfileController extends HttpServlet {
         String name = request.getParameter("name");
         String carrier = request.getParameter("carrier");
         String phone = request.getParameter("phone");
-
 
 
     }
