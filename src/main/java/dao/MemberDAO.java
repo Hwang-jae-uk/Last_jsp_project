@@ -91,4 +91,30 @@ public class MemberDAO {
         }
         return result;
     }
+
+    // 댓글 쓰기 회원정보 받아오기
+    public MemberDTO getMemberByID(String id) {
+        String sql = "select * from member where id=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        MemberDTO dto = new MemberDTO();
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dto.setId(rs.getString("id"));
+                dto.setNickname(rs.getString("nickname"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+        return dto;
+    }
 }

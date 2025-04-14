@@ -57,9 +57,11 @@
                 </tr>
             </c:forEach>
         </table>
-        <button onclick="location.href='write'" style="margin-left: 1000px">글쓰기</button><br>
+        <c:if test="${userId!=null}">
+            <button onclick="location.href='write'" style="margin-left: 1000px">글쓰기</button><br>
+        </c:if>
         <a href="list?pageNum=1&searchField=${paramMap.searchField}&searchWord=${paramMap.searchWord}">[ 첫페이지 ]&nbsp;&nbsp;&nbsp;</a>
-        <c:if test="${handler.getPageSize() == 0}">
+        <c:if test="${handler.getTotalPage() == 0}">
             1
         </c:if>
         <c:forEach var="i" begin="${pageNum>1? pageNum-1:pageNum}" end="${handler.totalPage-pageNum>5? pageNum+5:handler.totalPage}" step="1">

@@ -19,16 +19,16 @@
         <li><a href="introduce">ABOUT</a></li>
         <li><a href="news">NEWS</a></li>
         <li><a href="list">LIST</a></li>
-        <c:if test="${sessionScope.get('id')==null}">
+        <c:if test="${sessionScope.get('userId')==null}">
             <li><a href="login">LOGIN</a></li>
         </c:if>
-        <c:if test="${sessionScope.get('id')!=null}">
+        <c:if test="${sessionScope.get('userId')!=null}">
             <li><a href="logout.jsp">LOGOUT</a></li>
         </c:if>
-        <c:if test="${sessionScope.get('id')==null}">
+        <c:if test="${sessionScope.get('userId')==null}">
             <li><a href="register">SIGN IN</a></li>
         </c:if>
-        <c:if test="${sessionScope.get('id')!=null}">
+        <c:if test="${sessionScope.get('userId')!=null}">
             <li><a href="profile">PROFILE</a></li>
         </c:if>
     </ul>

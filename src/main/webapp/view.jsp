@@ -37,17 +37,20 @@
             </tr>
         </table>
 
-
-        <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
-        <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
+        <c:if test="${dto.id == mdto.id}">
+            <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
+        </c:if>
+        <c:if test="${dto.id == mdto.id}">
+            <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
+        </c:if>
         <button type="button" onclick="location.href='/list'">목록보기</button>
         <br>
         <br>
         <br>
         <c:forEach var="comment" items="${commentList}">
             <hr>
-            ${comment.id} :
-            ${comment.content}
+            ${comment.getNickname()} :
+            ${comment.getContent()}
             <br>
             <br>
         </c:forEach>
@@ -58,10 +61,9 @@
             <table width="100%">
                 <tr >
                     <td style="width: 10%">
-
                     </td>
                     <td width="10%" style="text-align: center; width: 15% ">
-                        <span>닉네임</span>
+                        <span>${mdto.nickname}</span>
                     </td>
                     <td>
                         <textarea name="content" style="width: 700px; height: 100px;resize: none; box-sizing: border-box; "></textarea>
@@ -79,11 +81,10 @@
     <jsp:include page="footer.jsp"/>
     <script>
         function validateForm(form){
-            if(form.title.value.trim() === ""){
+            if(form.content.value == ""){
                 alert("내용을 입력하세요");
-                return false;  // Prevents form submission
+                return false;
             }
-            return true;  // Allows form submission
         }
     </script>
 </div>

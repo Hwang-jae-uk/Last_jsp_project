@@ -15,6 +15,9 @@ public class BoardDTO {
     private Date postdate;
     private int visitCount;
     private int row_num;
+    private String nickname;
+
+
 
 
     // 매개변수가 없는 생성자
@@ -27,6 +30,9 @@ public class BoardDTO {
         this.content = content;
     }
 
+
+    public String getNickname() {return nickname;}
+    public void setNickname(String nickname) {this.nickname = nickname;}
     // 게시판 번호
     public int getNo() { return no; }
     public void setNo(int no) { this.no = no; }

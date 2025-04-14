@@ -19,40 +19,57 @@ public class RegisterProcess extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int result = 0;
-            String id = request.getParameter("input");
-            MemberDAO dao = new MemberDAO();
-            PrintWriter out = response.getWriter();
+        int result = 0;
+        MemberDAO dao = new MemberDAO();
+        String check_id = request.getParameter("input");
+        PrintWriter out = response.getWriter();
 
-            result = dao.IDCheck(id);
-            if (result == 0) {
-                out.print("사용할 수 있는 ID 입니다.");
-            } else {
-                out.print("사용할 수 없는 ID 입니다.");
-                return;
+        if (check_id != null) {
+            try {
+                result = dao.IDCheck(check_id);
+                String s = result == 0 ? "사용할 수 있는 ID 입니다." : "사용할 수 없는 ID 입니다." ;
+                out.print(s);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        }else {
 
-            MemberDTO dto = new MemberDTO();
-            dto.setId(request.getParameter("id"));
-            dto.setPassword(request.getParameter("password"));
-            dto.setNickname(request.getParameter("nickname"));
-            dto.setName(request.getParameter("name"));
-            dto.setGender(request.getParameter("gender"));
-            dto.setEmail(request.getParameter("email") + "@" + request.getParameter("domain"));
-            dto.setCarrier(request.getParameter("carrier"));
-            dto.setPhone(request.getParameter("phone"));
-            dto.setBirthday(request.getParameter("birthday"));
+            String id = request.getParameter("id");
+            String password = request.getParameter("password");
+            String nickname = request.getParameter("nickname");
+            String name = request.getParameter("name");
+            String gender = request.getParameter("gender");
+            String email = request.getParameter("email") + "@" + request.getParameter("domain");
+            String carrier = request.getParameter("carrier");
+            String phone = request.getParameter("phone");
+            String birthday = request.getParameter("birthday");
 
-            result = dao.addMember(dto);
+            try {
 
-            if (result == 1) {
-                JSFunction.alertLocation(response, "회원가입이 완료되었습니다.", "login");
-            } else {
-                JSFunction.alertBack(response, "회원가입이 실패했습니다.");
+                MemberDTO dto = new MemberDTO();
+                dto.setId(id);
+                dto.setPassword(password);
+                dto.setNickname(nickname);
+                dto.setName(name);
+                dto.setGender(gender);
+                dto.setEmail(email);
+                dto.setCarrier(carrier);
+                dto.setPhone(phone);
+                dto.setBirthday(birthday);
+
+                result = dao.addMember(dto);
+
+                if (result == 1)
+                    JSFunction.alertLocation(response, "회원가입이 완료되었습니다.", "login?id="+ id);
+                else {
+                    out.print("회원가입이 실패했습니다.");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                out.close();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

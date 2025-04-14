@@ -9,6 +9,10 @@ public class CommentDTO {
     private String id;
     private String content;
     private Date postdate;
+    private String nickname;
+
+    public String getNickname() {return nickname;}
+    public void setNickname(String nickname) {this.nickname = nickname;}
 
     public int getComment_no() {return comment_no;}
     public void setComment_no(int comment_no) {this.comment_no = comment_no;}

@@ -102,7 +102,7 @@ public class BoardDAO {
 
     // 리스트 게시물 목록
     public List<BoardDTO> selectPagingList(Map<String , Object> map) {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate FROM board";
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate,nickname FROM board";
         if(map.get("searchWord") != null){
             if(!map.get("searchField").equals("all")){
                 sql += " WHERE " + map.get("searchField")+" like ? ";
@@ -153,6 +153,7 @@ public class BoardDAO {
                 dto.setPostdate(rs.getDate("postdate"));
                 dto.setVisitCount(rs.getInt("visitCount"));
                 dto.setId(rs.getString("id"));
+                dto.setNickname(rs.getString("nickname"));
                 boardList.add(dto);
             }
         }catch (Exception e) {

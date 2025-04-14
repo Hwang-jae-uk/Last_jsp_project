@@ -16,7 +16,7 @@
 </head>
 <script>
     function validateForm(form){
-        if(form.title.value == ""){
+        if(form.content.value == ""){
             alert("내용을 입력하세요");
             return false;
         }
@@ -31,7 +31,7 @@
                 <tr>
                     <td>작성자</td>
                     <td style="width: 90%" align="left">
-                        <input type="text" name="id" style="width:100%; box-sizing: border-box;" >
+                        &nbsp;&nbsp;&nbsp;${mdto.nickname}
                     </td>
                 </tr>
                 <tr>

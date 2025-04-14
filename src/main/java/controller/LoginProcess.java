@@ -27,8 +27,9 @@ public class LoginProcess extends HttpServlet {
         if(dto.getId()!=null&&dto.getPassword().equals(password)){
             //로그인 성공
 
-            session.setAttribute("id", dto.getId());
+            session.setAttribute("userId", dto.getId());
             session.setAttribute("password", dto.getPassword());
+
             response.sendRedirect("/home");
         }else{
             request.setAttribute("loginfail","로그인 실패하셨습니다.");

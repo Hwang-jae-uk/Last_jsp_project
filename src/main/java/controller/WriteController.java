@@ -1,7 +1,9 @@
 package controller;
 
 import dao.BoardDAO;
+import dao.MemberDAO;
 import dto.BoardDTO;
+import dto.MemberDTO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -13,6 +15,15 @@ import java.io.IOException;
 public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        String id = null;
+        if (session != null) {
+            id = (String) session.getAttribute("userId");
+        }
+        MemberDAO mdao = new MemberDAO();
+        MemberDTO mdto = mdao.getMemberByID(id);
+
+        request.setAttribute("mdto", mdto);
         request.getRequestDispatcher("write.jsp").forward(request, response);
     }
 
