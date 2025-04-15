@@ -202,6 +202,20 @@ main section ul {
     padding: 0;
     display: block; /* 전체 폭을 사용하는 블록 레벨로 설정 */
     width: 100%;
+
+    button {
+        margin: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        background: none;
+    }
+    table {
+        width: 90%; border-collapse: collapse; margin-left: auto; margin-right: auto;
+        a {
+            font-size: large;
+        }
+    }
 }
 main section li {
     padding: 5px 0; /* 각 리스트 항목에 위아래 여백 추가 */
@@ -241,7 +255,6 @@ main section:nth-of-type(2) img {
 .image-grid img:hover {
     transform: scale(1.05); /* 1.05배로 증가 */
 }
-
 /* footer 태그 css 코드입니다. */
 footer {
     grid-area: footer;

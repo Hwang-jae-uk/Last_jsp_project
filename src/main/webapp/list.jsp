@@ -13,12 +13,6 @@
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link rel="stylesheet" href="css/list.css"> <!-- 외부 스타일시트 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
-    <style>
-        .boardTable{
-            border: 20px #9f9b9b;
-
-        }
-    </style>
 </head>
 <body>
 
