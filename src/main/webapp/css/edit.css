@@ -7,7 +7,7 @@ html, body {
 }
 
 body{
-    background-image: url("/image/background/background.jpg");
+    background-image: url("/image/background/back3.jpg");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -163,16 +163,49 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
-main > table {
-    padding: 30px;
+table {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 95%;
+    margin: 30px auto; /* 테이블을 중앙에 배치 */
+    border-collapse: collapse; /* 테이블 셀 경계선이 합쳐짐 */
 }
-main{
 
-    background-color: hsla(0, 33%, 96%,90%);
-    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
+table th,
+table td {
+    padding: 15px; /* 셀 내부 여백 */
+    border: 1px solid #ddd; /* 테이블 셀의 경계선 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    vertical-align: middle; /* 세로 정렬 */
+    font-size: 16px; /* 폰트 크기 */
 }
-main > a{
-    text-decoration: none;
+
+#wrapper button {
+    background-color: rgb(255, 255, 255); /* 약간 투명한 오렌지빛 */
+    color: #3a3a3a;
+    border: 1px solid #685a5a;
+    margin: 3px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #978179; /* 호버 시 조금 진해짐 */
+    transform: translateY(-2px); /* 살짝 위로 떠오름 */
+}
+button:active {
+    transform: scale(0.97); /* 클릭 시 살짝 눌리는 효과 */
+}
+
+main {
+    background-color: hsla(0, 33%, 96%, 90%);
+    font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
 
 /* main 태그 내의 이미지 그리드 */

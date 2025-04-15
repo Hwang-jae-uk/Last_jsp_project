@@ -77,7 +77,6 @@ input[type="date"] {
 select{
     border: 1px solid rgb(179, 177, 177); /* 테두리 색상 */
     background-color: #f3fbff;
-
 }
 
 button {
@@ -100,4 +99,12 @@ button:hover {
 .inline-form select{
     height: 30px;
     width: 100px
+}
+.p,
+.cp,
+.ep{
+    position: relative;
+}
+.eyes{
+    cursor:pointer; position:absolute; right:15px; top:70%; transform:translateY(-50%);z-index:101
 }

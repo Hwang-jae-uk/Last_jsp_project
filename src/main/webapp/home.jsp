@@ -19,47 +19,54 @@
   <jsp:include page="header_base.jsp"/>
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
-      <ul>
-        <li><h2><a href="news">오늘의 뉴스</a></h2></li>
-        <li><hr></li>
-        <table border="0" style="width: 90%; border-collapse: collapse; margin-left: auto; margin-right: auto;" >
-          <%request.setAttribute("section","");%>
-          <c:forEach var="news" items="${newsList}">
-            <tr align="center">
-              <td width="10%" ><a href="${news.o_link}">
-                <img src="${news.img}" alt="picture" height="100px" align="center" style="margin-bottom: 20px">
-              </a></td>
-              <td width="60%"><a href="${news.o_link}" style="font-size: 120%">${news.title}</a></td>
-              <td width="10%"><a href="${news.p_link}">${news.press}</a></td>
-              <td width="10%">${news.date}</td>
-            </tr>
-          </c:forEach>
-        </table>
-        <ll><hr></ll>
-      </ul>
+      <table border="0" style="width: 90%; border-collapse: collapse; margin-left: auto; margin-right: auto;" >
+        <%request.setAttribute("section","");%>
+        <tr style="text-align: center">
+          <td colspan="4">
+            <h2>
+              <a href="news">오늘의 뉴스</a>
+            </h2>
+          </td>
+        </tr>
+        <c:forEach var="news" items="${newsList}">
+          <tr align="center">
+            <td width="10%" ><a href="${news.o_link}">
+              <img src="${news.img}" alt="picture" height="100px" align="center" style="margin-bottom: 20px">
+            </a></td>
+            <td width="60%"><a href="${news.o_link}" style="font-size: 120%">${news.title}</a></td>
+            <td width="10%"><a href="${news.p_link}">${news.press}</a></td>
+            <td width="10%">${news.date}</td>
+          </tr>
+        </c:forEach>
+      </table>
     </section>
     <section>
-      <ul>
-        <li><h2><a href="list">커뮤니티 글</a></h2></li>
-        <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
-          <tr align="center" >
-            <th width="10%">번호</th>
-            <th width="10%">작성자</th>
-            <th width="60%">제목</th>
-            <th width="10%">조회수</th>
-            <th width="10%">작성일</th>
+
+      <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
+        <tr>
+          <td colspan="5">
+            <h2>
+              <a href="list">커뮤니티 글</a>
+            </h2>
+          </td>
+        </tr>
+        <tr align="center" >
+          <th width="10%">번호</th>
+          <th width="10%">작성자</th>
+          <th width="40%">제목</th>
+          <th width="15%">조회수</th>
+          <th >작성일</th>
+        </tr>
+        <c:forEach var="board" items="${boardDTOList}">
+          <tr align="center">
+            <th width="10%">${board.row_num}</th>
+            <th width="10%">${board.nickname}</th>
+            <th width="40%" style="padding-left: 10px;white-space: nowrap;" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
+            <th width="15%">${board.visitCount}</th>
+            <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
           </tr>
-          <c:forEach var="board" items="${boardDTOList}">
-            <tr align="center">
-              <th width="10%">${board.row_num}</th>
-              <th width="10%">${board.nickname}</th>
-              <th width="60%" style="padding-left: 10px" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
-              <th width="10%">${board.visitCount}</th>
-              <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
-            </tr>
-          </c:forEach>
-        </table>
-      </ul>
+        </c:forEach>
+      </table>
     </section>
     <section>
       <h2><a href="https://news.naver.com/" target="_blank">네이버 뉴스</a></h2>

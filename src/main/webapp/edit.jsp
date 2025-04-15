@@ -23,20 +23,20 @@
       <table border="1" width="90%" style="margin: 30px">
         <tr>
           <td>작성자</td>
-          <td style="width: 90%" align="left">
+          <td style="width: 90%;text-align: left; padding-left: 20px">
             ${mdto.nickname}
           </td>
         </tr>
         <tr>
           <td>제목</td>
           <td style="width: 90%" align="left">
-            <input type="text" name="title" style="width:100%; box-sizing: border-box;">
+            <input type="text" name="title" style="width:100%; box-sizing: border-box;" value="${board.title}">
           </td>
         </tr>
         <tr>
           <td>내용</td>
           <td align="left">
-            <textarea name="content" style="height: 150px; width:100%; resize: none; box-sizing: border-box;"></textarea>
+            <textarea name="content" style="height: 150px; width:100%; resize: none; box-sizing: border-box;" >${board.content}</textarea>
           </td>
         </tr>
         <tr>

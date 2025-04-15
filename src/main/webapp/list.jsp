@@ -34,7 +34,7 @@
                             <option value="id" ${paramMap.searchField == 'id'?"selected":""} >작성자</option>
                         </select>
                         <input type="text" name="searchWord" value="${paramMap.searchWord}">
-                        <input type="submit" value="검색하기">
+                        <button type="submit" >검색하기</button>
                     </td>
                 </tr>
             </table>

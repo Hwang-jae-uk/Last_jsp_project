@@ -156,7 +156,6 @@
                             check.style.color = 'red';
                         }
                         document.getElementById("is_checked").value = true;
-
                     }
                 });
             }

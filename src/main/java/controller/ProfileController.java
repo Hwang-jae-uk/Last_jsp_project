@@ -44,7 +44,7 @@ public class ProfileController extends HttpServlet {
         }else {
 
             dto.setId(userId);
-            if(!request.getParameter("editPassword").equals("")) {
+            if(!request.getParameter("editPassword").isEmpty()) {
                 dto.setPassword(request.getParameter("editPassword"));
             }else{
                 dto.setPassword(request.getParameter("password"));

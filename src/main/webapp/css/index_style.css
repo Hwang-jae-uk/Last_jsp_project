@@ -183,6 +183,7 @@ main section {
 }
 
 main section:nth-of-type(1) {
+    margin: 10px;
     grid-area: section1; /* 1번째 섹션 */
     width: 100%;
     height: 100%;
@@ -191,12 +192,52 @@ main section:nth-of-type(1) {
     box-sizing: border-box; /* 이 속성이 추가되었습니다 */
 }
 
+main section:nth-of-type(1) table{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+main section:nth-of-type(1) table th,
+main section:nth-of-type(1) table td {
+    max-width: 220px;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+}
+
+main section:nth-of-type(1) table td img{
+    border-radius: 5px;
+}
+
 main section:nth-of-type(2) {
-    border-right: 1px solid black;
+    border-right: 1px solid #8f8f8f;
     grid-area: section2; /* 2번째 섹션 */
     width: 100%;
     height: 100%;
     box-sizing: border-box; /* 이 속성이 추가되었습니다 */
+}
+
+main section:nth-of-type(2) table{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+main section:nth-of-type(2) table th,
+main section:nth-of-type(2) table td {
+    max-width: 220px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 main section:nth-of-type(3) {

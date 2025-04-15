@@ -21,51 +21,54 @@
         <table border="1" style="width: 95%; border-collapse: collapse; margin: 30px;" >
             <tr>
                 <th width="15%" >작성자 : </th>
-                <th width="25%" >${dto.nickname}</th>
+                <td width="25%" >${dto.nickname}</td>
                 <th width="15%" >조회수 : </th>
-                <th width="15%">${dto.visitCount}</th>
+                <td width="15%">${dto.visitCount}</td>
                 <th width="15%">날짜 : </th>
-                <th >${dto.postdate}</th>
+                <td >${dto.postdate}</td>
             </tr>
             <tr>
                 <th>제목 : </th>
-                <th colspan="5" align="left" style="padding-left: 30px">${dto.title}</th>
+                <td colspan="5" align="left" style="padding-left: 50px;text-align: left ">${dto.title}</td>
             </tr>
             <tr>
-                <th colspan="6"  align="left" style="padding-left: 30px; height: 150px;">${dto.content}</th> <!-- 게시글 내용 출력 -->
+                <td colspan="6"  align="left" style="padding-left: 30px; height: 150px;">${dto.content}</td> <!-- 게시글 내용 출력 -->
             </tr>
+            <tr>
+                <td colspan="7"  style="text-align: right; vertical-align: bottom; padding: 20px;" >
+                    <c:if test="${dto.id == mdto.id}">
+                        <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
+                    </c:if>
+                    <c:if test="${dto.id == mdto.id}">
+                        <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
+                    </c:if>
+                    <button type="button" onclick="location.href='/list'">목록보기</button>
+                </td>
+            </tr>
+            <c:forEach var="comment" items="${commentList}">
+                <tr >
+                    <td colspan="7">
+                        <div class="commentArea" >
+                            <span style="display:inline-block; width: 150px; text-align: center">${comment.nickname} </span>:
+                            <span>${comment.content}</span>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <form method="post" action="/view">
+                            <input type="hidden" name="commentMod" value="commentDelete">
+                            <input type="hidden" name="comment_no" value="${comment.comment_no}">
+                            <input type="hidden" name="board_no" value="${comment.board_no}">
+                            <c:if test="${comment.id==userId}">
+                                <div style="text-align: right">
+                                    <button type="submit">삭제하기</button>
+                                </div>
+                            </c:if>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
-
-        <c:if test="${dto.id == mdto.id}">
-            <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
-        </c:if>
-        <c:if test="${dto.id == mdto.id}">
-            <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
-        </c:if>
-        <button type="button" onclick="location.href='/list'">목록보기</button>
-        <br>
-        <br>
-        <br>
-        <c:forEach var="comment" items="${commentList}">
-            <hr>
-            <div style="text-align: left; margin-left: 50px">
-                <span style="display:inline-block; width: 150px; text-align: center">${comment.nickname} </span>:
-                <span>${comment.content}</span>
-            </div>
-            <br>
-            <br>
-            <br>
-            <form method="post" action="/view">
-                <input type="hidden" name="commentMod" value="commentDelete">
-                <input type="hidden" name="comment_no" value="${comment.comment_no}">
-                <input type="hidden" name="board_no" value="${comment.board_no}">
-                <c:if test="${comment.id==userId}">
-                    <button type="submit">삭제하기</button>
-                </c:if>
-            </form>
-            <br>
-        </c:forEach>
-        <hr>
         <form method="post" action="/view" onsubmit="return validateForm(this);">
             <input type="hidden" name="commentMod" value="commentWrite">
             <input type="hidden" name="no" value="${dto.no}">

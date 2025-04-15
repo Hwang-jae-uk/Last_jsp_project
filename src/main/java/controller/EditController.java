@@ -24,9 +24,10 @@ public class EditController extends HttpServlet {
 
         MemberDAO dao = new MemberDAO();
         MemberDTO mdto = dao.getMemberByID(userId);
-        System.out.println(userId);
-        System.out.println(mdto.getNickname());
+        BoardDAO bdao = new BoardDAO();
+        BoardDTO bdto = bdao.viewBoard(Integer.parseInt(no));
 
+        request.setAttribute("board", bdto);
         request.setAttribute("mdto", mdto);
         request.setAttribute("no", no);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
