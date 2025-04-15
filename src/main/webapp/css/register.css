@@ -7,7 +7,7 @@ html, body {
 }
 
 body{
-    background-image: url("/image/background/back3.jpg");
+    background-image: url("/image/background/background.jpg");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -61,7 +61,6 @@ input[type='radio']:checked {
     그림자가 없으면 그냥 설정한 색상이 꽉 찬 원으로 나옴.*/
 }
 
-
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -100,4 +99,11 @@ button:hover {
 .inline-form select{
     height: 30px;
     width: 100px
+}
+
+.visible{
+    position: relative;
+}
+.eyes{
+    cursor:pointer; position:absolute; right:15px; top:70%; transform:translateY(-50%);z-index:101
 }

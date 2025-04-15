@@ -16,7 +16,7 @@
     <ul>
         <li class="spacer"></li>
         <li><a href="home">HOME</a></li>
-        <li><a href="introduce">ABOUT</a></li>
+        <li><a href="introduce.jsp">ABOUT</a></li>
         <li><a href="news">NEWS</a></li>
         <li><a href="list">LIST</a></li>
         <c:if test="${sessionScope.get('userId')==null}">

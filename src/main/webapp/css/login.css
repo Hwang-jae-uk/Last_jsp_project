@@ -7,7 +7,7 @@ html, body {
 }
 
 body{
-    background-image: url("/image/background/back3.jpg");
+    background-image: url("/image/background/background.jpg");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -186,7 +186,7 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 15px; /* 입력필드와 다음 요소 사이 여백 */
+    margin: 15px; /* 입력필드와 다음 요소 사이 여백 */
 }
 
 label {
@@ -270,4 +270,11 @@ footer {
 /* 마지막 링크에 대한 오른쪽 여백을 없앱니다 */
 #othersites a:last-child {
     margin-right: 0; /* 마지막 링크의 오른쪽 여백 제거 */
+}
+
+.visible{
+    position: relative;
+}
+.eyes{
+    cursor:pointer; position:absolute; right: 20px ;top:70%; transform:translateY(-50%);
 }

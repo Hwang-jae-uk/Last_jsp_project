@@ -21,7 +21,7 @@
         <table border="1" style="width: 95%; border-collapse: collapse; margin: 30px;" >
             <tr>
                 <th width="15%" >작성자 : </th>
-                <th width="25%" >${dto.id}</th>
+                <th width="25%" >${dto.nickname}</th>
                 <th width="15%" >조회수 : </th>
                 <th width="15%">${dto.visitCount}</th>
                 <th width="15%">날짜 : </th>
@@ -32,8 +32,7 @@
                 <th colspan="5" align="left" style="padding-left: 30px">${dto.title}</th>
             </tr>
             <tr>
-                <th>내용</th>
-                <th colspan="5"  align="left" style="padding-left: 30px">${dto.content}</th> <!-- 게시글 내용 출력 -->
+                <th colspan="6"  align="left" style="padding-left: 30px; height: 150px;">${dto.content}</th> <!-- 게시글 내용 출력 -->
             </tr>
         </table>
 

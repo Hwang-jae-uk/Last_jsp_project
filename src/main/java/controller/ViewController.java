@@ -20,6 +20,8 @@ public class ViewController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String no = request.getParameter("no");
         BoardDAO dao = new BoardDAO();
+        // 조회수 1증가
+        dao.updateVisitCount(no);
         BoardDTO dto = dao.viewBoard(Integer.parseInt(no));
 
         MemberDAO mdao = new MemberDAO();
@@ -30,14 +32,10 @@ public class ViewController extends HttpServlet {
         if (session != null) {
             userId = (String) session.getAttribute("userId");
             mdto = mdao.getMemberByID(userId);
-
-
         } else {
             System.out.println("세션이 존재하지 않습니다.");
         }
 
-        // 조회수 1증가
-        dao.updateVisitCount(no);
 
         // content 줄바꿈
         dto.setContent(dto.getContent().replaceAll("\r\n","<br>"));

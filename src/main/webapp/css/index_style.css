@@ -7,7 +7,7 @@ html, body {
 }
 
 body{
-    background-image: url("/image/background/back3.jpg");
+    background-image: url("/image/background/background.jpg");
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -178,6 +178,8 @@ main {
 
 main section {
     box-sizing: border-box; /* 모든 section에 적용 */
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 main section:nth-of-type(1) {
@@ -190,6 +192,7 @@ main section:nth-of-type(1) {
 }
 
 main section:nth-of-type(2) {
+    border-right: 1px solid black;
     grid-area: section2; /* 2번째 섹션 */
     width: 100%;
     height: 100%;

@@ -20,6 +20,10 @@
             alert("내용을 입력하세요");
             return false;
         }
+        if(form.title.value == ""){
+            alert("제목을 입력하세요");
+            return false;
+        }
     }
 </script>
 <body>

@@ -53,7 +53,7 @@ public class BoardDAO {
 
     // 선택한 게시물 보기
     public BoardDTO viewBoard(int no) {
-        String sql = "select * from board where no = ?";
+        String sql = "select * from jspgit.list where no = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -168,7 +168,7 @@ public class BoardDAO {
 
     // Home 화면 조회수 top10 리스트
     public List<BoardDTO> getHomeBoard() {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, nickname FROM jspgit.list" +
+        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate, nickname FROM jspgit.list" +
                 " order by visitcount desc limit 10";
 
         Connection conn = null;
@@ -195,8 +195,7 @@ public class BoardDAO {
                 boardList.add(dto);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         } finally {
             DBManager.close(conn, pstmt, rs);
         }
@@ -264,5 +263,4 @@ public class BoardDAO {
         }
         return result;
     }
-
 }

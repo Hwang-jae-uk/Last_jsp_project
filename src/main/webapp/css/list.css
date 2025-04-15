@@ -13,6 +13,9 @@ body{
     -ms-user-select:none;
     user-select:none
 }
+a{
+    text-decoration: none;
+}
 
 #wrapper {
     display: grid;
@@ -163,15 +166,33 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
-main > table {
-    padding: 30px;
-}
+
 main{
 
     background-color: hsla(0, 33%, 96%,90%);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
-main > a{
+.boardTable {
+
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.boardTable th,
+.boardTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+.boardTable tr:first-child {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+
+a{
     text-decoration: none;
 }
 

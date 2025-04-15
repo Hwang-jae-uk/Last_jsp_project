@@ -1,8 +1,8 @@
 function changeCheck() {
-    var check = document.getElementById("check_result")
-    if (check.textContent == '사용할 수 있는 ID 입니다.' && check.style.color == 'green') {
-        check.textContent = '다시 ID 중복 확인을 해주세요';
-        check.style.color = 'red';
+    const check_result = document.getElementById("check_result");
+    if (check_result.textContent == '사용할 수 있는 ID 입니다.' && check_result.style.color == 'green') {
+        check_result.textContent = '다시 ID 중복 확인을 해주세요';
+        check_result.style.color = 'red';
     }
 }
 
@@ -41,8 +41,8 @@ function validateForm(event) {
         }
 
         if (field.name === 'id') {
-            const checkResult = document.getElementById("check_result");
-            if (checkResult && checkResult.style.color !== 'green') {
+            const check_result = document.getElementById("check_result");
+            if (check_result && check_result.style.color !== 'green') {
                 alert("아이디가 중복되는지 확인해 주세요.");
                 input.focus();
                 return false;
@@ -68,16 +68,6 @@ function validateForm(event) {
     form.submit();
 }
 
-function checkNumber(event) {
-    return event.key === '.'
-        || event.key === '-'
-        || event.key >= 0 && event.key <= 9;
-}
-
-function getLastDate(year, month) {
-    return new Date(year, month, 0).getDate();
-}
-
 function birthday() {
     const year = parseInt(document.getElementById("year").value);
     const month = parseInt(document.getElementById("month").value);
@@ -88,7 +78,7 @@ function birthday() {
 function updateDays() {
     const year = parseInt(document.getElementById("year").value);
     const month = parseInt(document.getElementById("month").value);
-    const lastDay = getLastDate(year, month);
+    const lastDay = new Date(year, month, 0).getDate();
     const dateSelect = document.getElementById("date");
 
     // 기본 안내 option 유지하면서 날짜 옵션 새로 채우기
@@ -101,14 +91,6 @@ function updateDays() {
         dateSelect.appendChild(option);
     }
 }
-
-window.onload = function () {
-    updateDays();
-
-    // 년 또는 월이 변경되면 날짜 업데이트
-    document.getElementById("year").addEventListener("change", updateDays);
-    document.getElementById("month").addEventListener("change", updateDays);
-};
 
 function textDomain() {
     var text = document.querySelector("#domain");
@@ -134,7 +116,7 @@ function selectDomain() {
 function moveNextInput(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // 폼 제출 방지
-        const inputs = document.querySelectorAll('input[type="text"]');
+        const inputs = document.querySelectorAll('.ent');
         const index = Array.from(inputs).indexOf(event.target);
         if (index >= 0 && index < inputs.length - 1) {
             inputs[index + 1].focus();
@@ -142,9 +124,49 @@ function moveNextInput(event) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    const inputRules = {
+        id: /^[a-zA-Z0-9]*$/,
+        password: /^[a-zA-Z0-9!@#$%^&*]*$/,
+        confirmPassword: /^[a-zA-Z0-9!@#$%^&*]*$/,
+        nickname: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
+        name: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
+        year: /^[0-9]*$/,
+        email: /^[a-zA-Z0-9._-]*$/,
+        domain: /^[a-zA-Z0-9._-]*$/,
+        phone: /^[0-9]*$/
+    };
+
+    Object.keys(inputRules).forEach(function (fieldId) {
+        const input = document.getElementById(fieldId);
+        const allowedPattern = inputRules[fieldId];
+
+        // 키 입력 차단 (event.key 기준)
+        input.addEventListener("keydown", function (event) {
+            if (event.ctrlKey || event.metaKey || event.key.length > 1) return; // Ctrl, Alt, 방향키 등 제외
+            const nextChar = event.key;
+            if (!allowedPattern.test(nextChar)) {
+                event.preventDefault();
+                alert("입력 형식이 맞지 않습니다.");
+            }
+        });
+
+        // 붙여넣기나 한글 조합 등 후처리 (실시간 정리)
+        input.addEventListener("input", function () {
+            this.value = [...this.value].filter(c => allowedPattern.test(c)).join('');
+        });
+    });
+});
+
 window.onload = function() {
-    const inputs = document.querySelectorAll('input[type="text"]');
+    const inputs = document.querySelectorAll('.ent');
     inputs.forEach(input => {
         input.addEventListener('keydown', moveNextInput);
     });
 }
+window.onload = function () {
+    updateDays();
+    document.getElementById("year").addEventListener("change", updateDays);
+    document.getElementById("month").addEventListener("change", updateDays);
+};
