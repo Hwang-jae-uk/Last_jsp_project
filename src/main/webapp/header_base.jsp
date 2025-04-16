@@ -10,7 +10,7 @@
 </head>
 <body>
 <header> <!-- 헤더 영역 -->
-    <h1><a href="home">Science&nbsp; Of &nbsp;Today</a></h1>
+    <h1><a href="home">Science&nbsp;Of&nbsp;Today</a></h1>
 </header>
 <nav> <!-- 여기서는 nav 태그를 main menu bar 로 설정 -->
     <ul>

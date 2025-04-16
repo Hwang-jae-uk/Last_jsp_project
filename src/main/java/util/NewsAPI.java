@@ -73,8 +73,6 @@ public class NewsAPI {
         // 시간 포맷: HH00 (정시)
         String baseTime = now.format(DateTimeFormatter.ofPattern("HH")) + "00";
 
-        baseTime = String.valueOf(Integer.parseInt(baseTime)-100);
-
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"); /*URL*/
         urlBuilder.append("?").append(URLEncoder.encode("serviceKey", "UTF-8")).append("=7A%2Fkol6QOz7jdmu7b3D2DE3mAV3KtguRlCUtSzJua%2FSaDYgzopHzx4NszovzTawflMpXdGtMHY6BsxFkkmgvXw%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -86,34 +84,35 @@ public class NewsAPI {
         urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("76", "UTF-8")); /*예보지점의 Y 좌표값*/
 
         URL url = new URL(urlBuilder.toString());
-        HttpURLConnection conn;
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+
+        BufferedReader rd;
+
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(),"UTF-8"));
+        }
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        while ((line = rd.readLine()) != null) {sb.append(line);}
+        rd.close();
+        conn.disconnect();
+
+        Gson gson = new Gson();
+        Root root = gson.fromJson(sb.toString(), Root.class);
 
         try {
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Content-type", "application/json");
-            BufferedReader rd;
-
-            if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-                rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-            } else {
-                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(),"UTF-8"));
-            }
-
-            StringBuilder sb = new StringBuilder();
-            String line;
-
-            while ((line = rd.readLine()) != null) {sb.append(line);}
-            rd.close();
-            conn.disconnect();
-
-            Gson gson = new Gson();
-            Root root = gson.fromJson(sb.toString(), Root.class);
-
             List<Item> items = root.response.body.items.item;
             List<Item> filtered = items.stream().filter(item -> item.getCategory().equals("PTY") || item.getCategory().equals("T1H") || item.getCategory().equals("WSD") || item.getCategory().equals("REH")).toList();
             return filtered;
-        } catch (Exception ignored) {
+        } catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }
