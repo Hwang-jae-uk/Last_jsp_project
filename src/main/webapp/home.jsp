@@ -3,7 +3,6 @@
          trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,17 +10,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>홈페이지</title>
   <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
-  <link rel="stylesheet" href="css/index_style.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/base.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/home.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
-<body onload='resizeWindow(this)'>
+<body>
 <div id="wrapper">
   <jsp:include page="header_base.jsp"/>
   <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
     <section>
-      <table border="0" style="width: 90%; border-collapse: collapse; margin-left: auto; margin-right: auto;" >
+      <table border="0">
         <%request.setAttribute("section","");%>
-        <tr style="text-align: center">
+        <tr>
           <td colspan="4">
             <h2>
               <a href="news">오늘의 뉴스</a>
@@ -31,9 +31,8 @@
         <c:forEach var="news" items="${newsList}">
           <tr align="center">
             <td width="10%" ><a href="${news.o_link}">
-              <img src="${news.img}" alt="picture" height="100px" align="center" style="margin-bottom: 20px">
-            </a></td>
-            <td width="60%"><a href="${news.o_link}" style="font-size: 120%">${news.title}</a></td>
+              <img src="${news.img}" alt="picture" height="100px" align="center"></a></td>
+            <td width="60%"><a href="${news.o_link}">${news.title}</a></td>
             <td width="10%"><a href="${news.p_link}">${news.press}</a></td>
             <td width="10%">${news.date}</td>
           </tr>
@@ -41,7 +40,6 @@
       </table>
     </section>
     <section>
-
       <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
         <tr>
           <td colspan="5">
@@ -61,7 +59,7 @@
           <tr align="center">
             <th width="10%">${board.row_num}</th>
             <th width="10%">${board.nickname}</th>
-            <th width="40%" style="padding-left: 10px;white-space: nowrap;" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
+            <th width="40%" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
             <th width="15%">${board.visitCount}</th>
             <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
           </tr>
@@ -69,15 +67,57 @@
       </table>
     </section>
     <section>
-      <h2><a href="https://news.naver.com/" target="_blank">네이버 뉴스</a></h2>
-      <div class="image-grid"> <!-- 이미지 그리드 추가 -->
-        <a href="hello_post_C.html"><img src="image/logo/C-Logo.png" alt="C Logo"></a>
-        <a href="hello_post_C++.html"><img src="image/logo/C++-Logo.png" alt="C++ Logo"></a>
-        <a href="hello_post_Csharp.html"><img src="image/logo/Csharp-Logo.png" alt="C# Logo"></a>
-        <a href="hello_post_Java.html"><img src="image/logo/Java-Logo.png" alt="Java Logo"></a>
-        <a href="hello_post_Javascript.html"><img src="image/logo/Javascript-Logo.png" alt="Javascript Logo"></a>
-        <a href="hello_post_Python.html"><img src="image/logo/python-logo-only.png" alt="Python Logo"></a>
-      </div>
+      <table>
+        <tr>
+          <td>
+            <h2>
+              <a href="https://news.naver.com/" target="_blank">현재 부산 날씨</a>
+            </h2>
+          </td>
+        </tr>
+        <c:forEach var="item" items="${weatherData}">
+          <tr>
+            <td>
+              <c:choose>
+                <c:when test="${item.category eq 'PTY'}">
+                  <c:choose>
+                    <c:when test="${item.obsrValue == '0'}">😊현재 강수 없음😊</c:when>
+                    <c:when test="${item.obsrValue == '1'}">☔현재 비☔</c:when>
+                    <c:when test="${item.obsrValue == '2'}">🌧️현재 비/눈🌧️</c:when>
+                    <c:when test="${item.obsrValue == '3'}">❄️현재 눈❄️</c:when>
+                    <c:when test="${item.obsrValue == '4'}">🌦️현재 소나기🌦️</c:when>
+                    <c:when test="${item.obsrValue == '5'}">☔현재 빗방울☔</c:when>
+                    <c:when test="${item.obsrValue == '6'}">🌧️현재 빗방울/눈날림🌧️</c:when>
+                    <c:when test="${item.obsrValue == '7'}">❄️현재 눈날림❄️</c:when>
+                    <c:otherwise>❓😕알 수 없음❓😕</c:otherwise>
+                  </c:choose>
+                </c:when>
+                <c:when test="${item.category eq 'T1H'}">
+                  🌡️기온 ${item.obsrValue}
+                </c:when>
+                <c:when test="${item.category eq 'WSD'}">
+                  <c:choose>
+                    <c:when test="${item.obsrValue le '2'}">🍃 미풍 (${item.obsrValue} m/s)</c:when>
+                    <c:when test="${item.obsrValue le '5'}">🌬️ 산들바람 (${item.obsrValue} m/s)</c:when>
+                    <c:when test="${item.obsrValue le '9'}">💨 강한 바람 (${item.obsrValue} m/s)</c:when>
+                    <c:otherwise>🌪️ 돌풍 (${item.obsrValue} m/s)</c:otherwise>
+                  </c:choose>
+                </c:when>
+                <c:when test="${item.category eq 'REH'}">
+                  💧습도
+                  <c:choose>
+                    <c:when test="${item.obsrValue le 30}"> 매우 건조함 : ${item.obsrValue}%</c:when>
+                    <c:when test="${item.obsrValue le 60}"> 적당함 : ${item.obsrValue}%</c:when>
+                    <c:when test="${item.obsrValue le 80}"> 약간 습함 : ${item.obsrValue}%</c:when>
+                    <c:when test="${item.obsrValue le 100}"> 매우 습함 : ${item.obsrValue}%</c:when>
+                    <c:otherwise>❓😕 알 수 없음 (${item.obsrValue}%)</c:otherwise>
+                  </c:choose>
+                </c:when>
+              </c:choose>
+            </td>
+          </tr>
+        </c:forEach>
+      </table>
     </section>
   </main>
   <jsp:include page="footer.jsp"/>

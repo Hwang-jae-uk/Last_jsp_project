@@ -11,21 +11,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>뉴스 목록</title>
   <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
-  <link rel="stylesheet" href="css/news.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
+  <link rel="stylesheet" href="css/base.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/news.css"> <!-- 외부 스타일시트 적용 -->
 </head>
 <body>
 <div id="wrapper">
-    <jsp:include page="header_base.jsp"/>
-  <main> <!-- main 태그는 블로그의 컨텐츠 내용을 담는 시맨틱 태그 -->
-    <section style="height: 100%; border: none">
+  <jsp:include page="header_base.jsp"/>
+  <main>
+    <section>
       <ul>
           <%
             if (request.getParameter("section") == null)
               request.setAttribute("section", "");
           %>
           <li><h2><a href="news">오늘의 뉴스</a></h2></li>
-          <form method="get" action="news" style="margin-bottom: 50px;">
+          <form method="get" action="news">
               <button type="submit" name="section" value="731">모바일</button>
               <button type="submit" name="section" value="226">인터넷/SNS</button>
               <button type="submit" name="section" value="227">통신/뉴미디어</button>
@@ -48,7 +49,7 @@
       </ul>
     </section>
   </main>
-    <jsp:include page="footer.jsp"/>
+  <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

@@ -2,15 +2,15 @@
 /* ===========================
    기본 설정
 =========================== */
-html, body {
+html, body{
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: auto; /* 수평 스크롤 가능 */
 }
 
 body {
+    background-color: #090400;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -21,12 +21,13 @@ body {
    main 태그 스타일
 =========================== */
 main {
+    height: 100vh;
     display: flex;
+    align-self: center;
     justify-content: center;  /* 가로 중앙 정렬 */
     align-items: center;      /* 세로 중앙 정렬 */
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    background-color: hsla(0, 33%, 96%, 90%);
 }
 
 /* ===========================
@@ -49,6 +50,28 @@ main {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+}
+.border {
+    border: 1px solid rgb(179, 177, 177); border-radius: 5px; width: 100%;
+    background-color: #f3fbff;
+
+    input{
+        border: none;
+    }
+}
+.border #year {
+    width: 30%;
+    border: none; text-align: center
+}
+#year, #month, #date {
+    border: none;
+}
+
+#email {
+    width: 40%;
+}
+#domain{
+    width: 25%;
 }
 
 /* ===========================
@@ -87,8 +110,9 @@ input {
 /* ===========================
    셀렉트 박스 스타일
 =========================== */
-select {
-    border: 1px solid rgb(179, 177, 177);
+select{
+    text-align: center; width: 100px; height: 30px;
+    border: 1px solid rgb(179, 177, 177); border-radius: 5px;
     background-color: #f3fbff;
 }
 
@@ -98,7 +122,7 @@ select {
 button {
     align-self: center;
     width: 150px;
-    padding: 10px 15px;
+    padding: 10px;
     color: #333;
     border: 1px solid rgb(179, 177, 177);
     border-radius: 5px;
@@ -109,19 +133,6 @@ button {
 button:hover {
     transform: scale(1.05);
 }
-
-/* ===========================
-   인라인 폼 요소
-=========================== */
-.inline-form input {
-    width: 100px;
-}
-
-.inline-form select {
-    width: 100px;
-    height: 30px;
-}
-
 /* ===========================
    비밀번호 입력 관련 스타일
 =========================== */

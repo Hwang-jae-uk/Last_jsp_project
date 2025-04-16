@@ -169,7 +169,7 @@ public class BoardDAO {
     // Home 화면 조회수 top10 리스트
     public List<BoardDTO> getHomeBoard() {
         String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate, nickname FROM jspgit.list" +
-                " order by visitcount desc limit 10";
+                " order by visitcount desc limit 5";
 
         Connection conn = null;
         PreparedStatement pstmt = null;

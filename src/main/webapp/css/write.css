@@ -13,26 +13,6 @@ body{
     -ms-user-select:none;
     user-select:none
 }
-/* 무지개 애니메이션 */
-@keyframes rainbow {
-    0% { color: #FF5733; }      /* 빨강 */
-    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
-    12.5% { color: #FFB733; }   /* 연한 주황 */
-    18.75% { color: #FFDB33; }  /* 연한 노랑 */
-    25% { color: #F2FF33; }     /* 밝은 노랑 */
-    31.25% { color: #A3FF33; }  /* 연두색 */
-    37.5% { color: #78FF33; }   /* 초록 */
-    43.75% { color: #33FF57; }  /* 민트색 */
-    50% { color: #33FFDB; }     /* 연한 파랑 */
-    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
-    62.5% { color: #3399FF; }   /* 중간 파란색 */
-    68.75% { color: #3373FF; }  /* 파랑 */
-    75% { color: #4C33FF; }     /* 보라색 시작 */
-    81.25% { color: #8E33FF; }  /* 보라색 */
-    87.5% { color: #D833FF; }   /* 핑크색 */
-    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
-    100% { color: #FF5733; }    /* 빨강으로 복귀 */
-}
 
 #wrapper {
     display: grid;
@@ -147,6 +127,7 @@ aside ul {
     padding: 0; /* 기본 패딩 제거 */
 }
 aside li {
+    font-size: 16px;
     text-align: left; /* 텍스트를 왼쪽으로 정렬 */
     padding-left: 2em; /* 기본적으로 2칸의 패딩 추가 */
 }
@@ -183,120 +164,48 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
-main {
-    grid-area: main;
-    display: grid; /* 그리드 레이아웃을 사용 */
-    grid-template-columns: 1fr 1fr; /* 두 개의 열로 나누기 */
-    grid-template-rows: 1fr 1fr; /* 두 개의 행으로 나누기 */
-    grid-template-areas:
-        "section1 section1" /* 1번째와 2번째 섹션 */
-        "section2 section3"; /* 3번째 섹션이 두 개의 열을 차지함 */
+main > table {
+    padding: 30px;
+}
+main{
+
     background-color: hsla(0, 33%, 96%,90%);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
-    box-sizing: border-box; /* 이 속성이 추가되었습니다 */
 }
-
-main section {
-    box-sizing: border-box; /* 모든 section에 적용 */
-    padding-left: 20px;
-    padding-right: 20px;
+textarea{
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
 }
-
-main section:nth-of-type(1) {
-    margin: 10px;
-    grid-area: section1; /* 1번째 섹션 */
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
-    box-sizing: border-box; /* 이 속성이 추가되었습니다 */
-}
-
-main section:nth-of-type(1) table{
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    font-size: 16px;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-main section:nth-of-type(1) table th,
-main section:nth-of-type(1) table td {
-    max-width: 220px;
-    text-align: center;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-
-}
-
-main section:nth-of-type(1) table td img{
+input {
+    border: 1px solid #aaaaaa;
+    height: 30px;
     border-radius: 5px;
 }
 
-main section:nth-of-type(2) {
-    border-right: 1px solid #8f8f8f;
-    grid-area: section2; /* 2번째 섹션 */
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box; /* 이 속성이 추가되었습니다 */
-}
-
-main section:nth-of-type(2) table{
+table {
+    margin: 30px;
+    border: 1px solid #ddd;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     font-size: 16px;
     border-radius: 10px;
     overflow: hidden;
+    border-collapse: collapse;
 }
-main section:nth-of-type(2) table th,
-main section:nth-of-type(2) table td {
+
+table th,
+table td {
     max-width: 220px;
     text-align: center;
     padding: 10px;
     border: 1px solid #ddd;
     vertical-align: top;
     overflow: hidden;
-    text-overflow: ellipsis;
+
 }
 
-main section:nth-of-type(3) {
-    grid-area: section3; /* 3번째 섹션 */
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
-    box-sizing: border-box; /* 이 속성이 추가되었습니다 */
-}
-
-main section ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: block; /* 전체 폭을 사용하는 블록 레벨로 설정 */
-    width: 100%;
-}
-
-main section li {
-    padding: 5px 0; /* 각 리스트 항목에 위아래 여백 추가 */
-}
-
-main a {
-    color: inherit; /* 기본 글자색을 상속받음 */
-    text-decoration: none; /* 링크의 밑줄 제거 */
-}
-
-/* 기본 색상 설정 */
-main a:link,
-main a:visited,
-main a:active,
-main a:hover {
-    color: #2c3e50; /* 어두운 컬러 */
-}
-
-main section:nth-of-type(2) img {
-    width: 100px;
-    height: 100px;
+main > a{
+    text-decoration: none;
 }
 
 /* main 태그 내의 이미지 그리드 */
@@ -310,8 +219,8 @@ main section:nth-of-type(2) img {
 }
 /* 이미지 스타일 */
 .image-grid img {
-    width: 100px;  /* 가로 크기 */
-    height: 100px; /* 세로 크기 */
+    width: 200px;  /* 가로 크기 */
+    height: 200px; /* 세로 크기 */
     object-fit: contain; /* 비율 유지 및 잘림 방지 */
     transition: transform 0.3s ease; /* 변환 효과 추가 */
 }
@@ -354,7 +263,4 @@ footer {
 /* 마지막 링크에 대한 오른쪽 여백을 없앱니다 */
 #othersites a:last-child {
     margin-right: 0; /* 마지막 링크의 오른쪽 여백 제거 */
-}
-hr {
-    width: 90%;
 }

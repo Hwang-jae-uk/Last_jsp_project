@@ -1,6 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java"
-         pageEncoding="UTF-8"
-         trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
@@ -17,9 +15,8 @@
   <script src="js/register.js"></script>
 </head>
 <body>
-<div id="wrapper">
   <main>
-    <div class="register-container">
+    <div class="profile-container">
       <h2>회원가입</h2>
       <form id="form" action="register" method="post">
         <div class="form-group">
@@ -46,7 +43,7 @@
 
         <div class="form-group">
           <label for="nickname">닉네임</label>
-          <input type="text" id="nickname" name="nickname" placeholder="8자리이하로 입력하세요." maxlength="8" class="ent">
+          <input type="text" id="nickname" name="nickname" placeholder="8자리 이하로 입력하세요." maxlength="8" class="ent">
         </div>
 
         <div class="form-group">
@@ -66,13 +63,12 @@
         <div class="form-group" oninput="birthday()">
           <label for="birthday">생년월일</label>
           <input type="hidden" id="birthday" name="birthday">
-          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content;
-          background-color: #f3fbff; align-self: center;">
-            <input type="text" id="year" style="border: none; text-align: center"
-                   minlength="4" maxlength="4" min="1900" class="ent">
+          <div class="border">
+          <label class="inline-form">
+            <input type="text" id="year" minlength="4" maxlength="4" min="1900" class="ent">
             <label for="year">년</label>
 
-            <select name="month" id="month" style="border:none; text-align: center; width: 70px" onchange="updateDays()" class="ent">
+            <select name="month" id="month" onchange="updateDays()" class="ent">
               <option disabled hidden selected></option>
               <%for (int i = 1; i <= 12; i++) {%>
               <option value="<%=i%>"><%=i%></option>
@@ -80,27 +76,29 @@
             </select>
             <label for="month">월</label>
 
-            <select name="date" id="date" style="border: none; text-align: center; width: 70px" class="ent">
+            <select name="date" id="date" class="ent">
               <option disabled hidden selected></option>
             </select>
             <label for="date">일</label>&nbsp;&nbsp;
+
           </label>
+          </div>
         </div>
         <div class="form-group">이메일
-          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content ;
-          background-color: #f3fbff">
-            <input type="text" id="email" name="email" minlength="5" placeholder="Input your email's ID"
-                   style="width: 150px; border-color: transparent" class="ent" >
-            @
-            <input id="domain" type="text" onchange="textDomain()" placeholder="domain.com" style="border-color: transparent">
-            <input type="hidden" name="domain" id="hid_domain">
-            <select id="dom_select" onchange="selectDomain()" style="border-radius: 5px" class="ent">
-              <option value="none" selected>직접 입력</option>
-              <option value="gmail.com">gmail.com</option>
-              <option value="naver.com">naver.com</option>
-              <option value="daum.net">daum.net</option>
-            </select> &nbsp;
-          </label>
+          <div class="border">
+            <label class="inline-form">
+              <input type="text" id="email" name="email" minlength="5" placeholder="Input your email's ID" class="ent">
+              @
+              <input type="text" id="domain" onchange="textDomain()" placeholder="domain.com">
+              <input type="hidden" name="domain" id="hid_domain">
+              <select id="dom_select" onchange="selectDomain()" class="ent">
+                <option value="none" selected>직접 입력</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="naver.com">naver.com</option>
+                <option value="daum.net">daum.net</option>
+              </select> &nbsp;
+            </label>
+          </div>
         </div>
 
         <div class="inline-form" style="display: inline">
@@ -108,7 +106,7 @@
             <label for="carrier" style="margin-right: 80px">통신사</label>
             <label for="phone" style="right: 30px">휴대전화 번호</label> <c:forEach begin="1" end="8">&nbsp;</c:forEach>
             <br>
-            <select id="carrier" name="carrier" style="border-radius: 5px; text-align: center;" class="ent">
+            <select id="carrier" name="carrier" class="ent">
               <option hidden disabled selected></option>
               <option value="SKT">SKT</option>
               <option value="KT">KT</option>
@@ -126,7 +124,6 @@
       </form>
     </div>
     <script>
-
         document.getElementById("form").addEventListener("submit", validateForm);
 
         $("#check").click(function () {
@@ -178,6 +175,5 @@
         });
     </script>
   </main>
-</div>
 </body>
 </html>

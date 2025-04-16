@@ -16,21 +16,21 @@ body{
 
 #wrapper {
     display: grid;
-    justify-content: center;
     grid-template-columns: 300px 1200px;
-    grid-template-rows: 200px 50px 1200px 50px;
+    grid-template-rows: 200px 50px fit-content(500px) 50px;
     grid-template-areas:
         "header header"
         "nav nav"
         "aside main"
         "footer footer";
     text-align: center;
+    justify-content: center;
     width: 100%; /* wrapper가 전체 너비를 차지하게 설정 */
     min-width: 1500px; /* 필요에 따라 min-width 값 조정 */
 }
 
 /* header 태그 css 코드입니다. */
-header {
+header{
     grid-area: header;
     display: flex;
     flex-direction: column; /* 세로 방향으로 정렬 */
@@ -86,6 +86,7 @@ nav a {
     color: black;
     transition: color 0.3s ease; /* 색상 변경 트랜지션 효과 추가 */
 }
+
 nav a:link,
 nav a:visited {
     color: black; /* 기본 글자색 (방문한 링크) */
@@ -122,41 +123,50 @@ aside{
     color: #333; /* 눈에 잘 띄는 어두운 회색 글자색 */
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
+
 aside ul {
     list-style: none; /* 리스트 스타일 제거 */
     padding: 0; /* 기본 패딩 제거 */
 }
+
 aside li {
     text-align: left; /* 텍스트를 왼쪽으로 정렬 */
     padding-left: 2em; /* 기본적으로 2칸의 패딩 추가 */
 }
+
 /* 서브 리스트에 대한 스타일 추가 */
 aside li ul {
     padding-left: 20px; /* 하위 리스트의 들여쓰기 추가 */
 }
+
 aside li ul li {
     position: relative; /* 상대적 위치 설정 */
     padding-left: 1em; /* 하위 항목의 패딩 왼쪽 */
 }
+
 aside li ul li::before {
     content: "- "; /* 리모델링된 리스트 항목 스타일에 대한 접두사 추가 */
     position: absolute; /* 절대적 위치 설정 */
     left: 0; /* 왼쪽 정렬 */
 }
+
 /* aside 태그 내의 모든 링크에 대한 스타일 설정 */
 aside a {
     color: #666; /* 링크 글자색도 연한 회색으로 설정 */
     text-decoration: none; /* 링크의 밑줄 제거 */
 }
+
 /* 링크와 방문한 링크의 색상 설정 */
 aside a:link,
 aside a:visited {
     color: #666; /* 링크 글자색도 연한 회색으로 설정 */
 }
+
 /* 호버 상태에서 색상 설정 */
 aside a:hover {
     color: #007BFF; /* 호버 시 색상 변화 (연한 파랑으로 설정) */
 }
+
 /* 클릭했을 때의 색상 설정 */
 aside a:active {
     color: #333; /* 클릭했을 때 색상 (조금 더 어두운 회색) */
@@ -166,13 +176,45 @@ aside a:active {
 main > table {
     padding: 30px;
 }
-main{
 
+main{
+    grid-area: main;
+    height: 100%;
     background-color: hsla(0, 33%, 96%,90%);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
-main > a{
-    text-decoration: none;
+
+main a {
+    color: #2c3e50;
+    text-decoration: none; /* 링크의 밑줄 제거 */
+}
+
+button {
+    background-color: rgb(255, 255, 255); /* 약간 투명한 오렌지빛 */
+    color: #3a3a3a;
+    border: 1px solid #685a5a;
+    margin: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #978179; /* 호버 시 조금 진해짐 */
+    transform: translateY(-2px); /* 살짝 위로 떠오름 */
+}
+
+button:active {
+    transform: scale(0.97); /* 클릭 시 살짝 눌리는 효과 */
+}
+
+.p{
+    position: relative;
+}
+.eyes{
+    cursor:pointer; position:absolute; right: 20px ;top:70%; transform:translateY(-50%);
 }
 
 /* main 태그 내의 이미지 그리드 */
@@ -197,7 +239,7 @@ main > a{
 }
 
 /* footer 태그 css 코드입니다. */
-footer {
+footer{
     grid-area: footer;
     display: grid; /* flex에서 grid로 변경 */
     grid-template-columns: 2fr 3fr; /* 2fr과 3fr로 나누기 */

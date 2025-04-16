@@ -107,3 +107,11 @@ window.onload = function() {
         input.addEventListener('keydown', moveNextInput);
     });
 }
+
+// 버튼 누르면 비밀번호 변경이 생김
+function passwirdHidden() {
+    const fields = document.getElementById("passwordFields");
+    fields.style.display = fields.style.display === "none" ? "block" : "none";
+}
+
+
