@@ -30,8 +30,8 @@
 <div id="wrapper">
     <jsp:include page="header_base.jsp"/>
     <main>
-        <form action="/write" method="POST" onsubmit="return validateForm(this);">
-            <table border="1" width="90%">
+        <form action="write" method="POST" onsubmit="return validateForm(this);">
+            <table border="1" width="90%" class="boardTable">
                 <tr>
                     <td>작성자</td>
                     <td style="width: 90%" align="left">
@@ -41,7 +41,7 @@
                 <tr>
                     <td>제목</td>
                     <td style="width: 90%" align="left">
-                        <input type="text" name="title" style="width:100%; box-sizing: border-box;" >
+                        <input class="titleArea" type="text" name="title" style="width:100%; box-sizing: border-box;" >
                     </td>
                 </tr>
                 <tr>

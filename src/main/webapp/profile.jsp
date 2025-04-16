@@ -18,7 +18,7 @@
   <main>
     <div class="profile-container">
       <h2>개인 정보 관리</h2>
-      <form id="form" action="profile" method="post" >
+      <form id="form" action="profile" method="post">
         <div class="form-group">
           <label for="nickname">닉네임</label>
           <input type="text" id="nickname" name="nickname" value="${member.nickname}"
@@ -39,7 +39,7 @@
               alert("${error}");
           </script>
         </c:if>
-        <button type="button" onclick="passwirdHidden()">비밀번호 변경하기</button>
+        <button type="button" onclick="passwordHidden()">비밀번호 변경하기</button>
         <div id="passwordFields" style="display: none">
             <div class="form-group">
               <div class="p">

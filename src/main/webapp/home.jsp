@@ -40,7 +40,7 @@
       </table>
     </section>
     <section>
-      <table border="1" style="width: 100%; border-collapse: collapse; margin: 0;" >
+      <table border="1">
         <tr>
           <td colspan="5">
             <h2>
@@ -48,7 +48,7 @@
             </h2>
           </td>
         </tr>
-        <tr align="center" >
+        <tr align="center">
           <th width="10%">번호</th>
           <th width="10%">작성자</th>
           <th width="40%">제목</th>

@@ -127,15 +127,15 @@ function moveNextInput(event) {
 document.addEventListener("DOMContentLoaded", function() {
 
     const inputRules = {
-        id: /^[a-zA-Z0-9]*$/,
-        password: /^[a-zA-Z0-9!@#$%^&*]*$/,
-        confirmPassword: /^[a-zA-Z0-9!@#$%^&*]*$/,
-        nickname: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
-        name: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
-        year: /^[0-9]*$/,
-        email: /^[a-zA-Z0-9._-]*$/,
-        domain: /^[a-zA-Z0-9._-]*$/,
-        phone: /^[0-9]*$/
+        id : /^[a-zA-Z0-9]*$/,
+        password : /^[a-zA-Z0-9!@#$%^&*]*$/,
+        confirmPassword : /^[a-zA-Z0-9!@#$%^&*]*$/,
+        nickname : /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
+        name : /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
+        year : /^[0-9]*$/,
+        email : /^[a-zA-Z0-9._-]*$/,
+        domain : /^[a-zA-Z0-9._-]*$/,
+        phone : /^[0-9]*$/
     };
 
     Object.keys(inputRules).forEach(function (fieldId) {

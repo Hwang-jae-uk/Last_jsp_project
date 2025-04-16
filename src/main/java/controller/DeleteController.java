@@ -2,12 +2,14 @@ package controller;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import util.JSFunction;
 
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.io.IOException;
 public class DeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String no = request.getParameter("no");
         String mode = request.getParameter("mode");
         BoardDAO dao = new BoardDAO();
@@ -24,8 +27,6 @@ public class DeleteController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-
-
         String userId = session.getAttribute("userId").toString();
 
         //게시물 삭제
@@ -33,12 +34,6 @@ public class DeleteController extends HttpServlet {
         JSFunction.alertLocation(response,"게시물이 삭제되었습니다.","/list");
         request.setAttribute("dto", dto);
         request.getRequestDispatcher("delete.jsp").forward(request, response);
-
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

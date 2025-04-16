@@ -10,7 +10,7 @@ html, body{
 }
 
 body {
-    background-color: #090400;
+    background-image: url("/image/background/background.jpg");
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -21,6 +21,7 @@ body {
    main 태그 스타일
 =========================== */
 main {
+    background-color: hsla(27, 100%, 2%, 0.21);
     height: 100vh;
     display: flex;
     align-self: center;

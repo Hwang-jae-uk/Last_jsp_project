@@ -11,16 +11,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>home</title>
   <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
-  <link rel="stylesheet" href="css/edit.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/base.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>
 <body>
 <div id="wrapper">
   <jsp:include page="header_base.jsp"/>
   <main>
-    <form action="/edit" method="post" onsubmit="return validateForm(this);">
+    <form action="edit" method="post" onsubmit="return validateForm(this);">
       <input type="hidden" name="no" value="${no}">
-      <table border="1" width="90%" style="margin: 30px">
+      <table border="1" class="boardTable">
         <tr>
           <td>작성자</td>
           <td style="width: 90%;text-align: left; padding-left: 20px">
@@ -30,13 +30,13 @@
         <tr>
           <td>제목</td>
           <td style="width: 90%" align="left">
-            <input type="text" name="title" style="width:100%; box-sizing: border-box;" value="${board.title}">
+            <input type="text" class="titleArea" name="title" value="${board.title}">
           </td>
         </tr>
         <tr>
           <td>내용</td>
           <td align="left">
-            <textarea name="content" style="height: 150px; width:100%; resize: none; box-sizing: border-box;" >${board.content}</textarea>
+            <textarea name="content">${board.content}</textarea>
           </td>
         </tr>
         <tr>

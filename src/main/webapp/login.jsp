@@ -10,10 +10,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
     <link rel="stylesheet" href="css/base.css"> <!-- 외부 스타일시트 적용 -->
     <link rel="stylesheet" href="css/login.css"> <!-- 외부 스타일시트 적용 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
 </head>
@@ -40,7 +40,6 @@
                 <br>
                 <br>
                 <button type="submit" class="login-button">로그인</button>
-                <a href="password_check.jsp"><button type="button" class="login-button">비밀번호 변경</button></a>
                 <a href="register.jsp"><button type="button" class="login-button">회원가입</button></a>
             </form>
         </div>

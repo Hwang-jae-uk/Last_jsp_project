@@ -1,9 +1,8 @@
-/* main 태그 css 코드입니다. */
 main {
     display: flex; /* Flexbox 사용 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 500px;
+    height: auto;
 }
 
 /* login.css의 추가 스타일 */

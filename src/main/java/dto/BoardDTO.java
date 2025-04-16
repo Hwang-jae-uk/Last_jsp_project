@@ -1,10 +1,6 @@
 package dto;
 
-import dao.BoardDAO;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class BoardDTO {
 

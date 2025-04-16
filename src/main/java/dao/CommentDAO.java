@@ -2,7 +2,6 @@ package dao;
 
 import dto.CommentDTO;
 import util.DBManager;
-import util.JSFunction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

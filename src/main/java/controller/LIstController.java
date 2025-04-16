@@ -1,15 +1,14 @@
 package controller;
 
 import dao.BoardDAO;
-import dao.MemberDAO;
 import dto.BoardDTO;
-import dto.MemberDTO;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
 import util.PageHandler;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class LIstController extends HttpServlet {
         String searchWord = request.getParameter("searchWord");
         Map<String, Object> paramMap = new HashMap<String, Object>();
 
-        if(searchWord != null && !searchWord.equals("")) {
+        if(searchWord != null && !searchWord.isEmpty()) {
             paramMap.put("searchField", searchField);
             paramMap.put("searchWord", searchWord);
         } else {
@@ -43,8 +42,6 @@ public class LIstController extends HttpServlet {
 
         int totalCnt = dao.selectAllCount(paramMap);
 
-
-
         handler = new PageHandler(totalCnt, pageNum);
         int offset = (pageNum - 1) * handler.getPageSize();
 
@@ -57,11 +54,6 @@ public class LIstController extends HttpServlet {
         request.setAttribute("boardDTOList", boardList);
         request.setAttribute("paramMap", paramMap);
         request.getRequestDispatcher("list.jsp").forward(request, response);
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

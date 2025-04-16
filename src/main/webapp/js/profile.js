@@ -26,11 +26,11 @@ function validateForm(event) {
         form.email.focus();
         return false;
     }
-
+    const domain = document.getElementById("hid_domain");
     // 이메일 주소
-    if (form.domain.value.length < 5 || !form.domain.value.includes(".")) {
+    if (domain.value.trim().length < 5 || !domain.value.includes(".")) {
         alert("올바른 이메일 도메인을 입력하세요. 예: naver.com, gmail.com 등");
-        form.domain.focus();
+        form.sel_domain.focus();
         return false;
     }
     form.submit();
@@ -72,13 +72,14 @@ function getDomain() {
         "naver.com": 2,
         "daum.net": 3
     };
-    if (hid.value != null) {text.value = hid.value;}
 
     if (domainMap.hasOwnProperty(hid.value)) {
         sel.selectedIndex = domainMap[hid.value];
         text.disabled = true;
     } else {
         sel.selectedIndex = 0; // "직접 입력" 같은 기본값
+        if (hid.value == null) {text.value = "";}
+        else {text.value = hid.value;}
 
         // 직접 입력 선택 시, input 비우고 활성화
         text.disabled = false;
@@ -109,7 +110,7 @@ window.onload = function() {
 }
 
 // 버튼 누르면 비밀번호 변경이 생김
-function passwirdHidden() {
+function passwordHidden() {
     const fields = document.getElementById("passwordFields");
     fields.style.display = fields.style.display === "none" ? "block" : "none";
 }

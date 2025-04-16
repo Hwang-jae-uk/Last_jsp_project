@@ -36,7 +36,6 @@ public class ViewController extends HttpServlet {
             System.out.println("세션이 존재하지 않습니다.");
         }
 
-
         // content 줄바꿈
         dto.setContent(dto.getContent().replaceAll("\r\n","<br>"));
 

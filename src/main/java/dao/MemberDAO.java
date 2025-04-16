@@ -30,7 +30,6 @@ public class MemberDAO {
             pstmt.setString(8, dto.getPhone());
             pstmt.setString(9, dto.getBirthday());
             result = pstmt.executeUpdate();
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {

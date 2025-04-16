@@ -12,11 +12,13 @@ import java.io.PrintWriter;
 
 @WebServlet("/register")
 public class RegisterProcess extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getRequestDispatcher("register.jsp").forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int result = 0;
@@ -49,7 +51,6 @@ public class RegisterProcess extends HttpServlet {
                 return;
 
             try {
-
                 MemberDTO dto = new MemberDTO();
                 dto.setId(id);
                 dto.setPassword(password);
@@ -65,8 +66,11 @@ public class RegisterProcess extends HttpServlet {
 
                 if (result == 1)
                     JSFunction.alertLocation(response, "회원가입이 완료되었습니다.", "login?id="+ id);
+                else
+                    JSFunction.alertBack(response,"회원가입이 실패했습니다.");
             } catch (Exception e) {
                 e.printStackTrace();
+                JSFunction.alertBack(response, "통신에러");
             }
         }
     }

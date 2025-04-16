@@ -11,7 +11,7 @@ public class JSFunction {
         try{
             response.setContentType("text/html;charset=utf-8");
             PrintWriter out = response.getWriter();
-            String script = ""
+            String script = " "
                     + "<script>"
                     + "     alert('"+msg+"');"
                     + "      location.href='"+url+"';"
@@ -19,19 +19,20 @@ public class JSFunction {
             out.println(script);
 
         }
-        catch(Exception e){}
+        catch(Exception ignored){}
     }
+
     public static void alertBack(HttpServletResponse response , String msg){
         try {
             response.setContentType("text/html;charset=utf-8");
             PrintWriter out = response.getWriter();
-            String script = ""
+            String script = " "
                     + "<script>"
                     + "     alert('"+msg+"');"
                     + "     history.back();"
                     + "</script>";
             out.println(script);
         }
-        catch (Exception e) {}
+        catch (Exception ignored) {}
     }
 }

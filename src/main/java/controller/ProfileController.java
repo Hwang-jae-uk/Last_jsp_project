@@ -8,8 +8,10 @@ import jakarta.servlet.http.*;
 import util.JSFunction;
 
 import java.io.IOException;
+
 @WebServlet("/profile")
 public class ProfileController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);

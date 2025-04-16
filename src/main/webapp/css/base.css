@@ -3,7 +3,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: auto; /* 수평 스크롤 가능 */
 }
 
 body{
@@ -16,8 +15,8 @@ body{
 
 #wrapper {
     display: grid;
-    grid-template-columns: 300px 1200px;
-    grid-template-rows: 200px 50px fit-content(500px) 50px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 200px 50px auto 50px;
     grid-template-areas:
         "header header"
         "nav nav"
@@ -26,7 +25,7 @@ body{
     text-align: center;
     justify-content: center;
     width: 100%; /* wrapper가 전체 너비를 차지하게 설정 */
-    min-width: 1500px; /* 필요에 따라 min-width 값 조정 */
+    height: 100%;
 }
 
 /* header 태그 css 코드입니다. */
@@ -64,6 +63,7 @@ nav{
     background-color: hsla(14, 40%, 44%, 0.4);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -94,6 +94,7 @@ nav a:visited {
 nav a:hover {
     animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
 }
+
 /* 무지개 애니메이션 */
 @keyframes rainbow {
     0% { color: #FF5733; }      /* 빨강 */
@@ -123,15 +124,20 @@ aside{
     color: #333; /* 눈에 잘 띄는 어두운 회색 글자색 */
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
+aside strong {
+    font-size: x-large;
+}
 
 aside ul {
     list-style: none; /* 리스트 스타일 제거 */
     padding: 0; /* 기본 패딩 제거 */
+    font-size: larger;
 }
 
 aside li {
     text-align: left; /* 텍스트를 왼쪽으로 정렬 */
     padding-left: 2em; /* 기본적으로 2칸의 패딩 추가 */
+    margin: 20px;
 }
 
 /* 서브 리스트에 대한 스타일 추가 */
@@ -173,13 +179,12 @@ aside a:active {
 }
 
 /* main 태그 css 코드입니다. */
-main > table {
+main table {
     padding: 30px;
 }
 
 main{
     grid-area: main;
-    height: 100%;
     background-color: hsla(0, 33%, 96%,90%);
     font-family: 'Roboto', sans-serif; /* 폰트 적용 */
 }
@@ -187,6 +192,33 @@ main{
 main a {
     color: #2c3e50;
     text-decoration: none; /* 링크의 밑줄 제거 */
+}
+
+main .boardTable {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 95%;
+    margin: 30px auto; /* 테이블을 중앙에 배치 */
+    border-collapse: collapse; /* 테이블 셀 경계선이 합쳐짐 */
+}
+
+main .boardTable th,
+main .boardTable td {
+    padding: 15px; /* 셀 내부 여백 */
+    border: 1px solid #ddd; /* 테이블 셀의 경계선 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    vertical-align: middle; /* 세로 정렬 */
+    font-size: 16px; /* 폰트 크기 */
+}
+
+#intro-content {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 정렬 */
+    padding: 100px;
 }
 
 button {
@@ -210,11 +242,42 @@ button:active {
     transform: scale(0.97); /* 클릭 시 살짝 눌리는 효과 */
 }
 
+.commentArea{
+    text-align: left; margin-left: 50px
+}
+
+.titleArea{
+    width:100%;
+    font-size: larger;
+    border: none
+}
+
+textarea {
+    font-size: large;
+    border: none;
+    border-radius: 10px;
+    height: 150px;
+    width:100%;
+    resize: none;
+    box-sizing: border-box;
+}
+
+#comment{
+    width: 700px;
+    height: 100px;
+}
+
 .p{
     position: relative;
 }
+
 .eyes{
     cursor:pointer; position:absolute; right: 20px ;top:70%; transform:translateY(-50%);
+}
+
+hr {
+    width: 90%;
+    margin: 30px auto;
 }
 
 /* main 태그 내의 이미지 그리드 */
@@ -248,17 +311,19 @@ footer{
     padding: 10px; /* 패딩 추가 (필요시) */
 }
 #copyright {
+    white-space: nowrap;
     display: flex; /* 옵션: 가로로 정렬하기 위해 flex 적용 가능 */
     justify-content: flex-start; /* 왼쪽 정렬 */
     align-items: center; /* 세로 정렬 */
 }
 #othersites {
+    margin-right: 5%;
     display: flex; /* 링크를 가로로 정렬하기 위해 flex 적용 */
     justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: center; /* 세로 정렬 */
 }
 #othersites a {
-    margin: 0 5px; /* 좌우 이격을 위해 여백 설정 (상과 하: 0, 좌와 우: 5px) */
+    margin: 0 10px; /* 좌우 이격을 위해 여백 설정 (상과 하: 0, 좌와 우: 5px) */
 }
 #othersites img {
     width: 30px; /* 이미지 너비를 30px로 설정 */

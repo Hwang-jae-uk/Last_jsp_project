@@ -10,15 +10,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="css/view.css"> <!-- 외부 스타일시트 적용 -->
-    <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
+    <link rel="stylesheet" href="css/base.css"> <!-- 외부 스타일시트 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
+    <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
 </head>
 <body>
 <div id="wrapper">
     <jsp:include page="header_base.jsp"/>
     <main>
-        <table border="1" style="width: 95%; border-collapse: collapse; margin: 30px;" >
+        <table border="1" class="boardTable">
             <tr>
                 <th width="15%" >작성자 : </th>
                 <td width="25%" >${dto.nickname}</td>
@@ -55,7 +55,7 @@
                         <br>
                         <br>
                         <br>
-                        <form method="post" action="/view">
+                        <form method="post" action="view">
                             <input type="hidden" name="commentMod" value="commentDelete">
                             <input type="hidden" name="comment_no" value="${comment.comment_no}">
                             <input type="hidden" name="board_no" value="${comment.board_no}">
@@ -69,7 +69,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <form method="post" action="/view" onsubmit="return validateForm(this);">
+        <form method="post" action="view" onsubmit="return validateForm(this);">
             <input type="hidden" name="commentMod" value="commentWrite">
             <input type="hidden" name="no" value="${dto.no}">
             <input type="hidden" name="id" value="${dto.id}">
@@ -82,17 +82,15 @@
                     </td>
                     <c:if test="${userId!=null}">
                         <td>
-                            <textarea name="content" style="width: 700px; height: 100px;resize: none; box-sizing: border-box; "></textarea>
+                            <textarea id="comment" name="content"></textarea>
                         </td>
                     </c:if>
-                    <td style="width: 30%">
-
-                    </td>
+                    <td style="width: 30%"></td>
                 </tr>
             </table>
             <c:if test="${userId!=null}">
                 <button type="submit">댓글쓰기</button>
-                <button type="reset" >수정하기</button>
+                <button type="reset" >모두 지우기</button>
             </c:if>
         </form>
     </main>

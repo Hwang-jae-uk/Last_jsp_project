@@ -16,8 +16,11 @@ public class DBManager {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // DB에 연결
-        conn = DriverManager.getConnection(url, user, password);
-
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return conn;
     }
 
@@ -33,7 +36,6 @@ public class DBManager {
             e.printStackTrace();
         }
     }
-
     // insert, update, delete를 수행한 후 리소스 해제를 위한 메서드
     // executeUpdate() - int
     public static void close(Connection conn, Statement stmt) {
