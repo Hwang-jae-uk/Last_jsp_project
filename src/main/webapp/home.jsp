@@ -33,7 +33,7 @@
           <tr align="center">
             <td width="10%" ><a href="${news.o_link}">
               <img src="${news.img}" alt="picture" height="100px" align="center"></a></td>
-            <td width="60%"><a href="${news.o_link}">${news.title}</a></td>
+            <td width="60%"><a href="${news.o_link}" target="_blank">${news.title}</a></td>
             <td width="10%"><a href="${news.p_link}">${news.press}</a></td>
             <td width="10%">${news.date}</td>
           </tr>
