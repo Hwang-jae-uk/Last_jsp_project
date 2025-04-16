@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>개인정보 수정</title>
-  <link rel="stylesheet" href="css/profile.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/form.css"> <!-- 외부 스타일시트 적용 -->
   <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -18,71 +18,19 @@
 </head>
 <body>
 <script>
-    $(function() {
-        // .eyes 요소(눈 아이콘)를 클릭할 때마다 아래 함수가 실행됩니다.
-        $('.cp .eyes').on('click', function() {
-            // .visible 요소에 active 클래스를 토글(추가 또는 제거)합니다.
-            $('.cp').toggleClass('active');
-
-            // .visible 요소에 active 클래스가 추가되었을 때 (즉, 비밀번호가 보이는 상태일 때)
-            if ($('.cp').hasClass('active')) {
-                // 아이콘을 눈 모양에서 눈 슬래시 모양으로 변경합니다.
-                $(this).find('.fa-eye').attr('class', "fas fa-eye-slash");
-                // 비밀번호 입력 필드의 type을 "text"로 변경하여 비밀번호를 표시합니다.
-                $('#confirmEditPassword').attr('type', "text");
-            }
-            // .visible 요소에 active 클래스가 제거되었을 때 (즉, 비밀번호가 숨겨진 상태일 때)
-            else {
-                // 아이콘을 눈 슬래시 모양에서 눈 모양으로 다시 변경합니다.
-                $(this).find('.fa-eye-slash').attr('class', "fas fa-eye");
-                // 비밀번호 입력 필드의 type을 "password"로 변경하여 비밀번호를 숨깁니다.
-                $('#confirmEditPassword').attr('type', "password");
-            }
-        });
-    });
 
     $(function() {
-        // .eyes 요소(눈 아이콘)를 클릭할 때마다 아래 함수가 실행됩니다.
-        $('.ep .eyes').on('click', function() {
-            // .visible 요소에 active 클래스를 토글(추가 또는 제거)합니다.
-            $('.ep').toggleClass('active');
+        $('.eyes').on('click', function() {
+            const p = $(this).parent();
+            p.toggleClass('active');
 
-            // .visible 요소에 active 클래스가 추가되었을 때 (즉, 비밀번호가 보이는 상태일 때)
-            if ($('.ep').hasClass('active')) {
-                // 아이콘을 눈 모양에서 눈 슬래시 모양으로 변경합니다.
+            if (p.hasClass('active')) {
                 $(this).find('.fa-eye').attr('class', "fas fa-eye-slash");
-                // 비밀번호 입력 필드의 type을 "text"로 변경하여 비밀번호를 표시합니다.
-                $('#editPassword').attr('type', "text");
+                p.children('input').attr('type', "text");
             }
-            // .visible 요소에 active 클래스가 제거되었을 때 (즉, 비밀번호가 숨겨진 상태일 때)
             else {
-                // 아이콘을 눈 슬래시 모양에서 눈 모양으로 다시 변경합니다.
                 $(this).find('.fa-eye-slash').attr('class', "fas fa-eye");
-                // 비밀번호 입력 필드의 type을 "password"로 변경하여 비밀번호를 숨깁니다.
-                $('#editPassword').attr('type', "password");
-            }
-        });
-    });
-
-    $(function() {
-        // .eyes 요소(눈 아이콘)를 클릭할 때마다 아래 함수가 실행됩니다.
-        $('.p .eyes').on('click', function() {
-            // .visible 요소에 active 클래스를 토글(추가 또는 제거)합니다.
-            $('.p').toggleClass('active');
-
-            // .visible 요소에 active 클래스가 추가되었을 때 (즉, 비밀번호가 보이는 상태일 때)
-            if ($('.p').hasClass('active')) {
-                // 아이콘을 눈 모양에서 눈 슬래시 모양으로 변경합니다.
-                $(this).find('.fa-eye').attr('class', "fas fa-eye-slash");
-                // 비밀번호 입력 필드의 type을 "text"로 변경하여 비밀번호를 표시합니다.
-                $('#password').attr('type', "text");
-            }
-            // .visible 요소에 active 클래스가 제거되었을 때 (즉, 비밀번호가 숨겨진 상태일 때)
-            else {
-                // 아이콘을 눈 슬래시 모양에서 눈 모양으로 다시 변경합니다.
-                $(this).find('.fa-eye-slash').attr('class', "fas fa-eye");
-                // 비밀번호 입력 필드의 type을 "password"로 변경하여 비밀번호를 숨깁니다.
-                $('#password').attr('type', "password");
+                p.children('input').attr('type', "password");
             }
         });
     });
@@ -117,7 +65,7 @@
         </c:if>
 
         <div class="form-group">
-          <div class="ep">
+          <div class="p">
           <label for="editPassword">새 비밀번호</label>
           <input type="password" id="editPassword" name="editPassword" minlength="8" maxlength="20"
                  placeholder="&nbsp;&nbsp;비밀번호를 8~20자 내로 입력해주세요." class="ent">
@@ -126,7 +74,7 @@
         </div>
 
         <div class="form-group">
-          <div class="cp">
+          <div class="p">
             <label for="confirmEditPassword">새 비밀번호 확인</label>
             <input type="password" id="confirmEditPassword" name="confirmEditPassword" minlength="8" maxlength="20" class="ent">
             <div class="eyes"><i class="fas fa-eye"></i></div>

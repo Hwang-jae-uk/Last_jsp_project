@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
   <link rel="stylesheet" href="css/font.css"> <!-- Google Font 링크 추가 -->
-  <link rel="stylesheet" href="css/register.css"> <!-- 외부 스타일시트 적용 -->
+  <link rel="stylesheet" href="css/form.css"> <!-- 외부 스타일시트 적용 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="js/register.js"></script>
@@ -26,10 +26,10 @@
           <label for="id">아이디</label>
           <input type="text" id="id" name="id" class="ent" placeholder="아이디를 5~20자 이내로 입력해주세요." onchange="changeCheck()">
           <label style="text-align: left; color: gray" id="check_result"><br></label>
-          <button type="button" id="check" style="font-size: large">중복체크</button>
+          <button type="button" id="check">중복체크</button>
         </div>
 
-        <div class="visible" id="pv">
+        <div class="p">
           <label for="password">비밀번호</label>
           <input
             type="password" id="password" name="password" class="ent"
@@ -37,7 +37,7 @@
           <div class="eyes"><i class="fas fa-eye"></i></div>
         </div>
 
-        <div class="visible" id="cpv">
+        <div class="p">
           <label for="confirmPassword">비밀번호 확인</label>
           <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" maxlength="20"
                  placeholder="동일한 비밀번호를 다시 입력해주세요." class="ent">
@@ -87,7 +87,7 @@
           </label>
         </div>
         <div class="form-group">이메일
-          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content;
+          <label class="inline-form" style="border: 1px solid gray; border-radius: 5px; width: fit-content ;
           background-color: #f3fbff">
             <input type="text" id="email" name="email" minlength="5" placeholder="Input your email's ID"
                    style="width: 150px; border-color: transparent" class="ent" >
@@ -162,47 +162,17 @@
         });
 
         $(function() {
-            // .eyes 요소(눈 아이콘)를 클릭할 때마다 아래 함수가 실행됩니다.
-            $('#pv .eyes').on('click', function() {
-                // .input_wrap 요소에 active 클래스를 토글(추가 또는 제거)합니다.
-                $('#pv').toggleClass('active');
+            $('.eyes').on('click', function() {
+                const p = $(this).parent();
+                p.toggleClass('active');
 
-                // .input_wrap 요소에 active 클래스가 추가되었을 때 (즉, 비밀번호가 보이는 상태일 때)
-                if ($('#pv').hasClass('active')) {
-                    // 아이콘을 눈 모양에서 눈 슬래시 모양으로 변경합니다.
+                if (p.hasClass('active')) {
                     $(this).find('.fa-eye').attr('class', "fas fa-eye-slash");
-                    // 비밀번호 입력 필드의 type을 "text"로 변경하여 비밀번호를 표시합니다.
-                    $('#password').attr('type', "text");
+                    p.children('input').attr('type', "text");
                 }
-                // .input_wrap 요소에 active 클래스가 제거되었을 때 (즉, 비밀번호가 숨겨진 상태일 때)
                 else {
-                    // 아이콘을 눈 슬래시 모양에서 눈 모양으로 다시 변경합니다.
                     $(this).find('.fa-eye-slash').attr('class', "fas fa-eye");
-                    // 비밀번호 입력 필드의 type을 "password"로 변경하여 비밀번호를 숨깁니다.
-                    $('#password').attr('type', "password");
-                }
-            });
-        });
-
-        $(function() {
-            // .eyes 요소(눈 아이콘)를 클릭할 때마다 아래 함수가 실행됩니다.
-            $('#cpv .eyes').on('click', function() {
-                // .input_wrap 요소에 active 클래스를 토글(추가 또는 제거)합니다.
-                $('#cpv').toggleClass('active');
-
-                // .input_wrap 요소에 active 클래스가 추가되었을 때 (즉, 비밀번호가 보이는 상태일 때)
-                if ($('#cpv').hasClass('active')) {
-                    // 아이콘을 눈 모양에서 눈 슬래시 모양으로 변경합니다.
-                    $(this).find('.fa-eye').attr('class', "fas fa-eye-slash");
-                    // 비밀번호 입력 필드의 type을 "text"로 변경하여 비밀번호를 표시합니다.
-                    $('#confirmPassword').attr('type', "text");
-                }
-                // .input_wrap 요소에 active 클래스가 제거되었을 때 (즉, 비밀번호가 숨겨진 상태일 때)
-                else {
-                    // 아이콘을 눈 슬래시 모양에서 눈 모양으로 다시 변경합니다.
-                    $(this).find('.fa-eye-slash').attr('class', "fas fa-eye");
-                    // 비밀번호 입력 필드의 type을 "password"로 변경하여 비밀번호를 숨깁니다.
-                    $('#confirmPassword').attr('type', "password");
+                    p.children('input').attr('type', "password");
                 }
             });
         });

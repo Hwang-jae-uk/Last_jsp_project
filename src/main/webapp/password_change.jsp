@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 수정</title>
-    <link rel="stylesheet" href="css/profile.css"> <!-- 외부 스타일시트 적용 -->
+    <link rel="stylesheet" href="css/form.css"> <!-- 외부 스타일시트 적용 -->
     <script src="js/currentTime.js"></script> <!-- 현재 날짜, 현재 시각을 표현하는 외부 js 적용 -->
     <link href="css/font.css" rel="stylesheet"> <!-- Google Font 링크 추가 -->
 </head>

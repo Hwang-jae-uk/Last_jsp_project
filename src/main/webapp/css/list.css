@@ -13,26 +13,6 @@ body{
     -ms-user-select:none;
     user-select:none
 }
-/* 무지개 애니메이션 */
-@keyframes rainbow {
-    0% { color: #FF5733; }      /* 빨강 */
-    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
-    12.5% { color: #FFB733; }   /* 연한 주황 */
-    18.75% { color: #FFDB33; }  /* 연한 노랑 */
-    25% { color: #F2FF33; }     /* 밝은 노랑 */
-    31.25% { color: #A3FF33; }  /* 연두색 */
-    37.5% { color: #78FF33; }   /* 초록 */
-    43.75% { color: #33FF57; }  /* 민트색 */
-    50% { color: #33FFDB; }     /* 연한 파랑 */
-    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
-    62.5% { color: #3399FF; }   /* 중간 파란색 */
-    68.75% { color: #3373FF; }  /* 파랑 */
-    75% { color: #4C33FF; }     /* 보라색 시작 */
-    81.25% { color: #8E33FF; }  /* 보라색 */
-    87.5% { color: #D833FF; }   /* 핑크색 */
-    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
-    100% { color: #FF5733; }    /* 빨강으로 복귀 */
-}
 
 a{
     text-decoration: none;
@@ -117,7 +97,26 @@ nav a:visited {
 nav a:hover {
     animation: rainbow 1s linear infinite; /* 무지개 애니메이션 적용 */
 }
-
+/* 무지개 애니메이션 */
+@keyframes rainbow {
+    0% { color: #FF5733; }      /* 빨강 */
+    6.25% { color: #FF6F33; }   /* 밝은 빨강 */
+    12.5% { color: #FFB733; }   /* 연한 주황 */
+    18.75% { color: #FFDB33; }  /* 연한 노랑 */
+    25% { color: #F2FF33; }     /* 밝은 노랑 */
+    31.25% { color: #A3FF33; }  /* 연두색 */
+    37.5% { color: #78FF33; }   /* 초록 */
+    43.75% { color: #33FF57; }  /* 민트색 */
+    50% { color: #33FFDB; }     /* 연한 파랑 */
+    56.25% { color: #66B2FF; }  /* 밝은 파란색 */
+    62.5% { color: #3399FF; }   /* 중간 파란색 */
+    68.75% { color: #3373FF; }  /* 파랑 */
+    75% { color: #4C33FF; }     /* 보라색 시작 */
+    81.25% { color: #8E33FF; }  /* 보라색 */
+    87.5% { color: #D833FF; }   /* 핑크색 */
+    93.75% { color: #FF4D4D; }   /* 연한 빨강 */
+    100% { color: #FF5733; }    /* 빨강으로 복귀 */
+}
 
 /* aside 태그 css 코드입니다. */
 aside{
