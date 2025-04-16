@@ -28,7 +28,7 @@
                             <option value="title" ${paramMap.searchField == 'title'?"selected":""} > 제목</option>
                             <option value="id" ${paramMap.searchField == 'id'?"selected":""} >작성자</option>
                         </select>
-                        <input type="text" name="searchWord" value="${paramMap.searchWord}">
+                        <input type="text" id="search-field" name="searchWord" value="${paramMap.searchWord}">
                         <button type="submit" >검색하기</button>
                     </td>
                 </tr>

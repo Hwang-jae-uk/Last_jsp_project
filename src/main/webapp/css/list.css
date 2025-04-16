@@ -26,6 +26,11 @@ input {
     height: 20px;
 }
 
+#search-field{
+    min-width: 100px;
+    width: 40%;
+}
+
 select{
     border: 1px solid #685a5a;
     border-radius: 4px;
