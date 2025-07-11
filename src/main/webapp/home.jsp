@@ -56,15 +56,17 @@
           <th width="15%">조회수</th>
           <th >작성일</th>
         </tr>
-        <c:forEach var="board" items="${boardDTOList}">
-          <tr align="center">
-            <th width="10%">${board.row_num}</th>
-            <th width="10%">${board.nickname}</th>
-            <th width="40%" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
-            <th width="15%">${board.visitCount}</th>
-            <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
-          </tr>
-        </c:forEach>
+        <c:if test="${boardDTOList != null }">
+          <c:forEach var="board" items="${boardDTOList}">
+            <tr align="center">
+              <th width="10%">${board.row_num}</th>
+              <th width="10%">${board.nickname}</th>
+              <th width="40%" align="left"><a href="view?no=${board.no}">${board.title}</a></th>
+              <th width="15%">${board.visitCount}</th>
+              <th><fmt:formatDate value="${board.postdate}" pattern="MM-dd" /></th>
+            </tr>
+          </c:forEach>
+        </c:if>
       </table>
     </section>
     <section>

@@ -8,7 +8,8 @@ public class DBManager {
         Connection conn = null;
 
         // DB접속 정보
-        String url = "jdbc:mysql://10.100.105.24:3306/jspgit";
+//        String url = "jdbc:mysql://10.100.105.24:3306/jspgit";
+        String url = "jdbc:mysql://localhost:3306/jspgit";
         String user = "root";
         String password = "1234";
 

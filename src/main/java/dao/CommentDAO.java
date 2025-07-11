@@ -26,7 +26,7 @@ public class CommentDAO {
                 commentDTO.setNickname(rs.getString("nickname"));
                 commentDTO.setPostdate(rs.getDate("postdate"));
                 commentDTO.setBoard_no(rs.getInt("board_no"));
-                commentDTO.setComment_no(rs.getInt("Comment_no"));
+                commentDTO.setComment_no(rs.getInt("Comment_id"));
                 commentDTO.setId(rs.getString("id"));
                 commentDTO.setContent(rs.getString("content"));
                 comments.add(commentDTO);
@@ -60,7 +60,7 @@ public class CommentDAO {
     }
 
     public void commentDelete(int commentNo) {
-        String sql = "delete from comment where comment_no = ?";
+        String sql = "delete from comment where comment_id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 

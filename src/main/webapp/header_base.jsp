@@ -18,7 +18,7 @@
         <li><a href="home">HOME</a></li>
         <li><a href="introduce.jsp">ABOUT</a></li>
         <li><a href="news">NEWS</a></li>
-        <li><a href="list">LIST</a></li>
+        <li><a href="list">COMMUNITY</a></li>
         <c:if test="${sessionScope.get('userId')==null}">
             <li><a href="login">LOGIN</a></li>
         </c:if>

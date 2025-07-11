@@ -55,8 +55,8 @@
           <label>성별</label>
           <div>
             <label><input type="radio" checked name="gender" value="none" style="display: none"/></label>
-            <label><input type="radio" name="gender" value="man"> 남자</label>
-            <label><input type="radio" name="gender" value="woman"> 여자</label>
+            <label><input type="radio" name="gender" value="M"> 남자</label>
+            <label><input type="radio" name="gender" value="F"> 여자</label>
           </div>
         </div>
 

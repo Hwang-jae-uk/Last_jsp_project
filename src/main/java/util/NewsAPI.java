@@ -104,6 +104,8 @@ public class NewsAPI {
         rd.close();
         conn.disconnect();
 
+        System.out.println(sb.toString());
+
         Gson gson = new Gson();
         Root root = gson.fromJson(sb.toString(), Root.class);
 

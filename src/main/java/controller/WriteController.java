@@ -39,6 +39,10 @@ public class WriteController extends HttpServlet {
             userId = (String) session.getAttribute("userId");
         }
 
+        MemberDAO mdao = new MemberDAO();
+        MemberDTO mdto = mdao.getMemberByID(userId);
+
+        dto.setNickname(mdto.getNickname());
         dto.setId(userId);
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));

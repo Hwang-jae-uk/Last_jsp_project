@@ -52,7 +52,7 @@ public class BoardDAO {
 
     // 선택한 게시물 보기
     public BoardDTO viewBoard(int no) {
-        String sql = "select * from jspgit.list where no = ?";
+        String sql = "select * from jspgit.board where no = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -102,7 +102,7 @@ public class BoardDAO {
 
     // 리스트 게시물 목록
     public List<BoardDTO> selectPagingList(Map<String , Object> map) {
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate,nickname FROM jspgit.list";
+        String sql = "SELECT no,title, content, id, visitcount, postdate,nickname FROM jspgit.board";
         if(map.get("searchWord") != null){
             if(!map.get("searchField").equals("all")){
                 sql += " WHERE " + map.get("searchField")+" like ? ";
@@ -147,7 +147,6 @@ public class BoardDAO {
             while ( rs.next() ) {
                 BoardDTO dto = new BoardDTO();
                 dto.setNo(rs.getInt("no"));
-                dto.setRow_num(rs.getInt("row_num"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
                 dto.setPostdate(rs.getDate("postdate"));
@@ -156,6 +155,10 @@ public class BoardDAO {
                 dto.setNickname(rs.getString("nickname"));
                 boardList.add(dto);
             }
+            System.out.println("최종 SQL: " + sql);
+            System.out.println("searchWord: " + map.get("searchWord"));
+            System.out.println("searchField: " + map.get("searchField"));
+            System.out.println("offset: " + map.get("offset"));
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -184,7 +187,6 @@ public class BoardDAO {
 
             while (rs.next()) {
                 BoardDTO dto = new BoardDTO();
-                dto.setRow_num(rs.getInt("row_num"));
                 dto.setNo(rs.getInt("no"));
                 dto.setId(rs.getString("id"));
                 dto.setNickname(rs.getString("nickname"));
@@ -203,7 +205,7 @@ public class BoardDAO {
     }
     // 게시물 생성
     public void insertBoard(BoardDTO dto) {
-        String sql = "INSERT INTO board(id , title , content) values(?,?,?)";
+        String sql = "INSERT INTO board(id , title , content , nickname) values(?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
@@ -212,6 +214,7 @@ public class BoardDAO {
             pstmt.setString(1, dto.getId());
             pstmt.setString(2, dto.getTitle());
             pstmt.setString(3, dto.getContent());
+            pstmt.setString(4, dto.getNickname());
             pstmt.executeUpdate();
         }catch (Exception e) {
             e.printStackTrace();

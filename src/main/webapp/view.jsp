@@ -45,30 +45,35 @@
                     <button type="button" onclick="location.href='/list'">목록보기</button>
                 </td>
             </tr>
-            <c:forEach var="comment" items="${commentList}">
-                <tr >
-                    <td colspan="7">
-                        <div class="commentArea" >
-                            <span style="display:inline-block; width: 150px; text-align: center">${comment.nickname} </span>:
-                            <span>${comment.content}</span>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <form method="post" action="view">
-                            <input type="hidden" name="commentMod" value="commentDelete">
-                            <input type="hidden" name="comment_no" value="${comment.comment_no}">
-                            <input type="hidden" name="board_no" value="${comment.board_no}">
-                            <c:if test="${comment.id==userId}">
-                                <div style="text-align: right">
-                                    <button type="submit">삭제하기</button>
-                                </div>
-                            </c:if>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
         </table>
+        <c:forEach var="comment" items="${commentList}">
+            <div class="commentTable">
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-items: center;
+                    margin-top: 55px;
+                ">
+                    <div class="commentArea" >
+                        <div style="height: 30%;width: 30%;">${comment.nickname} </div>:
+                        <div>${comment.content}</div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <form method="post" action="view">
+                        <input type="hidden" name="commentMod" value="commentDelete">
+                        <input type="hidden" name="comment_no" value="${comment.comment_no}">
+                        <input type="hidden" name="board_no" value="${comment.board_no}">
+                        <c:if test="${comment.id==userId}">
+                            <div style="text-align: right">
+                                <button type="submit">삭제하기</button>
+                            </div>
+                        </c:if>
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
         <form method="post" action="view" onsubmit="return validateForm(this);">
             <input type="hidden" name="commentMod" value="commentWrite">
             <input type="hidden" name="no" value="${dto.no}">

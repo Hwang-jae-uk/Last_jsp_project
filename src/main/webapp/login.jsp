@@ -23,7 +23,7 @@
     <main>
         <div class="login-container">
             <h2>로그인</h2>
-            <form action="login" method="post">
+            <form action="/login" method="post">
                 <div class="form-group">
                     <div>
                     <label for="id">아이디</label>

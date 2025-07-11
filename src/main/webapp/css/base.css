@@ -1,6 +1,4 @@
 html, body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -14,8 +12,9 @@ body{
 }
 
 #wrapper {
+
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 6fr;
     grid-template-rows: 200px 50px auto 50px;
     grid-template-areas:
         "header header"
@@ -24,8 +23,8 @@ body{
         "footer footer";
     text-align: center;
     justify-content: center;
-    width: 100%; /* wrapper가 전체 너비를 차지하게 설정 */
-    height: 100%;
+    margin: 0 auto;
+    height: 100vh;
 }
 
 /* header 태그 css 코드입니다. */
@@ -118,6 +117,7 @@ nav a:hover {
 
 /* aside 태그 css 코드입니다. */
 aside{
+
     grid-area: aside;
     display: flex;
     background-color: hsla(19, 62%, 27%, 0.4); /* 배경색 */
@@ -129,6 +129,8 @@ aside strong {
 }
 
 aside ul {
+    min-width: 350px;
+    max-width:350px;
     list-style: none; /* 리스트 스타일 제거 */
     padding: 0; /* 기본 패딩 제거 */
     font-size: larger;
@@ -205,6 +207,18 @@ main .boardTable {
     border-collapse: collapse; /* 테이블 셀 경계선이 합쳐짐 */
 }
 
+main .commentTable {
+    
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 95%;
+    margin: 30px auto; /* 테이블을 중앙에 배치 */
+    border-collapse: collapse; /* 테이블 셀 경계선이 합쳐짐 */
+}
+
 main .boardTable th,
 main .boardTable td {
     padding: 15px; /* 셀 내부 여백 */
@@ -243,7 +257,11 @@ button:active {
 }
 
 .commentArea{
-    text-align: left; margin-left: 50px
+    display: flex;
+    align-items: center;    /* 세로 정렬 */
+
+    gap: 8px;
+    height: 100%;
 }
 
 .titleArea{

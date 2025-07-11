@@ -13,7 +13,7 @@ public class MemberDAO {
 
     //회원가입
     public int addMember(MemberDTO dto) {
-        String sql = "insert into member values(?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into member(id, password, nickname, name, gender, email, carrier, phone, birthday) values(?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         int result = 0;

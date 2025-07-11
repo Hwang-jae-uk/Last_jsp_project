@@ -28,7 +28,6 @@ public class LoginProcess extends HttpServlet {
             //로그인 성공
 
             session.setAttribute("userId", dto.getId());
-            session.setAttribute("password", dto.getPassword());
 
             response.sendRedirect("/home");
         }else{
