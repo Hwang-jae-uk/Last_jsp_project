@@ -37,8 +37,9 @@
             <tr>
                 <td colspan="7"  style="text-align: right; vertical-align: bottom; padding: 20px;" >
                     <c:if test="${dto.id == mdto.id}">
-                        <button type="button" onclick="location.href='/delete?no=${dto.no}&mode=delete'">삭제하기</button>
+                        <button type="button" onclick="confirmPostDelete(${dto.no})">삭제하기</button>
                     </c:if>
+
                     <c:if test="${dto.id == mdto.id}">
                         <button type="button" onclick="location.href='/edit?no=${dto.no}'">수정하기</button>
                     </c:if>
@@ -107,6 +108,13 @@
                 return false;
             }
         }
+        function confirmPostDelete(no) {
+            if (confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
+                location.href = '/delete?no=' + no + '&mode=delete';
+            }
+        }
+
+
     </script>
 </div>
 </body>
