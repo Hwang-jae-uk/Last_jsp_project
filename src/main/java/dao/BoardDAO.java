@@ -102,7 +102,7 @@ public class BoardDAO {
 
     // 리스트 게시물 목록
     public List<BoardDTO> selectPagingList(Map<String , Object> map) {
-        String sql = "SELECT no,title, content, id, visitcount, postdate,nickname FROM jspgit.board";
+        String sql = "SELECT no ,ROW_NUMBER() OVER (ORDER BY postdate ) as row_num,title, content, id, visitcount, postdate,nickname FROM jspgit.board";
         if(map.get("searchWord") != null){
             if(!map.get("searchField").equals("all")){
                 sql += " WHERE " + map.get("searchField")+" like ? ";
@@ -153,6 +153,7 @@ public class BoardDAO {
                 dto.setVisitCount(rs.getInt("visitCount"));
                 dto.setId(rs.getString("id"));
                 dto.setNickname(rs.getString("nickname"));
+                dto.setRow_num(rs.getInt("row_num"));
                 boardList.add(dto);
             }
             System.out.println("최종 SQL: " + sql);
@@ -169,7 +170,7 @@ public class BoardDAO {
 
     }
 
-    // Home 화면 조회수 top10 리스트
+    // Home 화면 조회수 top5 리스트
     public List<BoardDTO> getHomeBoard() {
         String sql = "SELECT ROW_NUMBER() OVER (ORDER BY postdate) AS row_num,no,title, content, id, visitcount, postdate, nickname FROM board" +
                 " order by visitcount desc limit 5";
@@ -247,6 +248,21 @@ public class BoardDAO {
     }
 
     // 게시물 삭제
+    public void deleteBoardById(String id) {
+        String sql = "DELETE FROM board WHERE id=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try{
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+    }
     public int deleteBoard(String no){
         String sql = "DELETE FROM board WHERE no = ?";
         Connection conn = null;

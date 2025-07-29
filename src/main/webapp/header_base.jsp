@@ -26,7 +26,7 @@
             <li><a href="logout.jsp">LOGOUT</a></li>
         </c:if>
         <c:if test="${sessionScope.get('userId')==null}">
-            <li><a href="register">SIGN IN</a></li>
+            <li><a href="register">SIGN UP</a></li>
         </c:if>
         <c:if test="${sessionScope.get('userId')!=null}">
             <li><a href="profile">PROFILE</a></li>

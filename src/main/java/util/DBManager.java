@@ -9,16 +9,22 @@ public class DBManager {
 
         // DB접속 정보
 //        String url = "jdbc:mysql://10.100.105.24:3306/jspgit";
+
+        //로컬
         String url = "jdbc:mysql://localhost:3306/jspgit";
         String user = "root";
         String password = "1234";
+
+
 
         // JDBC 드라이버 로드
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // DB에 연결
         try {
+
             conn = DriverManager.getConnection(url, user, password);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

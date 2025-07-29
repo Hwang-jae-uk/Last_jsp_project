@@ -16,12 +16,12 @@
 </head>
 <script>
     function validateForm(form){
-        if(form.content.value == ""){
-            alert("내용을 입력하세요");
-            return false;
-        }
         if(form.title.value == ""){
             alert("제목을 입력하세요");
+            return false;
+        }
+        if(form.content.value == ""){
+            alert("내용을 입력하세요");
             return false;
         }
     }

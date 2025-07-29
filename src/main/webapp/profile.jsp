@@ -105,9 +105,15 @@
         <div class="form-group" style="display: inline">
           <button type="submit" style="margin: 10px 0 10px;">수정</button> <!-- 수정 버튼 -->
           <button type="button" style="margin: 10px 0 10px;" id="cancel" onclick="history.back()">취소</button> <!-- 취소 버튼 -->
+          <button type="button" style="margin: 10px 0 10px;" id="deleteMember" onclick="confirmMemberDelete('${member.id}')">탈퇴하기</button> <!-- 유저탈퇴 버튼 -->
         </div>
       </form>
     </div>
+    <c:if test="${not empty error}">
+      <script>
+        alert("${error}")
+      </script>
+    </c:if>
   <script>
       document.getElementById("form").addEventListener("submit", validateForm);
 
@@ -126,6 +132,22 @@
               }
           });
       });
+      function confirmMemberDelete(id){
+        const password = document.querySelector('#password').value;
+        console.log(password)
+        if(!password){
+          alert("현재 비밀번호를 입력해주세요.")
+          return;
+        }
+
+
+        if (confirm("정말로 아이디를 삭제하시겠습니까?")) {
+          const encodePassword = encodeURIComponent(password);
+          location.href = '/deleteMember?id=' + id + '&password=' + encodePassword;
+        }
+
+      }
+
   </script>
   </main>
 </body>

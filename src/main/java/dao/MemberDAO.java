@@ -148,5 +148,23 @@ public class MemberDAO {
         }
         return result;
     }
+    public void deleteMember(String id) {
+        System.out.println("삭제 요청된 ID: " + id);
+        String sql = "delete from member where id=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            pstmt.executeUpdate();
 
+        }catch (Exception e) {
+            System.out.println("쿼리 실행 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+
+    }
 }
